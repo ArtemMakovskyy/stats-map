@@ -1,5 +1,7 @@
 📈 Statistics & A/B Testing Guide
 
+🔗 **[View Interactive Guide →](https://artemmakovskyy.github.io/stats-map/)**
+
 **Interactive Decision Map for Statistical Analysis**  
 A comprehensive 7-step methodology guide for moving from raw data to statistically sound conclusions. Built as an interactive HTML flowchart with embedded Python code snippets.
 

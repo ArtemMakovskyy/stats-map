@@ -222,6 +222,28 @@
   .detail-inner ul{margin:8px 0 0; padding-left:18px;}
   .detail-inner li{font-size:14.5px; margin-bottom:5px;}
 
+  /* Data classification table (section 01) */
+  .dc-table{width:100%; border-collapse:collapse; font-size:15px; background:var(--card);}
+  .dc-table th{padding:16px 20px; text-align:left; font-family:inherit; font-size:15px; font-weight:700; cursor:pointer; border-bottom:1px solid var(--line); transition:opacity .15s; vertical-align:top; line-height:1.35;}
+  .dc-table th:hover{opacity:0.7;}
+  .dc-table td{padding:16px 20px; border-bottom:1px solid var(--line); vertical-align:top;}
+  .dc-table tr:last-child td{border-bottom:none;}
+  .dc-table tr:hover td{background:rgba(0,0,0,0.012);}
+  .dc-th-nominal{color:var(--accent-blue);}
+  .dc-th-discrete{color:var(--accent-teal);}
+  .dc-th-continuous{color:var(--accent-amber);}
+  .dc-th-ordinal{color:var(--accent-purple);}
+  .dc-td-nominal{color:var(--accent-blue);}
+  .dc-td-discrete{color:var(--accent-teal);}
+  .dc-td-continuous{color:var(--accent-amber);}
+  .dc-td-ordinal{color:var(--accent-purple);}
+  .dc-td-qualitative{color:var(--accent-coral);}
+  .dc-td-quantitative{color:var(--accent-green);}
+  .dc-viz-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-top:20px;}
+  .dc-viz-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px; font-size:14px;}
+  .dc-viz-card h4{font-family:Georgia,serif; font-weight:400; font-size:15px; margin:0 0 6px;}
+  .dc-viz-card p{margin:0; color:var(--ink-soft); font-size:13.5px;}
+
   footer{
     padding:40px 24px 20px;
     text-align:center;
@@ -246,12 +268,13 @@
     <p class="sub">Клікай на блоки в кожній схемі — розкриється коротке пояснення логіки рішення. Це не підручник, а маршрут: розподіл → викиди → вибірка → надійність → кореляція → A/B тест → розмір вибірки.</p>
     <nav class="toc">
       <a href="#s0">0. Загальна карта</a>
-      <a href="#s1">1. Викиди</a>
-      <a href="#s2">2. Вибірка</a>
-      <a href="#s3">3. Нормальність і значущість</a>
-      <a href="#s4">4. Кореляція</a>
-      <a href="#s5">5. A/B тестування</a>
-      <a href="#s6">6. Розмір вибірки</a>
+      <a href="#s1">1. Класифікація даних</a>
+      <a href="#s2">2. Викиди</a>
+      <a href="#s3">3. Вибірка</a>
+      <a href="#s4">4. Нормальність і значущість</a>
+      <a href="#s5">5. Кореляція</a>
+      <a href="#s6">6. A/B тестування</a>
+      <a href="#s7">7. Розмір вибірки</a>
     </nav>
   </div>
 </header>
@@ -368,11 +391,151 @@
   </div>
 </section>
 
-<!-- ============ SECTION 1: OUTLIERS ============ -->
+<!-- ============ SECTION 0.5: DATA CLASSIFICATION ============ -->
 <section class="scheme" id="s1">
   <div class="wrap">
     <div class="scheme-head">
       <span class="scheme-num">01</span>
+      <h2>Класифікація даних</h2>
+    </div>
+    <p class="scheme-desc">Перш ніж шукати викиди чи формувати вибірку, потрібно визначити тип кожної змінної — від нього залежить, які методи аналізу й візуалізації взагалі застосовні.</p>
+
+    <div class="diagram-card" style="padding:6px; overflow-x:auto;">
+      <table class="dc-table">
+        <thead>
+        <tr>
+          <th class="dc-th-nominal clickable-heading" data-detail="dc-nominal" data-color="var(--accent-blue)">ID (Номінальні)</th>
+          <th class="dc-th-nominal clickable-heading" data-detail="dc-nominal" data-color="var(--accent-blue)">Категорія товару (Номінальні)</th>
+          <th class="dc-th-discrete clickable-heading" data-detail="dc-discrete" data-color="var(--accent-teal)">Кількість покупок (Дискретні)</th>
+          <th class="dc-th-continuous clickable-heading" data-detail="dc-continuous" data-color="var(--accent-amber)">Сума продажу, $ (Неперервні)</th>
+          <th class="dc-th-ordinal clickable-heading" data-detail="dc-ordinal" data-color="var(--accent-purple)">Рівень задоволеності (Порядкові)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="dc-td-qualitative">Якісні / Категоріальні</td>
+          <td class="dc-td-qualitative">Якісні / Категоріальні</td>
+          <td class="dc-td-quantitative">Кількісні дані</td>
+          <td class="dc-td-quantitative">Кількісні дані</td>
+          <td class="dc-td-qualitative">Якісні / Категоріальні</td>
+        </tr>
+        <tr>
+          <td class="dc-td-nominal">001</td>
+          <td class="dc-td-nominal">Електроніка</td>
+          <td class="dc-td-discrete">20</td>
+          <td class="dc-td-continuous">345.50</td>
+          <td class="dc-td-ordinal">Дуже задоволений</td>
+        </tr>
+        <tr>
+          <td class="dc-td-nominal">002</td>
+          <td class="dc-td-nominal">Одяг</td>
+          <td class="dc-td-discrete">15</td>
+          <td class="dc-td-continuous">255.00</td>
+          <td class="dc-td-ordinal">Задоволений</td>
+        </tr>
+        <tr>
+          <td class="dc-td-nominal">003</td>
+          <td class="dc-td-nominal">Іграшки</td>
+          <td class="dc-td-discrete">30</td>
+          <td class="dc-td-continuous">480.75</td>
+          <td class="dc-td-ordinal">Незадоволений</td>
+        </tr>
+        <tr>
+          <td class="dc-td-nominal">004</td>
+          <td class="dc-td-nominal">Електроніка</td>
+          <td class="dc-td-discrete">22</td>
+          <td class="dc-td-continuous">320.40</td>
+          <td class="dc-td-ordinal">Задоволений</td>
+        </tr>
+        <tr>
+          <td class="dc-td-nominal">005</td>
+          <td class="dc-td-nominal">Одяг</td>
+          <td class="dc-td-discrete">27</td>
+          <td class="dc-td-continuous">400.20</td>
+          <td class="dc-td-ordinal">Дуже задоволений</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="clickable-heading" data-detail="dc-glossary" data-color="var(--accent-blue)" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:28px 12px 10px;padding-top:14px;border-top:1px solid var(--line)">Словник термінів</h3>
+    <p class="hint" style="text-align:left;margin:0 12px 14px;">клікни на заголовок стовпця або термін, щоб розкрити пояснення</p>
+
+    <div class="term-grid">
+      <div class="term-node" data-detail="dc-quantitative" data-color="var(--accent-green)">Кількісні дані</div>
+      <div class="term-node" data-detail="dc-discrete" data-color="var(--accent-teal)">Дискретні дані</div>
+      <div class="term-node" data-detail="dc-continuous" data-color="var(--accent-amber)">Неперервні дані</div>
+      <div class="term-node" data-detail="dc-qualitative" data-color="var(--accent-coral)">Якісні / Категоріальні</div>
+      <div class="term-node" data-detail="dc-nominal" data-color="var(--accent-blue)">Номінальні дані</div>
+      <div class="term-node" data-detail="dc-ordinal" data-color="var(--accent-purple)">Порядкові дані</div>
+    </div>
+
+    <div class="dc-viz-cards">
+      <div class="dc-viz-card">
+        <h4>📊 Гістограма</h4>
+        <p>використовується для <strong>неперервних кількісних даних</strong>.</p>
+      </div>
+      <div class="dc-viz-card">
+        <h4>📈 Стовпчаста діаграма</h4>
+        <p>підходить для <strong>якісних (категоріальних)</strong> та <strong>дискретних кількісних даних</strong>.</p>
+      </div>
+    </div>
+
+    <div class="detail-panel" id="panel-dc-glossary"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Як читати словник</h3>
+      <p>Дані спершу діляться на кількісні (числові) та якісні (категоріальні), а далі кожна з груп — на два підтипи. Тип визначає, які статистичні методи й графіки взагалі коректно застосовувати.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-dc-quantitative"><div class="detail-inner" style="--detail-color:var(--accent-green)">
+      <h3>Кількісні дані (Quantitative)</h3>
+      <p>Дані, які можна виміряти або порахувати числовим значенням. Діляться на дискретні та неперервні.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-dc-discrete"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>Дискретні дані (Discrete)</h3>
+      <p><strong>Визначення:</strong> кількісні дані, що набувають лише конкретних окремих значень (зазвичай цілих чисел), отриманих шляхом підрахунку.</p>
+      <p><strong>Приклади:</strong> кількість покупок (20, 15, 30), кількість дітей (0, 1, 2, 3), кількість помилок.</p>
+      <p><strong>Візуалізація:</strong> стовпчаста діаграма, гістограма (з обережністю).</p>
+      <p><strong>Статистичні методи:</strong> середнє, медіана, мода, t-тест (якщо розподіл нормальний).</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-dc-continuous"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Неперервні дані (Continuous)</h3>
+      <p><strong>Визначення:</strong> кількісні дані, що можуть набувати будь-якого значення в певному діапазоні (зокрема дробового), отриманих шляхом вимірювання.</p>
+      <p><strong>Приклади:</strong> сума продажу ($345.50), зріст (175.5 см), температура (36.6°C).</p>
+      <p><strong>Візуалізація:</strong> гістограма, boxplot, лінійний графік.</p>
+      <p><strong>Статистичні методи:</strong> середнє, стандартне відхилення, t-тест, ANOVA, кореляція Пірсона.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-dc-qualitative"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>Якісні / Категоріальні дані (Qualitative)</h3>
+      <p>Дані, що описують властивості, характеристики або категорії, які не мають прямого числового вираження. Діляться на номінальні та порядкові.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-dc-nominal"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Номінальні дані (Nominal)</h3>
+      <p><strong>Визначення:</strong> якісні дані, які розділяють об'єкти на категорії без будь-якого внутрішнього порядку чи ієрархії.</p>
+      <p><strong>Приклади:</strong> ID (001, 002), категорія товару (Електроніка, Одяг), колір, місто.</p>
+      <p><strong>Візуалізація:</strong> стовпчаста діаграма, кругова діаграма.</p>
+      <p><strong>Статистичні методи:</strong> мода, тест хі-квадрат.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-dc-ordinal"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>Порядкові дані (Ordinal)</h3>
+      <p><strong>Визначення:</strong> якісні дані, які мають чітко визначений порядок або ієрархію, але відстань між значеннями неможливо точно виміряти математично.</p>
+      <p><strong>Приклади:</strong> рівень задоволеності (Дуже задоволений > Задоволений), освіта, рейтинг (1–5 зірок).</p>
+      <p><strong>Візуалізація:</strong> стовпчаста діаграма з впорядкованими категоріями.</p>
+      <p><strong>Статистичні методи:</strong> медіана, мода, тест Манна-Уїтні, кореляція Спірмена.</p>
+    </div></div>
+
+  </div>
+</section>
+
+<!-- ============ SECTION 1: OUTLIERS ============ -->
+<section class="scheme" id="s2">
+  <div class="wrap">
+    <div class="scheme-head">
+      <span class="scheme-num">02</span>
       <h2>Виявлення та обробка викидів</h2>
     </div>
     <p class="scheme-desc">Дерево рішень: який метод обрати та що робити з викидом після виявлення.</p>
@@ -483,10 +646,10 @@
 </section>
 
 <!-- ============ SECTION 2: SAMPLING ============ -->
-<section class="scheme" id="s2">
+<section class="scheme" id="s3">
   <div class="wrap">
     <div class="scheme-head">
-      <span class="scheme-num">02</span>
+      <span class="scheme-num">03</span>
       <h2>Методи формування вибірки</h2>
     </div>
     <p class="scheme-desc">Який метод семплування обрати залежно від структури популяції.</p>
@@ -611,10 +774,10 @@
 </section>
 
 <!-- ============ SECTION 3: NORMALITY & SIGNIFICANCE ============ -->
-<section class="scheme" id="s3">
+<section class="scheme" id="s4">
   <div class="wrap">
     <div class="scheme-head">
-      <span class="scheme-num">03</span>
+      <span class="scheme-num">04</span>
       <h2>Нормальність, довірчий інтервал та p-value</h2>
     </div>
     <p class="scheme-desc">Перевірка нормальності визначає, які тести можна застосовувати далі.</p>
@@ -711,10 +874,10 @@
 </section>
 
 <!-- ============ SECTION 4: CORRELATION ============ -->
-<section class="scheme" id="s4">
+<section class="scheme" id="s5">
   <div class="wrap">
     <div class="scheme-head">
-      <span class="scheme-num">04</span>
+      <span class="scheme-num">05</span>
       <h2>Вибір методу кореляції</h2>
     </div>
     <h4>Ступінь тісноти = «наскільки сильно пов’язані змінні» (загальне поняття).</h4>
@@ -858,11 +1021,11 @@
 </section>
 
 <!-- ============ SECTION 5: COMPARISON TESTS (A/B) ============ -->
-<section class="scheme" id="s5">
+<section class="scheme" id="s6">
 
   <div class="wrap">
     <div class="scheme-head">
-      <span class="scheme-num">05</span>
+      <span class="scheme-num">06</span>
       <h2>Вибір методу порівняння (A/B тестування)</h2>
     </div>
     <p class="scheme-desc">Три питання визначають тест: <strong>тип даних</strong> (частки чи числа) → <strong>кількість груп</strong> (2 чи 3+) → <strong>розподіл</strong> (нормальний чи ні) + залежність вибірок. Коли розподіл ненормальний — на допомогу приходять непараметричні тести (Манна-Уїтні, Вілкоксона, Крускала-Уолліса).</p>
@@ -1333,10 +1496,10 @@
 
 </section>
 <!-- ============ SECTION 6: SAMPLE SIZE ============ -->
-<section class="scheme" id="s6">
+<section class="scheme" id="s7">
   <div class="wrap">
     <div class="scheme-head">
-      <span class="scheme-num">06</span>
+      <span class="scheme-num">07</span>
       <h2 class="clickable-heading" data-detail="ss-main" data-color="var(--accent-purple)">Розрахунок розміру вибірки</h2>
     </div>
     <p class="scheme-desc">Який обсяг даних потрібен для надійного A/B тесту? Розмір вибірки залежить від трьох параметрів, кожен зі своєю логікою впливу. Якщо n завелике — є три способи скоригувати параметри, кожен з компромісом.</p>
