@@ -244,6 +244,16 @@
   .dc-viz-card h4{font-family:Georgia,serif; font-weight:400; font-size:15px; margin:0 0 6px;}
   .dc-viz-card p{margin:0; color:var(--ink-soft); font-size:13.5px;}
 
+  /* Case study card (section 08) */
+  .ar-case-card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin-top:24px;}
+  .ar-case-card h4{font-family:Georgia,serif; font-weight:400; font-size:17px; margin:0 0 4px;}
+  .ar-case-card .ar-hyp{color:var(--ink-soft); font-size:14px; margin:0 0 16px;}
+  .ar-case-card .ar-cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:16px; margin-bottom:14px;}
+  .ar-case-card .ar-stat{border-left:3px solid var(--line); padding-left:12px;}
+  .ar-case-card .ar-stat .num{font-family:var(--mono); font-size:20px; font-weight:600; color:var(--ink);}
+  .ar-case-card .ar-stat .lab{font-size:12px; color:var(--ink-soft); margin-top:2px;}
+  .ar-case-card .ar-verdict{border-radius:10px; padding:14px 16px; font-size:14px; background:var(--accent-green-bg); color:var(--accent-green); border-left:4px solid var(--accent-green); margin-top:6px;}
+
   footer{
     padding:40px 24px 20px;
     text-align:center;
@@ -275,6 +285,7 @@
       <a href="#s5">5. Кореляція</a>
       <a href="#s6">6. A/B тестування</a>
       <a href="#s7">7. Розмір вибірки</a>
+      <a href="#s8">8. Аналіз результатів</a>
     </nav>
   </div>
 </header>
@@ -1750,6 +1761,137 @@
       <p><strong>Використання:</strong> задається під час планування дослідження та використовується для розрахунку необхідного розміру вибірки.</p>
       <p>При n = 1000 це мінімальна різниця між групами, яку ти закладаєш у план тесту як ціль виявлення. Наприклад: 10% конверсія (контроль) і 10.5% (тест). Саме цю різницю система вважає "сигналом", який потрібно відрізнити від шуму при вибірці 1000 користувачів.</p>
     </div></div>
+  </div>
+</section>
+
+<!-- ============ SECTION 8: RESULTS ANALYSIS & DECISIONS ============ -->
+<section class="scheme" id="s8">
+  <div class="wrap">
+    <div class="scheme-head">
+      <span class="scheme-num">08</span>
+      <h2>Аналіз результатів та прийняття рішень</h2>
+    </div>
+    <p class="scheme-desc">Тест запущено, дані зібрані до потрібного n (Секція 07). Останній крок — правильно прочитати результат і перетворити його на рішення.</p>
+
+    <h3 class="clickable-heading" data-detail="ar-flow-info" data-color="var(--accent-blue)" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:8px 12px 10px;">Покроковий алгоритм аналізу</h3>
+    <p class="hint" style="text-align:left;margin:0 12px 14px;">клікни на крок, щоб розкрити пояснення</p>
+
+    <div class="term-grid">
+      <div class="term-node" data-detail="ar-metrics" data-color="var(--accent-blue)">1. Ключові метрики</div>
+      <div class="term-node" data-detail="ar-compare" data-color="var(--accent-teal)">2. Порівняння груп</div>
+      <div class="term-node" data-detail="ar-pvalue" data-color="var(--accent-purple)">3. p-значення</div>
+      <div class="term-node" data-detail="ar-interpret" data-color="var(--accent-amber)">4. Інтерпретація</div>
+      <div class="term-node" data-detail="ar-secondary" data-color="var(--accent-coral)">5. Допоміжні метрики</div>
+      <div class="term-node" data-detail="ar-segments" data-color="var(--accent-teal)">6. Підгрупи</div>
+      <div class="term-node" data-detail="ar-conclusion" data-color="var(--accent-green)">7. Висновок</div>
+      <div class="term-node" data-detail="ar-document" data-color="var(--accent-blue)">8. Документування</div>
+    </div>
+
+    <div class="detail-panel" id="panel-ar-flow-info"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Як читати цей ланцюжок</h3>
+      <p>Кожен крок спирається на попередній: спершу рахуєш цифри, потім перевіряєш їх статистично, тоді інтерпретуєш і лише після цього ухвалюєш рішення. Пропуск кроку (наприклад, ігнорування практичної значущості) — типова причина хибних висновків.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ar-metrics"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>1. Обчислення ключових метрик</h3>
+      <p><strong>Основні метрики</strong> — показники, визначені ще до старту тесту: кількість конверсій, середній чек, відсоток відтоку тощо.</p>
+      <p><strong>Допоміжні метрики</strong> — додаткові показники, які дають контекст для інтерпретації основного результату.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ar-compare"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>2. Порівняння результатів між групами</h3>
+      <p><strong>Візуалізація:</strong> графіки й таблиці для наочного порівняння контрольної та тестової груп.</p>
+      <p><strong>Статистичний тест:</strong> t-тест, z-тест або хі-квадрат — залежно від типу метрики (Секція 06 допомагає обрати).</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ar-pvalue"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>3. Обчислення p-значення</h3>
+      <p>p-value показує ймовірність отримати такі ж або екстремальніші результати, якби різниці між групами насправді не було. Порівнюється з порогом α, зазвичай 0.05.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ar-interpret"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>4. Інтерпретація результатів</h3>
+      <p><strong>Статистична значущість:</strong> p-value &lt; 0.05 → різниця, ймовірно, не випадкова.</p>
+      <p><strong>Практична значущість:</strong> чи має ця різниця реальну вагу для бізнесу. Статистично значущий результат не завжди варто впроваджувати — ефект може бути надто малим, щоб виправдати витрати.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ar-secondary"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>5. Аналіз допоміжних метрик</h3>
+      <p><strong>Контекст:</strong> допоміжні метрики пояснюють, чому основна метрика змінилась (чи ні).</p>
+      <p><strong>Аномалії:</strong> несподівані сплески чи провали можуть свідчити про помилки в трекінгу, а не про реальний ефект — варто перевірити перед висновком.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ar-segments"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>6. Робота з підгрупами</h3>
+      <p><strong>Сегментація:</strong> перевір результат окремо для нових і постійних користувачів, платформ, регіонів — середній результат може ховати протилежні ефекти в підгрупах.</p>
+      <p><strong>Контекст:</strong> врахуй, чи не вплинули зовнішні фактори (сезонність, акції) по-різному на різні сегменти.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ar-conclusion"><div class="detail-inner" style="--detail-color:var(--accent-green)">
+      <h3>7. Формування висновків та рекомендацій</h3>
+      <p>На основі всього вище — підтверди або відхили гіпотезу та сформулюй чіткі рекомендації: впровадити зміну, відхилити її чи протестувати додатково (див. чотири типи рішень нижче).</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ar-document"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>8. Документування результатів</h3>
+      <p>Зафіксуй результати, висновки й рекомендації в одному документі — для історії експериментів і майбутніх посилань. Підготуй коротку презентацію для команди чи керівництва з ключовими цифрами.</p>
+    </div></div>
+
+    <h3 class="clickable-heading" data-detail="ar-decisions-info" data-color="var(--accent-purple)" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:32px 12px 10px;padding-top:14px;border-top:1px solid var(--line)">Типи рішень після A/B-тесту</h3>
+    <p class="hint" style="text-align:left;margin:0 12px 14px;">клікни на варіант, щоб побачити коли його застосовувати</p>
+
+    <div class="term-grid">
+      <div class="term-node" data-detail="ar-accept" data-color="var(--accent-green)">✅ Приймаємо (Accept)</div>
+      <div class="term-node" data-detail="ar-reject" data-color="var(--accent-red)">🚫 Не приймаємо (Reject)</div>
+      <div class="term-node" data-detail="ar-partial" data-color="var(--accent-amber)">◐ Приймаємо частково</div>
+      <div class="term-node" data-detail="ar-iterate" data-color="var(--accent-purple)">↻ Відхиляємо й доопрацьовуємо</div>
+    </div>
+
+    <div class="detail-panel" id="panel-ar-decisions-info"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>Чому рішень чотири, а не два</h3>
+      <p>«Впровадити / не впровадити» — надто грубий поділ. Реальні результати часто неоднозначні: ефект є лише на частині сегментів, або ідея хороша, але реалізація невдала. Ці чотири варіанти покривають типові сценарії.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ar-accept"><div class="detail-inner" style="--detail-color:var(--accent-green)">
+      <h3>Приймаємо (Accept)</h3>
+      <p>Варіант B показав статистично значуще й практично вагоме покращення порівняно з A.</p>
+      <p><strong>Дії:</strong> впровадити зміну в постійну версію продукту, повідомити команду про результати.</p>
+      <p><strong>Коли:</strong> різниця значна і позитивно впливає на ключові метрики (конверсія, залученість, KPI).</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ar-reject"><div class="detail-inner" style="--detail-color:var(--accent-red)">
+      <h3>Не приймаємо (Reject)</h3>
+      <p>Варіант B не показав кращих результатів або виявився гіршим за A.</p>
+      <p><strong>Дії:</strong> відмовитись від впровадження; за потреби — додатковий аналіз причин невдачі.</p>
+      <p><strong>Коли:</strong> різниці немає, або B негативно впливає на ключові показники.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ar-partial"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Приймаємо частково (Partially Accept)</h3>
+      <p>Частина змін ефективна, частина — ні; або ефект є лише в окремому сегменті (наприклад, на мобільній версії, але не на десктопі).</p>
+      <p><strong>Дії:</strong> впровадити тільки ті зміни/сегменти, що показали позитивний ефект; протестувати решту окремо.</p>
+      <p><strong>Коли:</strong> результати неоднозначні, але їх можна розкласти на компоненти.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ar-iterate"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>Не приймаємо і доопрацьовуємо (Reject and Iterate)</h3>
+      <p>Тест не дав очікуваного результату, але ідея має потенціал.</p>
+      <p><strong>Дії:</strong> проаналізувати причини невдачі, скоригувати гіпотезу чи сам тест, провести новий A/B-тест.</p>
+      <p><strong>Коли:</strong> є впевненість у потенціалі ідеї, але реалізацію варто доопрацювати.</p>
+    </div></div>
+
+    <div class="ar-case-card">
+      <h4>Приклад: колір кнопки «Купити»</h4>
+      <p class="ar-hyp">Гіпотеза: якщо змінити колір кнопки «Купити» на червоний, кількість кліків зросте на 10%.</p>
+      <div class="ar-cols">
+        <div class="ar-stat"><div class="num" style="color:var(--ink-soft)">A: 1000</div><div class="lab">кліків, контроль · конверсія 10%</div></div>
+        <div class="ar-stat" style="border-color:var(--accent-coral)"><div class="num" style="color:var(--accent-coral)">B: 1100</div><div class="lab">кліків, варіант · конверсія 11%</div></div>
+        <div class="ar-stat" style="border-color:var(--accent-purple)"><div class="num" style="color:var(--accent-purple)">p = 0.03</div><div class="lab">за кліками (значуще)</div></div>
+        <div class="ar-stat" style="border-color:var(--accent-purple)"><div class="num" style="color:var(--accent-purple)">p = 0.04</div><div class="lab">за конверсією (значуще)</div></div>
+      </div>
+      <div class="ar-verdict">✅ Гіпотеза підтверджена — обидва p-значення нижче 0.05. Рекомендація: впровадити зміну кольору кнопки на постійній основі.</div>
+    </div>
+
   </div>
 </section>
 
