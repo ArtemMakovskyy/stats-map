@@ -254,6 +254,9 @@
   .ar-case-card .ar-stat .lab{font-size:12px; color:var(--ink-soft); margin-top:2px;}
   .ar-case-card .ar-verdict{border-radius:10px; padding:14px 16px; font-size:14px; background:var(--accent-green-bg); color:var(--accent-green); border-left:4px solid var(--accent-green); margin-top:6px;}
 
+  /* Tip callout (section 08 monitoring) */
+  .tip-note{border-radius:10px; padding:14px 16px; font-size:14px; background:var(--accent-blue-bg); color:var(--accent-blue); border-left:4px solid var(--accent-blue); margin-top:24px;}
+
   footer{
     padding:40px 24px 20px;
     text-align:center;
@@ -285,7 +288,8 @@
       <a href="#s5">5. Кореляція</a>
       <a href="#s6">6. A/B тестування</a>
       <a href="#s7">7. Розмір вибірки</a>
-      <a href="#s8">8. Аналіз результатів</a>
+      <a href="#s8">8. Моніторинг тесту</a>
+      <a href="#s9">9. Аналіз результатів</a>
     </nav>
   </div>
 </header>
@@ -1764,11 +1768,91 @@
   </div>
 </section>
 
-<!-- ============ SECTION 8: RESULTS ANALYSIS & DECISIONS ============ -->
+<!-- ============ SECTION 8: MONITORING ============ -->
 <section class="scheme" id="s8">
   <div class="wrap">
     <div class="scheme-head">
       <span class="scheme-num">08</span>
+      <h2>Моніторинг A/B-тесту під час проведення</h2>
+    </div>
+    <p class="scheme-desc">Тест запущено (Секція 07), але це не означає «чекай і не втручайся». Поки триває збір даних, варто стежити за трьома речами — і знати, що робити, якщо щось піде не так.</p>
+
+    <h3 class="clickable-heading" data-detail="mon-what-info" data-color="var(--accent-blue)" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:8px 12px 10px;">Що варто контролювати</h3>
+    <p class="hint" style="text-align:left;margin:0 12px 14px;">клікни на пункт, щоб розкрити пояснення</p>
+
+    <div class="term-grid">
+      <div class="term-node" data-detail="mon-conversion" data-color="var(--accent-blue)">Конверсія в реальному часі</div>
+      <div class="term-node" data-detail="mon-split" data-color="var(--accent-teal)">Рівномірність розподілу A/B</div>
+      <div class="term-node" data-detail="mon-completeness" data-color="var(--accent-purple)">Повнота даних</div>
+    </div>
+
+    <div class="detail-panel" id="panel-mon-what-info"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Навіщо моніторинг</h3>
+      <p>Моніторинг дозволяє вчасно виявити проблему й зупинити тест або внести правки, перш ніж вона спотворить фінальний результат чи нашкодить бізнесу.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-mon-conversion"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Рівень конверсій у реальному часі</h3>
+      <p>Стеж за конверсією обох варіантів (A і B) паралельно, поки триває тест — це найшвидший спосіб помітити різке відхилення.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-mon-split"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>Рівномірність розподілу користувачів</h3>
+      <p>Перевіряй, чи користувачі й далі діляться між групами як заплановано (наприклад, 50/50). Перекіс у розподілі — сигнал технічної проблеми, ще до аналізу результатів.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-mon-completeness"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>Повнота даних</h3>
+      <p>Переконайся, що всі потрібні події фіксуються без втрат і помилок трекінгу — «тихі» пропуски подій непомітно спотворюють метрики.</p>
+    </div></div>
+
+    <h3 class="clickable-heading" data-detail="mon-scenarios-info" data-color="var(--accent-coral)" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:32px 12px 10px;padding-top:14px;border-top:1px solid var(--line)">Три сценарії реагування</h3>
+    <p class="hint" style="text-align:left;margin:0 12px 14px;">клікни на сценарій, щоб побачити рекомендовані дії</p>
+
+    <div class="term-grid">
+      <div class="term-node" data-detail="mon-below-mde" data-color="var(--accent-amber)">Приріст менший за MDE</div>
+      <div class="term-node" data-detail="mon-drop" data-color="var(--accent-red)">Значне падіння показників</div>
+      <div class="term-node" data-detail="mon-uneven" data-color="var(--accent-purple)">Підозра на нерівномірний розподіл</div>
+    </div>
+
+    <div class="detail-panel" id="panel-mon-scenarios-info"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>MDE — точка відліку</h3>
+      <p>MDE (Minimum Detectable Effect) — мінімальний ефект, який тест спроможний надійно виявити (пов'язаний із розміром вибірки з Секції 07). Реакція на проміжні результати залежить від того, як вони співвідносяться саме з цим порогом.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-mon-below-mde"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Приріст є, але менший за MDE</h3>
+      <p><strong>Подовжити тест:</strong> зібрати більше даних і перевірити, чи ріст стабільний.</p>
+      <p><strong>Аналіз тренду:</strong> перевірити, чи зростання стійке, навіть якщо воно незначне.</p>
+      <p><strong>Перегляд MDE:</strong> розглянути зниження порогу очікувань — невеликий, але стабільний приріст може бути достатньою підставою для впровадження, якщо це відповідає бізнес-цілям.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-mon-drop"><div class="detail-inner" style="--detail-color:var(--accent-red)">
+      <h3>Значне зниження показників</h3>
+      <p><strong>Негайно зупинити тест:</strong> щоб мінімізувати шкоду для бізнесу.</p>
+      <p><strong>Аналіз причин:</strong> технічні проблеми, погіршення UX чи інші фактори.</p>
+      <p><strong>Переглянути сегментацію:</strong> перевірити, чи падіння стосується всієї аудиторії, чи лише окремих сегментів.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-mon-uneven"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>Підозра на нерівномірний розподіл</h3>
+      <p><strong>Перевірка розподілу:</strong> чи відповідає кількість користувачів у групах запланованому співвідношенню.</p>
+      <p><strong>Статистичний тест:</strong> хі-квадрат тест — чи є значуща різниця в розподілі між групами.</p>
+      <p><strong>Аналіз трафіку та сегментів:</strong> переконатись, що всі джерела трафіку й сегменти (вік, регіон, пристрій) рівномірно спрямовуються на A і B.</p>
+    </div></div>
+
+    <div class="tip-note">
+      💡 Рівномірність розподілу критично важлива для точності тесту. Нерівномірний розподіл може призвести до помилкових висновків і необхідності повторного запуску тесту.
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SECTION 8: RESULTS ANALYSIS & DECISIONS ============ -->
+<section class="scheme" id="s9">
+  <div class="wrap">
+    <div class="scheme-head">
+      <span class="scheme-num">09</span>
       <h2>Аналіз результатів та прийняття рішень</h2>
     </div>
     <p class="scheme-desc">Тест запущено, дані зібрані до потрібного n (Секція 07). Останній крок — правильно прочитати результат і перетворити його на рішення.</p>
