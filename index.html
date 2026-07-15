@@ -843,21 +843,21 @@
           <text x="500" y="546" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#555">p-value тесту нормальності</text>
         </g>
 
-        <line x1="440" y1="568" x2="160" y2="610" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
-        <text x="330" y="592" text-anchor="middle" font-size="11" fill="#777">p ≥ 0.05</text>
-        <line x1="560" y1="568" x2="520" y2="610" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <line x1="440" y1="568" x2="370" y2="610" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <text x="320" y="592" text-anchor="middle" font-size="11" fill="#777">p ≥ 0.05</text>
+        <line x1="560" y1="568" x2="560" y2="610" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
         <text x="595" y="592" text-anchor="middle" font-size="11" fill="#777">p &lt; 0.05</text>
 
         <g class="node" data-detail="n-normal" data-color="var(--accent-green)">
-          <rect x="40" y="610" width="240" height="50" rx="8" fill="var(--accent-green-bg)" stroke="var(--accent-green)" stroke-width="0.75"/>
-          <text x="160" y="628" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-green)">Розподіл нормальний</text>
-          <text x="160" y="646" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-green)" opacity="0.85">можна Пірсона, t-тести</text>
+          <rect x="280" y="610" width="180" height="50" rx="8" fill="var(--accent-green-bg)" stroke="var(--accent-green)" stroke-width="0.75"/>
+          <text x="370" y="628" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-green)">Розподіл нормальний</text>
+          <text x="370" y="646" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-green)" opacity="0.85">можна Пірсона, t-тести</text>
         </g>
 
         <g class="node" data-detail="n-nonnormal" data-color="var(--accent-amber)">
-          <rect x="400" y="610" width="240" height="50" rx="8" fill="var(--accent-amber-bg)" stroke="var(--accent-amber)" stroke-width="0.75"/>
-          <text x="520" y="628" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-amber)">Розподіл ненормальний</text>
-          <text x="520" y="646" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-amber)" opacity="0.85">непараметричні методи, Спірмен</text>
+          <rect x="470" y="610" width="180" height="50" rx="8" fill="var(--accent-amber-bg)" stroke="var(--accent-amber)" stroke-width="0.75"/>
+          <text x="560" y="628" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-amber)">Розподіл ненормальний</text>
+          <text x="560" y="646" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-amber)" opacity="0.85">непараметричні методи, Спірмен</text>
         </g>
 
         <text x="340" y="700" text-anchor="middle" font-size="11" fill="#888" font-family="monospace">той самий принцип перевірки розподілу веде до різних рішень:</text>
@@ -925,7 +925,7 @@
       <ul>
         <li>звітується як міра точності оцінки — «середній чек 850 грн, похибка ±16.6»;</li>
         <li>використовується для порівняння з порогом чи цільовим значенням (чи входить бажане число в інтервал);</li>
-        <li>якщо йдеться про порівняння двох груп (A/B тест) — інтервали кожної групи зіставляються між собою, це вже наступний крок пайплайну (схема «A/B тестування»).</li>
+        <li><strong>Коли йти цією гілкою:</strong> коли мета — оцінити одну метрику (не A/B тест). Наприклад — «середній чек 850 ± 16.6 грн». Використовуй для звіту або перевірки, чи цільове значення входить в інтервал. Якщо далі буде A/B тест — ця гілка не потрібна, йди правою (нормальність).</li>
       </ul>
     </div></div>
     <div class="detail-panel" id="panel-n-size"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
@@ -954,7 +954,11 @@
     </div></div>
 
     <div class="pipeline-next" style="margin:16px 12px 0;padding:10px 14px;background:var(--bg);border-left:3px solid #A23A6B;border-radius:6px;font-size:13px">
-      ➡ <strong>Результат передаємо далі:</strong> надійна вибірка з оцінкою точності. Наступний крок — <strong>секція 04</strong>: визначити, чи пов'язані змінні між собою (кореляція).
+      ➡ <strong>Результат залежить від обраної гілки, вони взаємовиключні:</strong>
+
+      <p style="margin:6px 0 0"><strong>Гілка CI:</strong> отримуємо довірчий інтервал (напр. «850 ± 16.6»). Використовується для звітування або порівняння з порогом. <em>Не передається в наступні секції.</em></p>
+
+      <p style="margin:10px 0 0"><strong>Гілка нормальності:</strong> отримуємо класифікацію розподілу — нормальний (параметричні методи) або ненормальний (непараметричні). Далі вибір методу в <strong>секції 04</strong> (кореляція) або <strong>секції 05</strong> (A/B тестування).</p>
     </div>
 
   </div>
