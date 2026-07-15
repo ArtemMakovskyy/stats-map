@@ -283,13 +283,12 @@
       <a href="#s0">0. Загальна карта</a>
       <a href="#s1">1. Класифікація даних</a>
       <a href="#s2">2. Викиди</a>
-      <a href="#s3">3. Вибірка</a>
-      <a href="#s4">4. Нормальність і значущість</a>
-      <a href="#s5">5. Кореляція</a>
-      <a href="#s6">6. A/B тестування</a>
-      <a href="#s7">7. Розмір вибірки</a>
-      <a href="#s8">8. Моніторинг тесту</a>
-      <a href="#s9">9. Аналіз результатів</a>
+      <a href="#s3">3. Вибірка та надійність оцінки</a>
+      <a href="#s4">4. Кореляція</a>
+      <a href="#s5">5. A/B тестування</a>
+      <a href="#s6">6. Розмір вибірки</a>
+      <a href="#s7">7. Моніторинг тесту</a>
+      <a href="#s8">8. Аналіз результатів</a>
     </nav>
   </div>
 </header>
@@ -660,18 +659,18 @@
   </div>
 </section>
 
-<!-- ============ SECTION 2: SAMPLING ============ -->
+<!-- ============ SECTION 2+3: SAMPLING + RELIABILITY (merged) ============ -->
 <section class="scheme" id="s3">
   <div class="wrap">
     <div class="scheme-head">
       <span class="scheme-num">03</span>
-      <h2>Методи формування вибірки</h2>
+      <h2>Вибірка та надійність оцінки</h2>
     </div>
-    <p class="scheme-desc">Який метод семплування обрати залежно від структури популяції.</p>
-    <p class="scheme-desc" style="margin-top:-20px">Мета цього кроку — отримати вибірку і зрозуміти, <strong>чи можна довіряти класичній формулі довірчого інтервалу</strong> для однієї статистики (середнього чи медіани), яку з неї порахуєш. Це питання «наскільки моя оцінка точна?», а не «чи пов'язані між собою дві змінні» — той інший тип рішення розглянутий окремо, у схемі <a href="#s4" style="color:var(--accent-purple)">04. Нормальність і значущість</a>.</p>
+    <p class="scheme-desc">Повний шлях від популяції до готового результату: як сформувати вибірку, а потім — залежно від мети — або оцінити довірчий інтервал однієї статистики, або обрати правильний статистичний тест для порівняння груп чи кореляції.</p>
+    <p class="scheme-desc" style="margin-top:-20px">Обидві гілки внизу спираються на одну й ту саму перевірку розподілу, але відповідають на різні запитання: <strong>ліва</strong> — «чи можна довіряти інтервалу для цього середнього?», <strong>права</strong> — «яким тестом порівнювати групи чи рахувати зв'язок?».</p>
 
     <div class="diagram-card">
-      <svg viewBox="0 0 680 480">
+      <svg viewBox="0 0 680 740">
         <defs><marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
 
         <g class="node" data-detail="s-start">
@@ -723,29 +722,92 @@
         <line x1="450" y1="236" x2="340" y2="280" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
         <line x1="612" y1="236" x2="340" y2="280" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
 
-        <g class="node" data-detail="s-small">
-          <rect x="200" y="280" width="280" height="44" rx="8" fill="#fff" stroke="#999" stroke-width="0.75"/>
-          <text x="340" y="302" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#555">Вибірка мала / розподіл невідомий?</text>
+        <g class="node" data-detail="hub-goal">
+          <rect x="190" y="280" width="300" height="56" rx="8" fill="#fff" stroke="#999" stroke-width="0.75"/>
+          <text x="340" y="300" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">Вибірка сформована — мета аналізу?</text>
+          <text x="340" y="320" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#777">довірчий інтервал чи зв'язок</text>
         </g>
 
-        <line x1="280" y1="324" x2="220" y2="365" stroke="var(--accent-coral)" stroke-width="1.5" marker-end="url(#arrow2)"/>
-        <text x="225" y="348" text-anchor="middle" font-size="11" fill="var(--accent-coral)">ні</text>
-        <line x1="400" y1="324" x2="460" y2="365" stroke="var(--accent-green)" stroke-width="1.5" marker-end="url(#arrow2)"/>
-        <text x="470" y="348" text-anchor="middle" font-size="11" fill="var(--accent-green)">так</text>
+        <line x1="300" y1="336" x2="170" y2="370" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <text x="185" y="356" text-anchor="middle" font-size="11" fill="#777">CI однієї статистики</text>
+        <line x1="380" y1="336" x2="500" y2="370" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <text x="495" y="356" text-anchor="middle" font-size="11" fill="#777">порівняння / зв'язок</text>
+
+        <g class="node" data-detail="s-small" data-color="var(--accent-blue)">
+          <rect x="40" y="370" width="260" height="44" rx="8" fill="var(--accent-blue-bg)" stroke="var(--accent-blue)" stroke-width="0.75"/>
+          <text x="170" y="392" text-anchor="middle" dominant-baseline="central" font-size="12" fill="var(--accent-blue)">n &lt; 30 або розподіл невідомий?</text>
+        </g>
+
+        <g class="node" data-detail="n-size" data-color="var(--accent-blue)">
+          <rect x="365" y="370" width="270" height="44" rx="8" fill="var(--accent-blue-bg)" stroke="var(--accent-blue)" stroke-width="0.75"/>
+          <text x="500" y="392" text-anchor="middle" dominant-baseline="central" font-size="12" fill="var(--accent-blue)">Розмір вибірки великий чи малий?</text>
+        </g>
+
+        <line x1="100" y1="414" x2="100" y2="460" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <text x="70" y="440" text-anchor="middle" font-size="11" fill="#777">ні</text>
+        <line x1="240" y1="414" x2="240" y2="460" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <text x="270" y="440" text-anchor="middle" font-size="11" fill="#777">так</text>
+
+        <line x1="430" y1="414" x2="415" y2="460" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <text x="395" y="440" text-anchor="middle" font-size="11" fill="#777">великий</text>
+        <line x1="577" y1="414" x2="577" y2="460" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <text x="600" y="440" text-anchor="middle" font-size="11" fill="#777">малий</text>
 
         <g class="node" data-detail="s-done" data-color="var(--accent-green)">
-          <rect x="80" y="365" width="280" height="50" rx="8" fill="var(--accent-green-bg)" stroke="var(--accent-green)" stroke-width="0.75"/>
-          <text x="220" y="383" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-green)">Вибірка готова до аналізу</text>
-          <text x="220" y="401" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-green)" opacity="0.85">переходь до кроку «надійність»</text>
+          <rect x="40" y="460" width="120" height="44" rx="8" fill="var(--accent-green-bg)" stroke="var(--accent-green)" stroke-width="0.75"/>
+          <text x="100" y="482" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--accent-green)">Формула CI</text>
         </g>
 
         <g class="node" data-detail="s-bootstrap" data-color="var(--accent-purple)">
-          <rect x="380" y="365" width="280" height="50" rx="8" fill="var(--accent-purple-bg)" stroke="var(--accent-purple)" stroke-width="0.75"/>
-          <text x="520" y="383" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-purple)">Bootstrap-метод</text>
-          <text x="520" y="401" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-purple)" opacity="0.85">повторна вибірка із заміщенням</text>
+          <rect x="180" y="460" width="120" height="44" rx="8" fill="var(--accent-purple-bg)" stroke="var(--accent-purple)" stroke-width="0.75"/>
+          <text x="240" y="482" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--accent-purple)">Bootstrap</text>
         </g>
 
-        <text x="340" y="448" text-anchor="middle" font-size="11" fill="#888" font-family="monospace">обидва шляхи ведуть до оцінки довірчого інтервалу</text>
+        <g class="node" data-detail="n-dagostino" data-color="var(--accent-blue)">
+          <rect x="335" y="460" width="160" height="44" rx="8" fill="var(--accent-blue-bg)" stroke="var(--accent-blue)" stroke-width="0.75"/>
+          <text x="415" y="482" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="var(--accent-blue)">Д'Агостіно-Пірсона</text>
+        </g>
+
+        <g class="node" data-detail="n-shapiro" data-color="var(--accent-blue)">
+          <rect x="515" y="460" width="125" height="44" rx="8" fill="var(--accent-blue-bg)" stroke="var(--accent-blue)" stroke-width="0.75"/>
+          <text x="577" y="482" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="var(--accent-blue)">Шапіро-Уілка</text>
+        </g>
+
+        <line x1="100" y1="504" x2="170" y2="524" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <line x1="240" y1="504" x2="170" y2="524" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <line x1="415" y1="504" x2="500" y2="524" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <line x1="577" y1="504" x2="500" y2="524" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+        <g class="node" data-detail="hub-ci-done" data-color="var(--accent-green)">
+          <rect x="40" y="524" width="260" height="50" rx="8" fill="var(--accent-green-bg)" stroke="var(--accent-green)" stroke-width="0.75"/>
+          <text x="170" y="544" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--accent-green)">Довірчий інтервал отримано</text>
+          <text x="170" y="562" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-green)" opacity="0.85">похибка для звіту чи рішення</text>
+        </g>
+
+        <g class="node" data-detail="n-pvalue">
+          <rect x="365" y="524" width="270" height="44" rx="8" fill="#fff" stroke="#999" stroke-width="0.75"/>
+          <text x="500" y="546" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#555">p-value тесту нормальності</text>
+        </g>
+
+        <line x1="440" y1="568" x2="160" y2="610" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <text x="330" y="592" text-anchor="middle" font-size="11" fill="#777">p ≥ 0.05</text>
+        <line x1="560" y1="568" x2="520" y2="610" stroke="#999" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <text x="595" y="592" text-anchor="middle" font-size="11" fill="#777">p &lt; 0.05</text>
+
+        <g class="node" data-detail="n-normal" data-color="var(--accent-green)">
+          <rect x="40" y="610" width="240" height="50" rx="8" fill="var(--accent-green-bg)" stroke="var(--accent-green)" stroke-width="0.75"/>
+          <text x="160" y="628" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-green)">Розподіл нормальний</text>
+          <text x="160" y="646" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-green)" opacity="0.85">можна Пірсона, t-тести</text>
+        </g>
+
+        <g class="node" data-detail="n-nonnormal" data-color="var(--accent-amber)">
+          <rect x="400" y="610" width="240" height="50" rx="8" fill="var(--accent-amber-bg)" stroke="var(--accent-amber)" stroke-width="0.75"/>
+          <text x="520" y="628" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-amber)">Розподіл ненормальний</text>
+          <text x="520" y="646" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-amber)" opacity="0.85">непараметричні методи, Спірмен</text>
+        </g>
+
+        <text x="340" y="700" text-anchor="middle" font-size="11" fill="#888" font-family="monospace">той самий принцип перевірки розподілу веде до різних рішень:</text>
+        <text x="340" y="716" text-anchor="middle" font-size="11" fill="#888" font-family="monospace">довіра до CI зліва, вибір тесту справа</text>
       </svg>
     </div>
     <p class="hint">клікни на блок схеми</p>
@@ -774,97 +836,37 @@
       <h3>Кластерна вибірка</h3>
       <p>Популяція ділиться на кластери (наприклад, регіони), і кілька цілих кластерів вибираються випадково для повного аналізу.</p>
     </div></div>
-    <div class="detail-panel" id="panel-s-small"><div class="detail-inner">
+    <div class="detail-panel" id="panel-hub-goal"><div class="detail-inner">
+      <h3>Вибірка готова — що далі?</h3>
+      <p>Тут шлях розходиться залежно від того, що саме тобі потрібно:</p>
+      <ul>
+        <li><strong>Довірчий інтервал однієї статистики</strong> — наскільки точна моя оцінка середнього чи медіани? (ліва гілка)</li>
+        <li><strong>Порівняння груп або кореляція</strong> — чи пов'язані/відрізняються дві змінні? Який тест коректний? (права гілка)</li>
+      </ul>
+    </div></div>
+    <div class="detail-panel" id="panel-s-small"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
       <h3>Перевір розмір та розподіл</h3>
       <p>Якщо вибірка мала (орієнтовно <strong>n &lt; 30</strong>) або форма розподілу популяції невідома — стандартні формули довірчого інтервалу (які спираються на нормальність) можуть бути неточними. Тоді на допомогу приходить bootstrap — він не додає нових даних, а лише пересемплює наявну вибірку, щоб оцінити розкид статистики без припущень про розподіл.</p>
-      <p>Як формально перевірити, чи розподіл нормальний (гістограма, Q-Q plot, тест Шапіро-Вілка) — покроковий алгоритм у схемі <a href="#s4" style="color:var(--accent-purple)">04. Нормальність і значущість</a>. Там же питання «нормальний / ненормальний» веде до вибору статистичного тесту, а тут — до вибору способу оцінки довірчого інтервалу.</p>
+      <p>Формально перевірити розподіл можна тими ж інструментами, що й у правій гілці: гістограма, Q-Q plot, тест Шапіро-Вілка чи Д'Агостіно-Пірсона.</p>
     </div></div>
     <div class="detail-panel" id="panel-s-done"><div class="detail-inner" style="--detail-color:var(--accent-green)">
-      <h3>Готово до аналізу</h3>
-      <p>Якщо вибірка достатньо велика і репрезентативна — можна одразу переходити до оцінки довірчих інтервалів і значущості.</p>
+      <h3>Формула CI</h3>
+      <p>Вибірка достатньо велика і розподіл відомий/нормальний — можна одразу застосувати класичну формулу: <code>x̄ ± z·(s/√n)</code>, або t-розподіл для менших вибірок. Результат — готовий довірчий інтервал.</p>
     </div></div>
     <div class="detail-panel" id="panel-s-bootstrap"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
       <h3>Bootstrap</h3>
-      <p>Багаторазова вибірка із заміщенням із наявних даних. Для кожної підвибірки рахуєш статистику (середнє, медіану) — отримуєш розподіл оцінок, навіть не знаючи справжній розподіл популяції.</p>
+      <p>Багаторазова вибірка із заміщенням із наявних даних. Для кожної підвибірки рахуєш статистику (середнє, медіану) — отримуєш розподіл оцінок, навіть не знаючи справжній розподіл популяції. Результат — той самий довірчий інтервал, отриманий емпірично.</p>
     </div></div>
-  </div>
-</section>
-
-<!-- ============ SECTION 3: NORMALITY & SIGNIFICANCE ============ -->
-<section class="scheme" id="s4">
-  <div class="wrap">
-    <div class="scheme-head">
-      <span class="scheme-num">04</span>
-      <h2>Нормальність, довірчий інтервал та p-value</h2>
-    </div>
-    <p class="scheme-desc">Перевірка нормальності визначає, які тести можна застосовувати далі.</p>
-    <p class="scheme-desc" style="margin-top:-20px">Тут йдеться про інше рішення, ніж у схемі <a href="#s3" style="color:var(--accent-teal)">03. Вибірка</a>: там нормальність перевіряють, щоб зрозуміти, чи довіряти довірчому інтервалу <strong>однієї</strong> статистики (bootstrap чи ні). Тут — щоб обрати, яким методом <strong>порівнювати групи або рахувати кореляцію</strong>: параметричним (t-тест, Пірсон) чи непараметричним (Mann-Whitney, Спірмен). Тест той самий (Шапіро-Вілк), рішення — різне.</p>
-
-    <div class="diagram-card">
-      <svg viewBox="0 0 680 460">
-        <defs><marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
-
-        <g class="node" data-detail="n-start">
-          <rect x="220" y="30" width="240" height="44" rx="8" fill="#fff" stroke="#999" stroke-width="0.75"/>
-          <text x="340" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#333">Маю вибірку даних</text>
-        </g>
-        <line x1="340" y1="74" x2="340" y2="100" stroke="#999" stroke-width="1.5" marker-end="url(#arrow3)"/>
-
-        <g class="node" data-detail="n-size">
-          <rect x="180" y="100" width="320" height="44" rx="8" fill="#fff" stroke="#999" stroke-width="0.75"/>
-          <text x="340" y="122" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#555">Розмір вибірки великий чи малий?</text>
-        </g>
-
-        <line x1="260" y1="144" x2="160" y2="180" stroke="#999" stroke-width="1.5" marker-end="url(#arrow3)"/>
-        <text x="180" y="168" text-anchor="middle" font-size="11" fill="#777">великий</text>
-        <line x1="420" y1="144" x2="520" y2="180" stroke="#999" stroke-width="1.5" marker-end="url(#arrow3)"/>
-        <text x="500" y="168" text-anchor="middle" font-size="11" fill="#777">малий</text>
-
-        <g class="node" data-detail="n-dagostino" data-color="var(--accent-blue)">
-          <rect x="40" y="180" width="240" height="44" rx="8" fill="var(--accent-blue-bg)" stroke="var(--accent-blue)" stroke-width="0.75"/>
-          <text x="160" y="202" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="var(--accent-blue)">тест Д'Агостіно-Пірсона</text>
-        </g>
-
-        <g class="node" data-detail="n-shapiro" data-color="var(--accent-blue)">
-          <rect x="400" y="180" width="240" height="44" rx="8" fill="var(--accent-blue-bg)" stroke="var(--accent-blue)" stroke-width="0.75"/>
-          <text x="520" y="202" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="var(--accent-blue)">тест Шапіро-Уілка</text>
-        </g>
-
-        <line x1="160" y1="224" x2="340" y2="260" stroke="#999" stroke-width="1.5" marker-end="url(#arrow3)"/>
-        <line x1="520" y1="224" x2="340" y2="260" stroke="#999" stroke-width="1.5" marker-end="url(#arrow3)"/>
-
-        <g class="node" data-detail="n-pvalue">
-          <rect x="200" y="260" width="280" height="44" rx="8" fill="#fff" stroke="#999" stroke-width="0.75"/>
-          <text x="340" y="282" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#555">p-value тесту нормальності</text>
-        </g>
-
-        <line x1="260" y1="304" x2="160" y2="340" stroke="#999" stroke-width="1.5" marker-end="url(#arrow3)"/>
-        <text x="190" y="328" text-anchor="middle" font-size="11" fill="#777">≥ 0.05</text>
-        <line x1="420" y1="304" x2="520" y2="340" stroke="#999" stroke-width="1.5" marker-end="url(#arrow3)"/>
-        <text x="500" y="328" text-anchor="middle" font-size="11" fill="#777">&lt; 0.05</text>
-
-        <g class="node" data-detail="n-normal" data-color="var(--accent-green)">
-          <rect x="40" y="340" width="240" height="50" rx="8" fill="var(--accent-green-bg)" stroke="var(--accent-green)" stroke-width="0.75"/>
-          <text x="160" y="358" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-green)">Розподіл нормальний</text>
-          <text x="160" y="376" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-green)" opacity="0.85">можна Пірсона, t-тести</text>
-        </g>
-
-        <g class="node" data-detail="n-nonnormal" data-color="var(--accent-amber)">
-          <rect x="400" y="340" width="240" height="50" rx="8" fill="var(--accent-amber-bg)" stroke="var(--accent-amber)" stroke-width="0.75"/>
-          <text x="520" y="358" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-amber)">Розподіл ненормальний</text>
-          <text x="520" y="376" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-amber)" opacity="0.85">непараметричні методи, Спірмен</text>
-        </g>
-
-        <text x="340" y="425" text-anchor="middle" font-size="11" fill="#888" font-family="monospace">той самий принцип p &lt; 0.05 діє для будь-якого тесту значущості</text>
-      </svg>
-    </div>
-    <p class="hint">клікни на блок схеми</p>
-
-    <div class="detail-panel" id="panel-n-start"><div class="detail-inner">
-      <h3>Початкова точка</h3>
-      <p>Вибірку вже сформовано (схема <a href="#s3" style="color:var(--accent-purple)">03</a>). Перш ніж застосовувати статистичні тести для порівняння груп чи кореляції (t-тест, Пірсон, A/B), варто знати, чи дані розподілені нормально — від цього залежить, який клас тестів коректний.</p>
+    <div class="detail-panel" id="panel-hub-ci-done"><div class="detail-inner" style="--detail-color:var(--accent-green)">
+      <h3>Що робити з довірчим інтервалом</h3>
+      <p>І формула, і bootstrap дають одне й те саме на виході — інтервал на кшталт «850 ± 16.6 грн» (95% CI). Далі цей інтервал:</p>
+      <ul>
+        <li>звітується як міра точності оцінки — «середній чек 850 грн, похибка ±16.6»;</li>
+        <li>використовується для порівняння з порогом чи цільовим значенням (чи входить бажане число в інтервал);</li>
+        <li>якщо йдеться про порівняння двох груп (A/B тест) — інтервали кожної групи зіставляються між собою, це вже наступний крок пайплайну (схема «A/B тестування»).</li>
+      </ul>
     </div></div>
-    <div class="detail-panel" id="panel-n-size"><div class="detail-inner">
+    <div class="detail-panel" id="panel-n-size"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
       <h3>Розмір вибірки визначає тест</h3>
       <p>Тест Д'Агостіно-Пірсона потужніший на великих вибірках. Шапіро-Уілк надійніший саме на малих вибірках.</p>
     </div></div>
@@ -892,10 +894,10 @@
 </section>
 
 <!-- ============ SECTION 4: CORRELATION ============ -->
-<section class="scheme" id="s5">
+<section class="scheme" id="s4">
   <div class="wrap">
     <div class="scheme-head">
-      <span class="scheme-num">05</span>
+      <span class="scheme-num">04</span>
       <h2>Вибір методу кореляції</h2>
     </div>
     <h4>Ступінь тісноти = «наскільки сильно пов’язані змінні» (загальне поняття).</h4>
@@ -1039,11 +1041,11 @@
 </section>
 
 <!-- ============ SECTION 5: COMPARISON TESTS (A/B) ============ -->
-<section class="scheme" id="s6">
+<section class="scheme" id="s5">
 
   <div class="wrap">
     <div class="scheme-head">
-      <span class="scheme-num">06</span>
+      <span class="scheme-num">05</span>
       <h2>Вибір методу порівняння (A/B тестування статистичної значущості)</h2>
     </div>
     <p class="scheme-desc">Три питання визначають тест: <strong>тип даних</strong> (частки чи числа) → <strong>кількість груп</strong> (2 чи 3+) → <strong>розподіл</strong> (нормальний чи ні) + залежність вибірок. Коли розподіл ненормальний — на допомогу приходять непараметричні тести (Манна-Уїтні, Вілкоксона, Крускала-Уолліса).</p>
@@ -1514,10 +1516,10 @@
 
 </section>
 <!-- ============ SECTION 6: SAMPLE SIZE ============ -->
-<section class="scheme" id="s7">
+<section class="scheme" id="s6">
   <div class="wrap">
     <div class="scheme-head">
-      <span class="scheme-num">07</span>
+      <span class="scheme-num">06</span>
       <h2 class="clickable-heading" data-detail="ss-main" data-color="var(--accent-purple)">Розрахунок розміру вибірки</h2>
     </div>
     <p class="scheme-desc">Який обсяг даних потрібен для надійного A/B тесту? Розмір вибірки залежить від трьох параметрів, кожен зі своєю логікою впливу. Якщо n завелике — є три способи скоригувати параметри, кожен з компромісом.</p>
@@ -1772,10 +1774,10 @@
 </section>
 
 <!-- ============ SECTION 8: MONITORING ============ -->
-<section class="scheme" id="s8">
+<section class="scheme" id="s7">
   <div class="wrap">
     <div class="scheme-head">
-      <span class="scheme-num">08</span>
+      <span class="scheme-num">07</span>
       <h2>Моніторинг A/B-тесту під час проведення</h2>
     </div>
     <p class="scheme-desc">Тест запущено (Секція 07), але це не означає «чекай і не втручайся». Поки триває збір даних, варто стежити за трьома речами — і знати, що робити, якщо щось піде не так.</p>
@@ -1852,10 +1854,10 @@
 </section>
 
 <!-- ============ SECTION 8: RESULTS ANALYSIS & DECISIONS ============ -->
-<section class="scheme" id="s9">
+<section class="scheme" id="s8">
   <div class="wrap">
     <div class="scheme-head">
-      <span class="scheme-num">09</span>
+      <span class="scheme-num">08</span>
       <h2>Аналіз результатів та прийняття рішень</h2>
     </div>
     <p class="scheme-desc">Тест запущено, дані зібрані до потрібного n (Секція 07). Останній крок — правильно прочитати результат і перетворити його на рішення.</p>
