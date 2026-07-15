@@ -449,6 +449,9 @@
       <h2>Класифікація даних</h2>
     </div>
     <p class="scheme-desc">Перш ніж шукати викиди чи формувати вибірку, потрібно визначити тип кожної змінної — від нього залежить, які методи аналізу й візуалізації взагалі застосовні.</p>
+    <div class="pipeline-context" style="margin:0 12px 16px;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-blue);border-radius:6px;font-size:13px">
+      📋 <strong>Що отримуємо:</strong> сирий набір змінних різних типів — числа, категорії, тексти. <strong>Проблема:</strong> не знаємо, які методи аналізу та графіки можна застосовувати до кожної змінної. <strong>Рішення:</strong> класифікуємо дані на кількісні (дискретні, неперервні) та якісні (номінальні, порядкові).
+    </div>
 
     <div class="diagram-card" style="padding:6px; overflow-x:auto;">
       <table class="dc-table">
@@ -578,6 +581,10 @@
       <p><strong>Статистичні методи:</strong> медіана, мода, тест Манна-Уїтні, кореляція Спірмена.</p>
     </div></div>
 
+    <div class="pipeline-next" style="margin:16px 12px 0;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-coral);border-radius:6px;font-size:13px">
+      ➡ <strong>Результат передаємо далі:</strong> класифіковані дані. Наступний крок — <strong>секція 02</strong>: перевірити дані на викиди, оскільки різні типи даних потребують різних методів виявлення аномалій.
+    </div>
+
   </div>
 </section>
 
@@ -589,6 +596,9 @@
       <h2>Виявлення та обробка викидів</h2>
     </div>
     <p class="scheme-desc">Дерево рішень: який метод обрати та що робити з викидом після виявлення.</p>
+    <div class="pipeline-context" style="margin:0 12px 16px;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-coral);border-radius:6px;font-size:13px">
+      📋 <strong>Що отримуємо:</strong> класифіковані дані з попереднього кроку. <strong>Проблема:</strong> у даних можуть бути викиди, які спотворюють середнє, стандартне відхилення та результати статистичних тестів. <strong>Рішення:</strong> виявляємо викиди графічно (lineplot / scatterplot) та статистично (IQR або Z-score), потім вирішуємо — видалити, виправити чи залишити з поясненням.
+    </div>
 
     <div class="diagram-card">
       <svg viewBox="0 0 680 520">
@@ -692,6 +702,11 @@
       <h3>Залишити й пояснити</h3>
       <p>Якщо викид відображає реальний процес — залиш його, але врахуй окремо в прогнозах і моделях, бо він суттєво впливає на точність.</p>
     </div></div>
+
+    <div class="pipeline-next" style="margin:16px 12px 0;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-teal);border-radius:6px;font-size:13px">
+      ➡ <strong>Результат передаємо далі:</strong> очищені дані. Наступний крок — <strong>секція 03</strong>: сформувати репрезентативну вибірку та оцінити її надійність.
+    </div>
+
   </div>
 </section>
 
@@ -704,6 +719,9 @@
     </div>
     <p class="scheme-desc">Повний шлях від популяції до готового результату: як сформувати вибірку, а потім — залежно від мети — або оцінити довірчий інтервал однієї статистики, або обрати правильний статистичний тест для порівняння груп чи кореляції.</p>
     <p class="scheme-desc" style="margin-top:-20px">Обидві гілки внизу спираються на одну й ту саму перевірку розподілу, але відповідають на різні запитання: <strong>ліва</strong> — «чи можна довіряти інтервалу для цього середнього?», <strong>права</strong> — «яким тестом порівнювати групи чи рахувати зв'язок?».</p>
+    <div class="pipeline-context" style="margin:0 12px 16px;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-teal);border-radius:6px;font-size:13px">
+      📋 <strong>Що отримуємо:</strong> очищені від викидів дані. <strong>Проблема:</strong> вибірка може бути нерепрезентативною або недостатньою для надійних висновків. <strong>Рішення:</strong> обираємо метод семплування, оцінюємо довірчий інтервал, перевіряємо нормальність розподілу.
+    </div>
 
     <div class="diagram-card">
       <svg viewBox="0 0 680 740">
@@ -934,6 +952,11 @@
       <h3>Розподіл ненормальний</h3>
       <p>p &lt; 0.05 — розподіл відхиляється від нормального. Краще використовувати непараметричні альтернативи: кореляцію Спірмена або Кендалла.</p>
     </div></div>
+
+    <div class="pipeline-next" style="margin:16px 12px 0;padding:10px 14px;background:var(--bg);border-left:3px solid #A23A6B;border-radius:6px;font-size:13px">
+      ➡ <strong>Результат передаємо далі:</strong> надійна вибірка з оцінкою точності. Наступний крок — <strong>секція 04</strong>: визначити, чи пов'язані змінні між собою (кореляція).
+    </div>
+
   </div>
 </section>
 
@@ -948,6 +971,9 @@
     <h4>Кореляція = «один із способів виміряти цей ступінь» (конкретний показник)</h4>
     <p class="scheme-desc">Тип даних і наявність аномалій визначають коефіцієнт; p-value визначає, чи довіряти результату.</p>
     <p class="scheme-desc" style="margin-bottom:12px">Як обрати правильний метод для визначення кореляції?</p>
+    <div class="pipeline-context" style="margin:0 12px 16px;padding:10px 14px;background:var(--bg);border-left:3px solid #A23A6B;border-radius:6px;font-size:13px">
+      📋 <strong>Що отримуємо:</strong> надійну вибірку змінних. <strong>Проблема:</strong> потрібно визначити, чи пов'язані змінні між собою, наскільки сильно та в якому напрямку. <strong>Рішення:</strong> обираємо коефіцієнт кореляції залежно від типу даних (Пірсон, Спірмен, Кендалл) і перевіряємо значущість через p-value.
+    </div>
     <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:20px">
       <div style="background:var(--accent-blue-bg); border:1px solid var(--accent-blue); border-radius:8px; padding:10px 14px">
         <div style="font-family:var(--mono); font-size:11px; font-weight:600; color:var(--accent-blue); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.04em">Pearson</div>
@@ -1081,6 +1107,11 @@
       <h3>Зв'язок значущий</h3>
       <p>p &lt; 0.05 — є підстави відхилити нульову гіпотезу. Тепер має сенс інтерпретувати силу й напрямок коефіцієнта кореляції.</p>
     </div></div>
+
+    <div class="pipeline-next" style="margin:16px 12px 0;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-blue);border-radius:6px;font-size:13px">
+      ➡ <strong>Результат передаємо далі:</strong> розуміння зв'язків між змінними. Наступний крок — <strong>секція 05</strong>: вибір методу порівняння груп для A/B тестування.
+    </div>
+
   </div>
 </section>
 
@@ -1093,6 +1124,9 @@
       <h2>Вибір методу порівняння (A/B тестування статистичної значущості)</h2>
     </div>
     <p class="scheme-desc">Три питання визначають тест: <strong>тип даних</strong> (частки чи числа) → <strong>кількість груп</strong> (2 чи 3+) → <strong>розподіл</strong> (нормальний чи ні) + залежність вибірок. Коли розподіл ненормальний — на допомогу приходять непараметричні тести (Манна-Уїтні, Вілкоксона, Крускала-Уолліса).</p>
+    <div class="pipeline-context" style="margin:0 12px 16px;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-coral);border-radius:6px;font-size:13px">
+      📋 <strong>Що отримуємо:</strong> дані з відомою кореляцією та її значущістю. <strong>Проблема:</strong> потрібно порівняти групи між собою, але вибір тесту залежить від типу даних, кількості груп, розподілу та залежності вибірок. <strong>Рішення:</strong> обираємо тест за дереволодібною логікою: частки → z-тест / χ²; числа → t-тест / ANOVA (параметричні) або Манна-Уїтні / Крускала-Уолліса (непараметричні).
+    </div>
 
     <div class="diagram-card">
       <svg viewBox="0 0 960 830">
@@ -1554,6 +1588,10 @@
       <p><strong>Пам'ятай:</strong> перевірка рівності дисперсій потрібна лише для параметричних тестів (t-тест Стьюдента, ANOVA). Непараметричні тести (Манна-Уїтні, Вілкоксона, Крускала-Уолліса) не вимагають рівності дисперсій — це ще одна перевага, коли дані не відповідають параметричним припущенням.</p>
     </div></div>
 
+    <div class="pipeline-next" style="margin:16px 12px 0;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-purple);border-radius:6px;font-size:13px">
+      ➡ <strong>Результат передаємо далі:</strong> вибраний статистичний тест і групи для порівняння. Наступний крок — <strong>секція 06</strong>: розрахувати необхідний розмір вибірки, щоб тест мав достатню статистичну потужність.
+    </div>
+
   </div>
 
 </section>
@@ -1565,6 +1603,9 @@
       <h2 class="clickable-heading" data-detail="ss-main" data-color="var(--accent-purple)">Розрахунок розміру вибірки</h2>
     </div>
     <p class="scheme-desc">Який обсяг даних потрібен для надійного A/B тесту? Розмір вибірки залежить від трьох параметрів, кожен зі своєю логікою впливу. Якщо n завелике — є три способи скоригувати параметри, кожен з компромісом.</p>
+    <div class="pipeline-context" style="margin:0 12px 16px;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-purple);border-radius:6px;font-size:13px">
+      📋 <strong>Що отримуємо:</strong> обраний тест для порівняння груп. <strong>Проблема:</strong> ми не знаємо, скільки даних потрібно зібрати, щоб тест мав достатню потужність (зазвичай 80%) при заданому рівні значущості (α = 0.05). <strong>Рішення:</strong> розраховуємо n через три параметри — бажаний розмір ефекту, рівень значущості (α) та потужність (1−β).
+    </div>
 
     <div class="diagram-card">
       <svg viewBox="0 0 680 600">
@@ -1848,6 +1889,11 @@
       <p><strong>Використання:</strong> задається під час планування дослідження та використовується для розрахунку необхідного розміру вибірки.</p>
       <p>При n = 1000 це мінімальна різниця між групами, яку ти закладаєш у план тесту як ціль виявлення. Наприклад: 10% конверсія (контроль) і 10.5% (тест). Саме цю різницю система вважає "сигналом", який потрібно відрізнити від шуму при вибірці 1000 користувачів.</p>
     </div></div>
+
+    <div class="pipeline-next" style="margin:16px 12px 0;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-orange);border-radius:6px;font-size:13px">
+      ➡ <strong>Результат передаємо далі:</strong> цільовий розмір вибірки (n) для A/B тесту. Наступний крок — <strong>секція 07</strong>: запустити тест і контролювати його в процесі збору даних.
+    </div>
+
   </div>
 </section>
 
@@ -1859,6 +1905,9 @@
       <h2>Моніторинг A/B-тесту під час проведення</h2>
     </div>
     <p class="scheme-desc">Тест запущено (Секція 07), але це не означає «чекай і не втручайся». Поки триває збір даних, варто стежити за трьома речами — і знати, що робити, якщо щось піде не так.</p>
+    <div class="pipeline-context" style="margin:0 12px 16px;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-orange);border-radius:6px;font-size:13px">
+      📋 <strong>Що отримуємо:</strong> цільовий розмір вибірки та план тесту. <strong>Проблема:</strong> під час збору даних можна отримати хибний результат через ранню зупинку, нерівномірний розподіл або технічні проблеми. <strong>Рішення:</strong> контролюємо три ключові аспекти — рівномірність розподілу, достатність даних, стабільність результату; знаємо, як діяти при проблемах.
+    </div>
 
     <h3 class="clickable-heading" data-detail="mon-what-info" data-color="var(--accent-blue)" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:8px 12px 10px;">Що варто контролювати</h3>
 
@@ -1926,6 +1975,10 @@
       💡 Рівномірність розподілу критично важлива для точності тесту. Нерівномірний розподіл може призвести до помилкових висновків і необхідності повторного запуску тесту.
     </div>
 
+    <div class="pipeline-next" style="margin:16px 12px 0;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-blue);border-radius:6px;font-size:13px">
+      ➡ <strong>Результат передаємо далі:</strong> зібрані дані з контролем якості. Наступний крок — <strong>секція 08</strong>: виконати фінальний аналіз результатів і прийняти рішення.
+    </div>
+
   </div>
 </section>
 
@@ -1937,6 +1990,9 @@
       <h2>Аналіз результатів та прийняття рішень</h2>
     </div>
     <p class="scheme-desc">Тест запущено, дані зібрані до потрібного n (Секція 07). Останній крок — правильно прочитати результат і перетворити його на рішення.</p>
+    <div class="pipeline-context" style="margin:0 12px 16px;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-blue);border-radius:6px;font-size:13px">
+      📋 <strong>Що отримуємо:</strong> зібрані дані з контролем якості та досягнутим n. <strong>Проблема:</strong> потрібно коректно інтерпретувати p-value, уникнути типових пасток (пееріодичний аналіз, multiple testing, practical significance) та перетворити результат на бізнес-рішення. <strong>Рішення:</strong> проходимо 8-кроковий алгоритм аналізу — від перевірки даних до фінального вердикту.
+    </div>
 
     <h3 class="clickable-heading" data-detail="ar-flow-info" data-color="var(--accent-blue)" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:8px 12px 10px;">Покроковий алгоритм аналізу</h3>
 
@@ -2063,6 +2119,10 @@
         <div class="ar-stat" style="border-color:var(--accent-purple)"><div class="num" style="color:var(--accent-purple)">p = 0.04</div><div class="lab">за конверсією (значуще)</div></div>
       </div>
       <div class="ar-verdict">✅ Гіпотеза підтверджена — обидва p-значення нижче 0.05. Рекомендація: впровадити зміну кольору кнопки на постійній основі.</div>
+    </div>
+
+    <div class="pipeline-next" style="margin:16px 12px 0;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-green);border-radius:6px;font-size:13px">
+      ➡ <strong>Кінцевий результат:</strong> обґрунтоване рішення — впровадити зміну, відхилити її або запустити додаткове дослідження. Узгодження з бізнес-метриками та практичною значущістю.
     </div>
 
   </div>
