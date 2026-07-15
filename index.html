@@ -1289,8 +1289,6 @@
         <line x1="792" y1="600" x2="518" y2="658" stroke="#999" stroke-width="1" marker-end="url(#arrow5)"/>
         <line x1="896" y1="600" x2="560" y2="658" stroke="#999" stroke-width="1" marker-end="url(#arrow5)"/>
 
-        <text x="390" y="644" text-anchor="middle" font-size="10" fill="#aaa" font-family="monospace">усі гілки зливаються</text>
-
         <!-- p-value -->
         <g class="node" data-detail="ab-pvalue">
           <rect x="180" y="658" width="420" height="44" rx="8" fill="#fff" stroke="#999" stroke-width="0.75"/>
@@ -1643,26 +1641,55 @@
       </svg>
 
       <h3 class="clickable-heading" data-detail="params-main" data-color="var(--accent-blue)" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:16px 12px 10px;padding-top:14px;border-top:1px solid var(--line)">Основні параметри статистичного тесту</h3>
-      <p style="font-size:12px;color:var(--ink-soft);margin:0 12px 14px;font-family:var(--mono)">клікни на термін, щоб розкрити пояснення</p>
 
       <div class="term-grid" style="padding:0 4px 8px">
         <div class="term-node" data-detail="t-alpha" data-color="var(--accent-blue)">Рівень значущості <span class="term-badge alpha">α</span></div>
         <div class="term-node" data-detail="t-pvalue" data-color="var(--accent-purple)">p-value</div>
+        <div class="term-node" data-detail="t-type1" data-color="var(--accent-coral)">Помилка I роду <span class="term-badge" style="background:var(--accent-coral);color:#fff;font-size:10px;padding:1px 6px;border-radius:4px;font-family:serif;font-style:italic">α</span></div>
         <div class="term-node" data-detail="t-beta" data-color="var(--accent-coral)">Помилка II роду <span class="term-badge beta">β</span></div>
         <div class="term-node" data-detail="t-power" data-color="var(--accent-green)">Потужність <span class="term-badge power">1−β</span></div>
         <div class="term-node" data-detail="t-n" data-color="var(--accent-teal)">Розмір вибірки <span class="term-badge n">n</span></div>
         <div class="term-node" data-detail="t-es" data-color="var(--accent-amber)">Розмір ефекту <span class="term-badge es">ES</span></div>
       </div>
 
-      <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'" style="margin:0 12px 10px;padding:8px 16px;background:var(--accent-teal);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600">Test Calculator</button>
-      <div style="display:none;margin:0 12px 14px;padding:10px 14px;background:var(--bg-card);border:1px solid var(--line);border-radius:8px">
-        <a href="https://www.evanmiller.org/ab-testing/sample-size.html" target="_blank" rel="noopener noreferrer" style="display:block;padding:6px 0;color:var(--accent-teal);text-decoration:none;font-weight:500">Evan's Awesome A/B Tools→</a>
-        <a href="https://cxl.com/ab-test-calculator/" target="_blank" rel="noopener noreferrer" style="display:block;padding:6px 0;color:var(--accent-teal);text-decoration:none;font-weight:500">CXL AB Test Calculator→</a>
-        <a href="https://abtestguide.com/calc/" target="_blank" rel="noopener noreferrer" style="display:block;padding:6px 0;color:var(--accent-teal);text-decoration:none;font-weight:500">AB Test Guide Calculator→</a>
-        <a href="https://rpsychologist.com/d3/nhst/" target="_blank" rel="noopener noreferrer" style="display:block;padding:6px 0;color:var(--accent-teal);text-decoration:none;font-weight:500">rpsychologist NHST Visualization →</a>
+      <h3 class="clickable-heading" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:16px 12px 10px;padding-top:14px;border-top:1px solid var(--line)">🧮 Калькулятори</h3>
+
+      <div class="term-grid" style="padding:0 4px 8px">
+        <div class="term-node" data-detail="calc-evan" data-color="var(--accent-teal)">Evan's Awesome A/B Tools</div>
+        <div class="term-node" data-detail="calc-cxl" data-color="var(--accent-teal)">CXL AB Test Calculator</div>
+        <div class="term-node" data-detail="calc-abguide" data-color="var(--accent-teal)">AB Test Guide Calculator</div>
+        <div class="term-node" data-detail="calc-rpsych" data-color="var(--accent-teal)">rpsychologist NHST</div>
       </div>
     </div>
     <p class="hint">клікни на блок схеми — три параметри, три способи коригування, фактори ризику. <strong>Внизу — основні терміни.</strong></p>
+
+    <div class="detail-panel" id="panel-calc-evan"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>Evan's Awesome A/B Tools</h3>
+      <p><strong>Що вводимо:</strong> базова конверсія (control), мінімальний ефект (MDE), рівень значущості α, потужність 1−β.</p>
+      <p><strong>Як читати результат:</strong> калькулятор видає <em>n</em> — мінімальний розмір вибірки на групу. Якщо ваш фактичний n менший — тест може не виявити реальний ефект (недостатня потужність).</p>
+      <p><a href="https://www.evanmiller.org/ab-testing/sample-size.html" target="_blank" rel="noopener noreferrer" style="color:var(--accent-teal);text-decoration:none;font-weight:500">→ Відкрити калькулятор</a></p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-calc-cxl"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>CXL AB Test Calculator</h3>
+      <p><strong>Що вводимо:</strong> кількість відвідувачів і конверсій для контрольної (A) та тестової (B) груп.</p>
+      <p><strong>Як читати результат:</strong> калькулятор показує статистичну значущість (p-value), довірчий інтервал різниці та відносний приріст (uplift). Якщо p &lt; 0.05 — результат значущий.</p>
+      <p><a href="https://cxl.com/ab-test-calculator/" target="_blank" rel="noopener noreferrer" style="color:var(--accent-teal);text-decoration:none;font-weight:500">→ Відкрити калькулятор</a></p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-calc-abguide"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>AB Test Guide Calculator</h3>
+      <p><strong>Що вводимо:</strong> кількість відвідувачів і конверсій для A і B.</p>
+      <p><strong>Як читати результат:</strong> оцінка значущості у відсотках (≥95% — достатньо), рекомендоване рішення (accept / reject). Звертай увагу не лише на значущість, а й на розмір вибірки.</p>
+      <p><a href="https://abtestguide.com/calc/" target="_blank" rel="noopener noreferrer" style="color:var(--accent-teal);text-decoration:none;font-weight:500">→ Відкрити калькулятор</a></p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-calc-rpsych"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>rpsychologist NHST Visualization</h3>
+      <p><strong>Що вводимо:</strong> розмір ефекту (Cohen's d), обсяг вибірки (n), рівень α.</p>
+      <p><strong>Як читати результат:</strong> інтерактивний графік показує перекриття розподілів H₀ та H₁, p-value та потужність тесту. Дає розуміння, як n і ефект впливають на значущість.</p>
+      <p><a href="https://rpsychologist.com/d3/nhst/" target="_blank" rel="noopener noreferrer" style="color:var(--accent-teal);text-decoration:none;font-weight:500">→ Відкрити калькулятор</a></p>
+    </div></div>
 
     <div class="detail-panel" id="panel-ss-start"><div class="detail-inner">
       <h3>Навіщо рахувати розмір вибірки заздалегідь?</h3>
@@ -1740,6 +1767,12 @@
       <p><strong>Використання:</strong> якщо p-value ≤ α, нульову гіпотезу відхиляють; якщо p-value &gt; α — підстав для її відхилення недостатньо.</p>
     </div></div>
 
+    <div class="detail-panel" id="panel-t-type1"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>Помилка першого роду (α)</h3>
+      <p>Ймовірність <strong>хибно виявити</strong> ефект, коли його насправді немає (false positive).</p>
+      <p><strong>Використання:</strong> задається до початку тесту як рівень значущості α. Стандарт: 0.05 (5%). Чим менший α, тим більша вибірка потрібна, але нижчий ризик хибно-позитивного висновку.</p>
+    </div></div>
+
     <div class="detail-panel" id="panel-t-beta"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
       <h3>Помилка другого роду (β)</h3>
       <p>Ймовірність <strong>не виявити</strong> реальний ефект, коли він існує.</p>
@@ -1792,7 +1825,6 @@
     <p class="scheme-desc">Тест запущено (Секція 07), але це не означає «чекай і не втручайся». Поки триває збір даних, варто стежити за трьома речами — і знати, що робити, якщо щось піде не так.</p>
 
     <h3 class="clickable-heading" data-detail="mon-what-info" data-color="var(--accent-blue)" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:8px 12px 10px;">Що варто контролювати</h3>
-    <p class="hint" style="text-align:left;margin:0 12px 14px;">клікни на пункт, щоб розкрити пояснення</p>
 
     <div class="term-grid">
       <div class="term-node" data-detail="mon-conversion" data-color="var(--accent-blue)">Конверсія в реальному часі</div>
@@ -1821,7 +1853,6 @@
     </div></div>
 
     <h3 class="clickable-heading" data-detail="mon-scenarios-info" data-color="var(--accent-coral)" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:32px 12px 10px;padding-top:14px;border-top:1px solid var(--line)">Три сценарії реагування</h3>
-    <p class="hint" style="text-align:left;margin:0 12px 14px;">клікни на сценарій, щоб побачити рекомендовані дії</p>
 
     <div class="term-grid">
       <div class="term-node" data-detail="mon-below-mde" data-color="var(--accent-amber)">Приріст менший за MDE</div>
@@ -1872,7 +1903,6 @@
     <p class="scheme-desc">Тест запущено, дані зібрані до потрібного n (Секція 07). Останній крок — правильно прочитати результат і перетворити його на рішення.</p>
 
     <h3 class="clickable-heading" data-detail="ar-flow-info" data-color="var(--accent-blue)" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:8px 12px 10px;">Покроковий алгоритм аналізу</h3>
-    <p class="hint" style="text-align:left;margin:0 12px 14px;">клікни на крок, щоб розкрити пояснення</p>
 
     <div class="term-grid">
       <div class="term-node" data-detail="ar-metrics" data-color="var(--accent-blue)">1. Ключові метрики</div>
@@ -1895,6 +1925,7 @@
       <p><strong>Основні метрики</strong> — показники, визначені ще до старту тесту: кількість конверсій, середній чек, відсоток відтоку тощо.</p>
       <p><strong>Допоміжні метрики</strong> — додаткові показники, які дають контекст для інтерпретації основного результату.</p>
       <p>➡ <strong>Секція 01</strong> — визнач тип метрик (кількісні / якісні) та обери відповідні методи аналізу</p>
+      <p>➡ <strong>Секція 02</strong> — перевір метрики на викиди: вони спотворюють середнє та стандартне відхилення</p>
     </div></div>
 
     <div class="detail-panel" id="panel-ar-compare"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
@@ -1902,6 +1933,7 @@
       <p><strong>Візуалізація:</strong> графіки й таблиці для наочного порівняння контрольної та тестової груп.</p>
       <p><strong>Статистичний тест:</strong> t-тест, z-тест або хі-квадрат — залежно від типу метрики (Секція 06 допомагає обрати).</p>
       <p>➡ <strong>Секція 05</strong> — обери статистичний тест залежно від типу даних і кількості груп</p>
+      <p>➡ <strong>Секція 03</strong> — переконайся, що вибірка репрезентативна; якість вибірки впливає на надійність тесту</p>
     </div></div>
 
     <div class="detail-panel" id="panel-ar-pvalue"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
@@ -1944,7 +1976,6 @@
     </div></div>
 
     <h3 class="clickable-heading" data-detail="ar-decisions-info" data-color="var(--accent-purple)" style="font-family:Georgia,serif;font-weight:400;font-size:16px;margin:32px 12px 10px;padding-top:14px;border-top:1px solid var(--line)">Типи рішень після A/B-тесту</h3>
-    <p class="hint" style="text-align:left;margin:0 12px 14px;">клікни на варіант, щоб побачити коли його застосовувати</p>
 
     <div class="term-grid">
       <div class="term-node" data-detail="ar-accept" data-color="var(--accent-green)">✅ Приймаємо (Accept)</div>
