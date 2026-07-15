@@ -851,11 +851,19 @@
     </div></div>
     <div class="detail-panel" id="panel-s-done"><div class="detail-inner" style="--detail-color:var(--accent-green)">
       <h3>Формула CI</h3>
-      <p>Вибірка достатньо велика і розподіл відомий/нормальний — можна одразу застосувати класичну формулу: <code>x̄ ± z·(s/√n)</code>, або t-розподіл для менших вибірок. Результат — готовий довірчий інтервал.</p>
+      <p>Вибірка достатньо велика і розподіл відомий/нормальний — можна одразу застосувати класичну формулу: <code>x̄ ± z·(s/√n)</code>, або t-розподіл для менших вибірок.</p>
+      <p><strong>На практиці (Python):</strong></p>
+      <p><code>from scipy import stats</code></p>
+      <p><code>ci = stats.t.interval(confidence=0.95, df=len(sample)-1, loc=sample.mean(), scale=stats.sem(sample))</code></p>
+      <p>Результат — готовий довірчий інтервал, наприклад <code>(833.4, 866.6)</code>.</p>
     </div></div>
     <div class="detail-panel" id="panel-s-bootstrap"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
       <h3>Bootstrap</h3>
       <p>Багаторазова вибірка із заміщенням із наявних даних. Для кожної підвибірки рахуєш статистику (середнє, медіану) — отримуєш розподіл оцінок, навіть не знаючи справжній розподіл популяції. Результат — той самий довірчий інтервал, отриманий емпірично.</p>
+      <p><strong>На практиці (Python):</strong></p>
+      <p><code>from scipy import stats</code></p>
+      <p><code>res = stats.bootstrap((sample,), np.mean, confidence_level=0.95, n_resamples=10000)</code></p>
+      <p>Результат — той самий формат: <code>res.confidence_interval</code> дає нижню і верхню межу, наприклад <code>(831.2, 868.9)</code>.</p>
     </div></div>
     <div class="detail-panel" id="panel-hub-ci-done"><div class="detail-inner" style="--detail-color:var(--accent-green)">
       <h3>Що робити з довірчим інтервалом</h3>
@@ -1650,6 +1658,7 @@
       <div style="display:none;margin:0 12px 14px;padding:10px 14px;background:var(--bg-card);border:1px solid var(--line);border-radius:8px">
         <a href="https://www.evanmiller.org/ab-testing/sample-size.html" target="_blank" rel="noopener noreferrer" style="display:block;padding:6px 0;color:var(--accent-teal);text-decoration:none;font-weight:500">Evan's Awesome A/B Tools→</a>
         <a href="https://cxl.com/ab-test-calculator/" target="_blank" rel="noopener noreferrer" style="display:block;padding:6px 0;color:var(--accent-teal);text-decoration:none;font-weight:500">CXL AB Test Calculator→</a>
+        <a href="https://abtestguide.com/calc/" target="_blank" rel="noopener noreferrer" style="display:block;padding:6px 0;color:var(--accent-teal);text-decoration:none;font-weight:500">AB Test Guide Calculator→</a>
         <a href="https://rpsychologist.com/d3/nhst/" target="_blank" rel="noopener noreferrer" style="display:block;padding:6px 0;color:var(--accent-teal);text-decoration:none;font-weight:500">rpsychologist NHST Visualization →</a>
       </div>
     </div>
