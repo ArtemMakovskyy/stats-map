@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Карта статистичного аналізу даних + A/B тестування</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%232F5D8A'/%3E%3Ctext x='50' y='42' text-anchor='middle' font-family='Arial,sans-serif' font-size='34' font-weight='bold' fill='%23fff'%3EA%3C/text%3E%3Cline x1='28' y1='60' x2='72' y2='60' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3Ctext x='50' y='82' text-anchor='middle' font-family='Arial,sans-serif' font-size='34' font-weight='bold' fill='%23fff'%3EB%3C/text%3E%3C/svg%3E">
 <style>
   :root{
     --bg:#F6F4EF;
@@ -837,6 +838,11 @@
           <text x="170" y="544" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--accent-green)">Довірчий інтервал отримано</text>
           <text x="170" y="562" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-green)" opacity="0.85">похибка для звіту чи рішення</text>
         </g>
+
+        <line x1="170" y1="574" x2="170" y2="590" stroke="#000" stroke-width="1.5" marker-end="url(#arrow2)"/>
+        <rect x="80" y="590" width="180" height="44" rx="4" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="170" y="606" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#000">Розрахунок завершено</text>
+        <text x="170" y="622" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#555">пайплайн далі не продовжується</text>
 
         <g class="node" data-detail="n-pvalue">
           <rect x="365" y="524" width="270" height="44" rx="8" fill="#fff" stroke="#999" stroke-width="0.75"/>
@@ -1894,7 +1900,7 @@
       <p>При n = 1000 це мінімальна різниця між групами, яку ти закладаєш у план тесту як ціль виявлення. Наприклад: 10% конверсія (контроль) і 10.5% (тест). Саме цю різницю система вважає "сигналом", який потрібно відрізнити від шуму при вибірці 1000 користувачів.</p>
     </div></div>
 
-    <div class="pipeline-next" style="margin:16px 12px 0;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-orange);border-radius:6px;font-size:13px">
+    <div class="pipeline-next" style="margin:16px 12px 0;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-blue);border-radius:6px;font-size:13px">
       ➡ <strong>Результат передаємо далі:</strong> цільовий розмір вибірки (n) для A/B тесту. Наступний крок — <strong>секція 07</strong>: запустити тест і контролювати його в процесі збору даних.
     </div>
 
@@ -1955,10 +1961,11 @@
     </div></div>
 
     <div class="detail-panel" id="panel-mon-below-mde"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
-      <h3>Приріст є, але менший за MDE</h3>
+      <h3>Приріст є, але менший за MDE (Minimum Detectable Effect)</h3>
       <p><strong>Подовжити тест:</strong> зібрати більше даних і перевірити, чи ріст стабільний.</p>
       <p><strong>Аналіз тренду:</strong> перевірити, чи зростання стійке, навіть якщо воно незначне.</p>
       <p><strong>Перегляд MDE:</strong> розглянути зниження порогу очікувань — невеликий, але стабільний приріст може бути достатньою підставою для впровадження, якщо це відповідає бізнес-цілям.</p>
+      <p>MDE вираховується, виходячи з витрат на впровадження фічі — це точка беззбитковості вашого експерименту. Наприклад, якщо розробка коштує $10 000 і кожен відсоток приросту конверсії приносить $5 000, то MDE = 2%, щоб покрити витрати.</p>
     </div></div>
 
     <div class="detail-panel" id="panel-mon-drop"><div class="detail-inner" style="--detail-color:var(--accent-red)">
