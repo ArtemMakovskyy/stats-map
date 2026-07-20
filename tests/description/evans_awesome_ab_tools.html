@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Size Calculator</title>
+    <style>
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            color: #000;
+        }
+
+        .question {
+            font-style: italic;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-section {
+            border: 1px dotted #999;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .input-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+
+        .input-label {
+            font-size: 18px;
+            margin-right: 15px;
+            min-width: 250px;
+            text-align: right;
+        }
+
+        .input-box {
+            width: 80px;
+            padding: 5px 10px;
+            font-size: 18px;
+            text-align: center;
+            border: 1px solid #999;
+            margin-right: 5px;
+        }
+
+        .percent-sign {
+            font-size: 18px;
+            margin-right: 15px;
+        }
+
+        .bar-container {
+            display: inline-block;
+            width: 200px;
+            height: 25px;
+            background-color: #ddd;
+            margin-left: 10px;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background-color: #8B0000;
+        }
+
+        .bar-text {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            color: #000;
+        }
+
+        .range-indicator {
+            margin-left: 10px;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .radio-group {
+            margin-left: 265px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .radio-group input {
+            margin-right: 5px;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #999;
+            margin-left: 265px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .note-text {
+            font-size: 13px;
+            margin-left: 480px;
+            margin-top: 10px;
+            max-width: 300px;
+        }
+
+        .result-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .result-label {
+            font-style: italic;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .result-number {
+            font-size: 48px;
+            font-weight: normal;
+            margin: 10px 0;
+        }
+
+        .result-per {
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        .slider-section {
+            margin-top: 40px;
+        }
+
+        .slider-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .slider-label {
+            min-width: 200px;
+            font-size: 14px;
+        }
+
+        .slider-container {
+            flex: 1;
+            max-width: 200px;
+            margin-right: 15px;
+        }
+
+        .slider-value {
+            min-width: 50px;
+            font-size: 14px;
+        }
+
+        .slider-desc {
+            font-size: 12px;
+            color: #999;
+            font-style: italic;
+            flex: 1;
+        }
+
+        input[type=range] {
+            width: 100%;
+        }
+
+        .link {
+            color: #0000EE;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .footer-link {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .footer-link a {
+            color: #0000EE;
+        }
+
+        /* Место для вашего описания */
+        .my-description {
+            border: 2px dashed #4CAF50;
+            background-color: #f0fff0;
+            padding: 30px;
+            margin-top: 40px;
+            border-radius: 8px;
+        }
+
+        .my-description h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+
+        .desc-buttons {
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+
+        .desc-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .desc-row-label {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 13px;
+            font-style: italic;
+            color: #555;
+            white-space: nowrap;
+        }
+
+        .desc-btn {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 13px;
+            padding: 6px 14px;
+            border: 1px solid #4CAF50;
+            background-color: #fff;
+            color: #2e7d32;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .desc-btn:hover {
+            background-color: #e8f5e9;
+        }
+
+        .desc-btn.active {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="question">
+    How many people do you need for a valid A/B test?
+</div>
+
+<div class="input-section">
+    <div class="input-row">
+        <div class="input-label" onclick="showDescription('baseline')" style="cursor:pointer">Current conversion rate (A):</div>
+        <input type="number" class="input-box" id="baseline" value="20" oninput="calculate()">
+        <span class="percent-sign">%</span>
+        <div class="bar-container">
+            <div class="bar-fill" id="baselineBar" style="width: 40%"></div>
+            <span class="bar-text" id="baselineText">20%</span>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <div class="input-label" onclick="showDescription('mde')" style="cursor:pointer">Smallest effect to detect:</div>
+        <input type="number" class="input-box" id="mde" value="10" oninput="calculate()">
+        <span class="percent-sign">%</span>
+        <div class="bar-container">
+            <div class="bar-fill" id="mdeBar" style="width: 20%"></div>
+            <div id="mdeZone" style="position: absolute; left: 20%; width: 80%; height: 100%; background-color: #ccc;"></div>
+            <span class="bar-text" id="mdeText">10% – 30%</span>
+        </div>
+    </div>
+
+    <div class="radio-group">
+        <label style="cursor:pointer" onclick="showDescription('mde')"><input type="radio" name="effectType" value="absolute" onchange="calculate()"> Absolute change</label>
+        <label style="margin-left: 15px; cursor:pointer" onclick="showDescription('mde')"><input type="radio" name="effectType" value="relative" checked onchange="calculate()"> Relative change</label>
+    </div>
+
+    <div class="help-text">
+        Це найменша зміна, яку тест здатен виявити з імовірністю (1-β)%.
+    </div>
+
+    <div class="note-text">
+        Показники в сірій зоні статистично не відрізняються від початкового рівня.
+    </div>
+</div>
+
+<div class="result-section">
+    <div class="result-label">Required group size:</div>
+    <div class="result-number" id="result">263</div>
+    <div class="result-per">participants per group</div>
+</div>
+
+<div class="slider-section">
+    <div class="slider-row">
+        <div class="slider-label" onclick="showDescription('power')" style="cursor:pointer">Test sensitivity 1−β:</div>
+        <div class="slider-container">
+            <input type="range" id="power" min="50" max="95" value="80" oninput="updateSlider('power'); calculate()">
+        </div>
+        <div class="slider-value" id="powerValue">80%</div>
+        <div class="slider-desc">Частка тестів, які правильно виявлять ефект, якщо він справді є</div>
+    </div>
+
+    <div class="slider-row">
+        <div class="slider-label" onclick="showDescription('alpha')" style="cursor:pointer">Significance threshold α:</div>
+        <div class="slider-container">
+            <input type="range" id="alpha" min="1" max="10" value="5" oninput="updateSlider('alpha'); calculate()">
+        </div>
+        <div class="slider-value" id="alphaValue">5%</div>
+        <div class="slider-desc">Частка тестів, які хибно покажуть різницю, хоча її насправді немає</div>
+    </div>
+</div>
+
+
+<!-- Кнопки опису -->
+<div class="desc-buttons" id="descButtons">
+    <div class="desc-row">
+        <button class="desc-btn" data-key="baseline" onclick="showDescription('baseline')">Базовий рівень конверсії</button>
+        <button class="desc-btn" data-key="mde" onclick="showDescription('mde')">Мінімально виявлюваний ефект</button>
+        <button class="desc-btn" data-key="power" onclick="showDescription('power')">Статистична потужність</button>
+        <button class="desc-btn" data-key="alpha" onclick="showDescription('alpha')">Рівень значущості α</button>
+    </div>
+    <div class="desc-row">
+        <span class="desc-row-label">Як використовувати на практиці:</span>
+        <button class="desc-btn" data-key="type1" onclick="showDescription('type1')">Помилка I роду (α)</button>
+        <button class="desc-btn" data-key="type2" onclick="showDescription('type2')">Помилка II роду (β)</button>
+        <button class="desc-btn" data-key="conclusion" onclick="showDescription('conclusion')">Головний висновок</button>
+    </div>
+</div>
+
+<div class="my-description" id="descriptionArea"></div>
+
+<div class="footer-link">
+    Inspired by <a href="https://www.evanmiller.org/ab-testing/sample-size.html" target="_blank" rel="noopener noreferrer">Evan Miller — evanmiller.org/ab-testing/sample-size.html</a>
+</div>
+
+<script>
+    function updateSlider(id) {
+        var value = document.getElementById(id).value;
+        document.getElementById(id + 'Value').innerText = value + '%';
+    }
+
+    function ppnd(p) {
+        if (p <= 0 || p >= 1) return 0;
+        if (p === 0.5) return 0;
+
+        var a1 = -3.969683028665376e+01, a2 =  2.209460984245205e+02, a3 = -2.759285104469687e+02;
+        var a4 =  1.383577518672690e+02, a5 = -3.066479806614716e+01, a6 =  2.506628277459239e+00;
+        var b1 = -5.447609879822406e+01, b2 =  1.615858368580409e+02, b3 = -1.556989798598866e+02;
+        var b4 =  6.680131188771972e+01, b5 = -1.328068155288572e+01;
+        var c1 = -7.784894002430293e-03, c2 = -3.223964580411365e-01, c3 = -2.400758277161838e+00;
+        var c4 = -2.549732539343734e+00, c5 =  4.374664141464968e+00, c6 =  2.938163982698783e+00;
+        var d1 =  7.784695709041462e-03, d2 =  3.224671290700398e-01, d3 =  2.445134137142996e+00;
+        var d4 =  3.754408661907416e+00;
+
+        var p_low = 0.02425;
+        var p_high = 1 - p_low;
+        var q, r;
+
+        if (p < p_low) {
+            q = Math.sqrt(-2 * Math.log(p));
+            return (((((c1*q+c2)*q+c3)*q+c4)*q+c5)*q+c6) / ((((d1*q+d2)*q+d3)*q+d4)*q+1);
+        } else if (p <= p_high) {
+            q = p - 0.5;
+            r = q * q;
+            return (((((a1*r+a2)*r+a3)*r+a4)*r+a5)*r+a6)*q / (((((b1*r+b2)*r+b3)*r+b4)*r+b5)*r+1);
+        } else {
+            q = Math.sqrt(-2 * Math.log(1 - p));
+            return -(((((c1*q+c2)*q+c3)*q+c4)*q+c5)*q+c6) / ((((d1*q+d2)*q+d3)*q+d4)*q+1);
+        }
+    }
+
+    function calculate() {
+        var baseline = parseFloat(document.getElementById('baseline').value) / 100;
+        var mde = parseFloat(document.getElementById('mde').value) / 100;
+        var power = parseFloat(document.getElementById('power').value) / 100;
+        var alpha = parseFloat(document.getElementById('alpha').value) / 100;
+        var isRelative = document.querySelector('input[name="effectType"]:checked').value === 'relative';
+
+        var delta = isRelative ? baseline * mde : mde;
+        var p = baseline;
+
+        if (p > 0.5) {
+            p = 1.0 - p;
+        }
+
+        var t_alpha2 = ppnd(1.0 - alpha / 2);
+        var t_beta = ppnd(power);
+
+        var sd1 = Math.sqrt(2 * p * (1.0 - p));
+        var sd2 = Math.sqrt(p * (1.0 - p) + (p + delta) * (1.0 - p - delta));
+
+        var n = (t_alpha2 * sd1 + t_beta * sd2) * (t_alpha2 * sd1 + t_beta * sd2) / (delta * delta);
+
+        document.getElementById('result').innerText = Math.ceil(n).toLocaleString();
+
+        // Обновление визуализации
+        var baselineWidth = Math.min(baseline * 200, 200);
+        document.getElementById('baselineBar').style.width = baselineWidth + 'px';
+        document.getElementById('baselineText').innerText = (baseline * 100) + '%';
+
+        var effectStart = baseline * 100;
+        var effectEnd = (baseline + delta) * 100;
+        document.getElementById('mdeText').innerText = effectStart.toFixed(0) + '% – ' + effectEnd.toFixed(0) + '%';
+
+        var startPct = Math.max(0, Math.min(100, effectStart));
+        var endPct = Math.max(0, Math.min(100, effectEnd));
+        var lowPct = Math.min(startPct, endPct);
+        var highPct = Math.max(startPct, endPct);
+        document.getElementById('mdeBar').style.width = lowPct + '%';
+        document.getElementById('mdeZone').style.left = lowPct + '%';
+        document.getElementById('mdeZone').style.width = (highPct - lowPct) + '%';
+    }
+
+    var descriptions = {
+        baseline: '<h3>Базовий рівень конверсії (20%)</h3><p>Із 1000 користувачів цільову дію виконують 200.</p>',
+        mde: '<h3>Мінімально виявлюваний ефект (10%)</h3><p>Зміна базової конверсії на 10% від її поточного значення. Залежно від типу шкали в калькуляторі це:</p><ul><li><strong>Relative (відносний):</strong> Зростання на +10% від базових 200 користувачів = 220 користувачів.</li><li><strong>Absolute (абсолютний):</strong> Приріст на +2% до базової конверсії (20% + 2% = 22%) = 220 користувачів.</li></ul><p>(В обох випадках ми шукаємо мінімальне зростання саме на +20 користувачів із тисячі.)</p>',
+        power: '<h3>Статистична потужність (80%)</h3><p>Щоб достовірно виявити приріст у +20 користувачів на тисячу, калькулятор розрахував вибірку <strong>6347 користувачів</strong> для Тесту Б (і стільки ж для Контролю А).</p><p>Якщо Тест Б дає приріст <strong>з 200 до 220 користувачів на тисячу</strong>, то:</p><ul><li>Якщо запустити тест на 6347 користувачах 100 разів поспіль, то у 80 випадках аналіз виявить приріст у +20 користувачів і підтвердить різницю (p-value буде меншим або дорівнюватиме 0.05).</li><li>У решті 20 випадків зі 100 запусків на 6 347 користувачах аналіз не виявить приріст у +20 користувачів через випадковий шум у даних і покаже, що змін немає (p-value буде більшим за 0.05).</li></ul>',
+        alpha: '<h3>Рівень значущості α (5%)</h3><p>Щоб достовірно виявити приріст у +20 користувачів на тисячу, калькулятор розрахував вибірку <strong>6347 користувачів</strong> для Тесту Б (і стільки ж для Контролю А).</p><p>Якщо Тест Б взагалі не дає приросту (він дорівнює нулю), то:</p><ul><li>Якщо запустити тест на 6347 користувачах 100 разів поспіль, то у 95 випадках p-value буде більшим за 0.05, що означатиме відсутність змін.</li><li>У 5 випадках зі 100 запусків на 6347 користувачах аналіз помилиться через випадковий шум у даних: p-value буде меншим або дорівнюватиме 0.05, хибно підтверджуючи приріст у +20 користувачів і показуючи, що різниця існує, хоча її насправді немає.</li></ul>',
+        type1: '<h3>Рівень значущості 5% — захист від «ілюзії успіху» (помилка I роду)</h3><ul><li><strong>Навіщо потрібен:</strong> Захищає від впровадження функцій, які насправді не працюють.</li><li><strong>Як використовувати:</strong> Бізнес не хоче витрачати гроші на розробку та впровадження змін, які не приносять користі. Обираючи рівень значущості 5%, ти погоджуєшся на 5% ризику впровадити марну функцію, переплутавши випадковий сплеск у даних із реальним покращенням.</li><li><strong>Приклад:</strong> Тест показав, що новий дизайн кращий. Ти дивишся на p-value: якщо він менший за 0.05, це означає, що спостережувану різницю занадто важко пояснити звичайним випадковим розкидом даних. Якщо отриманий приріст вигідний бізнесу, Тест Б можна розгортати на всіх користувачів.</li></ul>',
+        type2: '<h3>Решта 20% від потужності — захист від «втраченої вигоди» (помилка II роду)</h3><ul><li><strong>Навіщо потрібен:</strong> Захищає від того, щоб відхилити ідею, яка насправді працює.</li><li><strong>Як використовувати:</strong> Потужність 80% означає, що існує 20% ризику не виявити приріст у +20 користувачів на тисячу через випадковий шум у даних. Якщо тест завершився без статистично значущих змін (p-value більше 0.05), не можна повністю виключати, що приріст існує, але аналіз його не виявив.</li><li><strong>Приклад:</strong> Якщо для бізнесу критично важливо знайти навіть невелике покращення, потужність підвищують, наприклад, до 90%. Тоді калькулятор вимагатиме більше трафіку, але ймовірність пропустити корисну зміну стане нижчою.</li></ul>',
+        conclusion: '<h3>Головний висновок</h3><ul><li><strong>5% (рівень значущості)</strong> — показує, наскільки рідко аналіз має помилятися й оголошувати успішною зміну, якої насправді немає. Якщо p-value ≤ 0.05 і приріст вигідний бізнесу — Тест Б можна впроваджувати.</li><li><strong>20% (недостатня потужність)</strong> — показує, як часто аналіз може не виявити покращення, яке насправді існує. Якщо p-value > 0.05, це ще не означає, що приросту точно немає — його могли не виявити.</li></ul><p>Якщо пропустити навіть невелике покращення критично для бізнесу — перед запуском тесту збільшують потужність (наприклад, до 90%), але для цього потрібна більша вибірка.</p>'
+    };
+
+    function showDescription(key) {
+        document.getElementById('descriptionArea').innerHTML = descriptions[key];
+        var buttons = document.getElementById('descButtons').getElementsByClassName('desc-btn');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
+            if (buttons[i].getAttribute('data-key') === key) {
+                buttons[i].classList.add('active');
+            }
+        }
+    }
+
+    calculate();
+    showDescription('conclusion');
+</script>
+</body>
+</html>
