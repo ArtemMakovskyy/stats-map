@@ -1138,6 +1138,55 @@
       📋 <strong>Що отримуємо:</strong> дані з відомою кореляцією та її значущістю. <strong>Проблема:</strong> потрібно порівняти групи між собою, але вибір тесту залежить від типу даних, кількості груп, розподілу та залежності вибірок. <strong>Рішення:</strong> обираємо тест за дереволодібною логікою: частки → z-тест / χ²; числа → t-тест / ANOVA (параметричні) або Манна-Уїтні / Крускала-Уолліса (непараметричні).
     </div>
 
+    <div class="term-node" data-detail="hypothesis-template" data-color="var(--accent-coral)" style="background:var(--accent-coral);color:#fff;border-color:var(--accent-coral);display:inline-flex;padding:8px 14px;font-size:14px;margin-bottom:18px;">📋 Шаблон для побудови гіпотези</div>
+
+    <div class="detail-panel" id="panel-hypothesis-template"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>Приклад заповненого шаблону гіпотези A/B тесту</h3>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">
+          <thead>
+            <tr style="background:var(--accent-coral-bg);">
+              <th style="padding:12px 16px;text-align:left;font-weight:700;border-bottom:2px solid var(--accent-coral);white-space:nowrap;">Крок</th>
+              <th style="padding:12px 16px;text-align:left;font-weight:700;border-bottom:2px solid var(--accent-coral);">Опис</th>
+              <th style="padding:12px 16px;text-align:left;font-weight:700;border-bottom:2px solid var(--accent-coral);">Дія</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);font-weight:600;white-space:nowrap;color:var(--accent-coral);">Визначення проблеми або можливості</td>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);">Опишіть проблему або можливість, яку ви хочете вирішити або дослідити.</td>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);font-style:italic;background:var(--bg);">«Користувачі часто залишають кошик без завершення покупки.»</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);font-weight:600;white-space:nowrap;color:var(--accent-coral);">Формулювання гіпотези</td>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);"><code>Якщо [дія], то [очікуваний результат], тому що [причина].</code></td>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);font-style:italic;background:var(--bg);">«Якщо ми додамо повідомлення про знижку при залишенні кошика, то збільшимо кількість завершених покупок на 20%, тому що це мотивуватиме користувачів завершити покупку.»</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);font-weight:600;white-space:nowrap;color:var(--accent-coral);">Визначення цільової аудиторії</td>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);">Вкажіть, яка група користувачів буде піддана зміні.</td>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);font-style:italic;background:var(--bg);">«Нові користувачі, які вперше додають товари в кошик.»</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);font-weight:600;white-space:nowrap;color:var(--accent-coral);">Вибір метрик для вимірювання успіху</td>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);">Визначте конкретні показники, які будуть використані для оцінки результатів.</td>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);font-style:italic;background:var(--bg);">«Кількість завершених покупок, середній чек, відсоток конверсії.»</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);font-weight:600;white-space:nowrap;color:var(--accent-coral);">Розробка плану тестування</td>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);">Опишіть, як ви будете тестувати гіпотезу: розподіл, тривалість, методи збору даних.</td>
+              <td style="padding:10px 16px;border-bottom:1px solid var(--line);font-style:italic;background:var(--bg);">«Тестування триватиме 4 тижні. 50% нових користувачів побачать повідомлення про знижку, інші 50% – ні. Дані будемо збирати в Google BigQuery.»</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 16px;font-weight:600;white-space:nowrap;color:var(--accent-coral);">Висновки та рекомендації</td>
+              <td style="padding:10px 16px;color:var(--ink-soft);">Результати, рішення, наступні кроки.</td>
+              <td style="padding:10px 16px;font-style:italic;background:var(--bg);">«Гіпотеза підтверджена, кількість завершених покупок зросла на 25%. Рекомендується впровадити зміну для всіх нових користувачів.»</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div></div>
+
     <div class="diagram-card">
       <svg viewBox="0 0 960 830">
         <defs>
@@ -1743,8 +1792,8 @@
 
       <div class="term-grid" style="padding:0 4px 8px">
         <div class="term-node" data-detail="calc-evan" data-color="var(--accent-teal)">Evan's Awesome A/B Tools</div>
-        <div class="term-node" data-detail="calc-cxl" data-color="var(--accent-teal)">CXL AB Test Calculator</div>
         <div class="term-node" data-detail="calc-abguide" data-color="var(--accent-teal)">AB Test Guide Calculator</div>
+        <div class="term-node" data-detail="calc-cxl" data-color="var(--accent-teal)">CXL AB Test Calculator</div>
         <div class="term-node" data-detail="calc-rpsych" data-color="var(--accent-teal)">rpsychologist NHST</div>
       </div>
     </div>
@@ -1916,7 +1965,7 @@
       <h2>Моніторинг A/B-тесту під час проведення</h2>
     </div>
     <p class="scheme-desc">Тест запущено (Секція 07), але це не означає «чекай і не втручайся». Поки триває збір даних, варто стежити за трьома речами — і знати, що робити, якщо щось піде не так.</p>
-    <div class="pipeline-context" style="margin:0 12px 16px;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-orange);border-radius:6px;font-size:13px">
+    <div class="pipeline-context" style="margin:0 12px 16px;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-blue);border-radius:6px;font-size:13px">
       📋 <strong>Що отримуємо:</strong> цільовий розмір вибірки та план тесту. <strong>Проблема:</strong> під час збору даних можна отримати хибний результат через ранню зупинку, нерівномірний розподіл або технічні проблеми. <strong>Рішення:</strong> контролюємо три ключові аспекти — рівномірність розподілу, достатність даних, стабільність результату; знаємо, як діяти при проблемах.
     </div>
 
@@ -1982,10 +2031,6 @@
       <p><strong>Статистичний тест:</strong> хі-квадрат тест — чи є значуща різниця в розподілі між групами.</p>
       <p><strong>Аналіз трафіку та сегментів:</strong> переконатись, що всі джерела трафіку й сегменти (вік, регіон, пристрій) рівномірно спрямовуються на A і B.</p>
     </div></div>
-
-    <div class="tip-note">
-      💡 Рівномірність розподілу критично важлива для точності тесту. Нерівномірний розподіл може призвести до помилкових висновків і необхідності повторного запуску тесту.
-    </div>
 
     <div class="pipeline-next" style="margin:16px 12px 0;padding:10px 14px;background:var(--bg);border-left:3px solid var(--accent-blue);border-radius:6px;font-size:13px">
       ➡ <strong>Результат передаємо далі:</strong> зібрані дані з контролем якості. Наступний крок — <strong>секція 08</strong>: виконати фінальний аналіз результатів і прийняти рішення.

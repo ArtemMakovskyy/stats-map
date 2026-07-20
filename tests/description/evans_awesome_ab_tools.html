@@ -246,7 +246,6 @@
 <body>
 
 <div class="question">
-    How many people do you need for a valid A/B test?
 </div>
 
 <div class="input-section">
@@ -261,7 +260,7 @@
     </div>
 
     <div class="input-row">
-        <div class="input-label" onclick="showDescription('mde')" style="cursor:pointer">Smallest effect to detect:</div>
+        <div class="input-label" onclick="showDescription('mde')" style="cursor:pointer">MDE:</div>
         <input type="number" class="input-box" id="mde" value="10" oninput="calculate()">
         <span class="percent-sign">%</span>
         <div class="bar-container">
@@ -321,10 +320,11 @@
         <button class="desc-btn" data-key="alpha" onclick="showDescription('alpha')">Рівень значущості α</button>
     </div>
     <div class="desc-row">
-        <span class="desc-row-label">Як використовувати на практиці:</span>
+        <span class="desc-row-label">Практика:</span>
         <button class="desc-btn" data-key="type1" onclick="showDescription('type1')">Помилка I роду (α)</button>
         <button class="desc-btn" data-key="type2" onclick="showDescription('type2')">Помилка II роду (β)</button>
         <button class="desc-btn" data-key="conclusion" onclick="showDescription('conclusion')">Головний висновок</button>
+        <a class="desc-btn" href="https://docs.google.com/spreadsheets/d/1UEcftEXDxRlivWvo68-CNNuU4Ubnw1qJpO4SurbXwig/edit?usp=sharing" target="_blank" rel="noopener noreferrer" style="text-decoration:none">📊 візуалізація</a>
     </div>
 </div>
 
