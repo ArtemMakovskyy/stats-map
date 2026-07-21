@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A/B Test Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        /* Left Panel */
+        .left-panel {
+            flex: 0 0 350px;
+            background: white;
+            padding: 12px 16px 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .left-panel h2 {
+            font-size: 18px;
+            margin-bottom: 4px;
+            color: #2c3e50;
+        }
+
+        .left-panel p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin: 8px 0 6px 0;
+            color: #2c3e50;
+        }
+
+        .radio-group {
+            margin-bottom: 8px;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .input-group {
+            margin-bottom: 6px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: #2980b9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 4px;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #1f6391;
+        }
+
+        /* Right Panel */
+        .right-panel {
+            flex: 1;
+            background: white;
+            padding: 12px 16px 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .right-panel h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .success-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .success-box h3 {
+            color: #4caf50;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .success-box p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .chart-comparison {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        .chart-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chart-bar {
+            height: 20px;
+            border-radius: 3px;
+        }
+
+        .chart-bar.a {
+            background: #bdc3c7;
+            width: 100px;
+        }
+
+        .chart-bar.b {
+            background: #81c784;
+            width: 120px;
+        }
+
+        .chart-value {
+            font-size: 12px;
+            font-weight: 600;
+            min-width: 50px;
+        }
+
+        .distribution-graph {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 4px;
+        }
+
+        .distribution-graph h3 {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .graph-placeholder {
+            height: 300px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .metric-box {
+            padding: 8px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
+
+        .metric-box.active-metric {
+            background: #e8f5e9;
+            border-color: #4caf50;
+            box-shadow: 0 0 0 1px #4caf50;
+        }
+
+        .active-left {
+            color: #4caf50 !important;
+            font-weight: 700 !important;
+        }
+        .section-title.active-left {
+            border-left: 3px solid #4caf50;
+            padding-left: 6px;
+        }
+
+        .metric-box h4 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .metric-box .formula {
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .metric-box .value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            padding: 8px;
+            background: white;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+
+        .clickable {
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+        .clickable:hover {
+            opacity: 0.75;
+        }
+        .metric-box.clickable {
+            cursor: pointer;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        .metric-box.clickable:hover {
+            border-color: #2980b9;
+            box-shadow: 0 1px 4px rgba(41,128,185,0.15);
+        }
+
+        .help-icon {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: #999;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 14px;
+            font-size: 10px;
+            margin-left: 5px;
+            cursor: help;
+        }
+    </style>
+</head>
+<body>
+<div style="max-width:1400px;margin:10px auto 0;padding:0 10px;text-align:left;">
+    <a href="https://abtestguide.com/calc/" target="_blank" rel="noopener noreferrer" style="font-size:12px;color:#2980b9;text-decoration:none;">← Оригінальний тест на abtestguide.com</a>
+</div>
+<div class="container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+        <div class="section-title clickable" data-key="pretest" onclick="showDescription('pretest')">Pre-test calculation or post-test evaluation?</div>
+        <div class="radio-group" style="display:flex;gap:24px;">
+            <label style="flex:1;cursor:pointer;" data-key="pre-analysis" onclick="showDescription('pre-analysis')">
+                <input type="radio" name="test-type" value="pre-test">
+                Pre-test analysis
+            </label>
+            <label style="flex:1;cursor:pointer;" data-key="test-eval" onclick="showDescription('test-eval')">
+                <input type="radio" name="test-type" value="post-test" checked>
+                Test evaluation
+            </label>
+        </div>
+
+        <div class="section-title">Test data</div>
+        <div class="input-row">
+            <div class="input-group">
+                <label class="clickable" data-key="visitors" onclick="showDescription('visitors')">Visitors A</label>
+                <input type="number" value="80000">
+            </div>
+            <div class="input-group">
+                <label class="clickable" data-key="conversions" onclick="showDescription('conversions')">Conversions A</label>
+                <input type="number" value="1600">
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="input-group">
+                <label class="clickable" data-key="visitors" onclick="showDescription('visitors')">Visitors B</label>
+                <input type="number" value="80000">
+            </div>
+            <div class="input-group">
+                <label class="clickable" data-key="conversions" onclick="showDescription('conversions')">Conversions B</label>
+                <input type="number" value="1696">
+            </div>
+        </div>
+        <button class="btn-primary">Apply changes</button>
+
+        <div class="section-title clickable" data-key="settings" onclick="showDescription('settings')">Settings</div>
+        <div class="radio-group" style="display:flex;gap:24px;">
+            <div style="flex:1;">
+                <label class="clickable" data-key="hypothesis" onclick="showDescription('hypothesis')">Hypothesis <span class="help-icon">?</span></label>
+                <label style="cursor:pointer;" data-key="one-sided" onclick="showDescription('one-sided')">
+                    <input type="radio" name="hypothesis" value="one-sided" checked>
+                    One-sided
+                </label>
+                <label style="cursor:pointer;" data-key="two-sided" onclick="showDescription('two-sided')">
+                    <input type="radio" name="hypothesis" value="two-sided">
+                    Two-sided
+                </label>
+            </div>
+            <div style="flex:1;">
+                <label class="clickable" data-key="confidence" onclick="showDescription('confidence')">Confidence <span class="help-icon">?</span></label>
+                <label style="cursor:pointer;" data-key="conf-90" onclick="showDescription('conf-90')">
+                    <input type="radio" name="confidence" value="90">
+                    90%
+                </label>
+                <label style="cursor:pointer;" data-key="conf-95" onclick="showDescription('conf-95')">
+                    <input type="radio" name="confidence" value="95" checked>
+                    95%
+                </label>
+                <label style="cursor:pointer;" data-key="conf-99" onclick="showDescription('conf-99')">
+                    <input type="radio" name="confidence" value="99">
+                    99%
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+        <div class="metrics-grid">
+            <div class="metric-box clickable" data-key="cr-control" onclick="showDescription('cr-control')">
+                <h4>Conversion Rate Control</h4>
+                <div class="formula">Conversions A / Visitors A</div>
+                <div class="value">2.00%</div>
+            </div>
+
+            <div class="metric-box clickable" data-key="cr-b" onclick="showDescription('cr-b')">
+                <h4>Conversion Rate B</h4>
+                <div class="formula">Conversions B / Visitors B</div>
+                <div class="value">2.12%</div>
+            </div>
+
+            <div class="metric-box clickable" data-key="uplift" onclick="showDescription('uplift')">
+                <h4>Relative uplift in Conversion Rate</h4>
+                <div class="formula">CR<sub>B</sub> - CR<sub>A</sub> / CR<sub>A</sub></div>
+                <div class="value">6.00%</div>
+            </div>
+
+            <div class="metric-box clickable" data-key="power" onclick="showDescription('power')">
+                <h4>Observed Power</h4>
+                <div class="value">77.57%</div>
+            </div>
+
+            <div class="metric-box clickable" data-key="pvalue" onclick="showDescription('pvalue')">
+                <h4>p value</h4>
+                <div class="value">0.0455</div>
+            </div>
+
+            <div class="metric-box clickable" data-key="zscore" onclick="showDescription('zscore')">
+                <h4>Z-score</h4>
+                <div class="formula">(CR<sub>B</sub> - CR<sub>A</sub>) / SE<sub>difference</sub></div>
+                <div class="value">1.6897</div>
+            </div>
+
+            <div class="metric-box clickable" data-key="se-a" onclick="showDescription('se-a')">
+                <h4>Standard error A</h4>
+                <div class="formula">(CR<sub>A</sub> * (1-CR<sub>A</sub>) / Visitors<sub>A</sub>)<sup>1/2</sup></div>
+                <div class="value">0.000495</div>
+            </div>
+
+            <div class="metric-box clickable" data-key="se-b" onclick="showDescription('se-b')">
+                <h4>Standard error B</h4>
+                <div class="formula">(CR<sub>B</sub> * (1-CR<sub>B</sub>) / Visitors<sub>B</sub>)<sup>1/2</sup></div>
+                <div class="value">0.000509</div>
+            </div>
+
+            <div class="metric-box clickable" data-key="se-diff" onclick="showDescription('se-diff')">
+                <h4>Std. Error of difference</h4>
+                <div class="formula">SE<sub>difference</sub> = (SE<sub>A</sub><sup>2</sup> + SE<sub>B</sub><sup>2</sup>)<sup>1/2</sup></div>
+                <div class="value">0.00071</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="desc-buttons" id="descButtons">
+    <div class="desc-row">
+        <span class="desc-row-label">Налаштування:</span>
+        <button class="desc-btn" data-key="pretest" onclick="showDescription('pretest')">Pre-test / Post-test</button>
+        <button class="desc-btn" data-key="pre-analysis" onclick="showDescription('pre-analysis')">Pre-test analysis</button>
+        <button class="desc-btn" data-key="test-eval" onclick="showDescription('test-eval')">Test evaluation</button>
+        <button class="desc-btn" data-key="hypothesis" onclick="showDescription('hypothesis')">Hypothesis</button>
+        <button class="desc-btn" data-key="confidence" onclick="showDescription('confidence')">Confidence</button>
+        <button class="desc-btn" data-key="one-sided" onclick="showDescription('one-sided')">One-sided</button>
+        <button class="desc-btn" data-key="two-sided" onclick="showDescription('two-sided')">Two-sided</button>
+    </div>
+    <div class="desc-row">
+        <span class="desc-row-label">Метрики:</span>
+        <button class="desc-btn" data-key="cr-control" onclick="showDescription('cr-control')">Конверсія A</button>
+        <button class="desc-btn" data-key="cr-b" onclick="showDescription('cr-b')">Конверсія B</button>
+        <button class="desc-btn" data-key="uplift" onclick="showDescription('uplift')">Відносний приріст</button>
+        <button class="desc-btn" data-key="power" onclick="showDescription('power')">Потужність</button>
+        <button class="desc-btn" data-key="pvalue" onclick="showDescription('pvalue')">p-value</button>
+        <button class="desc-btn" data-key="zscore" onclick="showDescription('zscore')">Z-score</button>
+        <button class="desc-btn" data-key="se-a" onclick="showDescription('se-a')">Похибка A</button>
+        <button class="desc-btn" data-key="se-b" onclick="showDescription('se-b')">Похибка B</button>
+        <button class="desc-btn" data-key="se-diff" onclick="showDescription('se-diff')">Похибка різниці</button>
+    </div>
+    <div class="desc-row">
+        <span class="desc-row-label">Типи тестів:</span>
+        <button class="desc-btn" data-key="abn" onclick="showDescription('abn')">A/B/n-тестування</button>
+        <button class="desc-btn" data-key="aa" onclick="showDescription('aa')">AA-тестування</button>
+    </div>
+    <div class="desc-row">
+        <span class="desc-row-label">Практика:</span>
+        <button class="desc-btn" data-key="howto" onclick="showDescription('howto')">Як користуватись калькулятором</button>
+        <button class="desc-btn" data-key="decision-pipeline" onclick="showDescription('decision-pipeline')">Пайплайн прийняття рішення</button>
+        <button class="desc-btn" data-key="common-mistakes" onclick="showDescription('common-mistakes')">Типові помилки</button>
+    </div>
+</div>
+
+<div class="my-description" id="descriptionArea"></div>
+
+<style>
+    .desc-buttons {
+        max-width: 1400px;
+        margin: 20px auto 10px;
+        padding: 0 10px;
+    }
+
+    .desc-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .desc-row-label {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 13px;
+        font-style: italic;
+        color: #555;
+        white-space: nowrap;
+    }
+
+    .desc-btn {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 13px;
+        padding: 6px 14px;
+        border: 1px solid #2980b9;
+        background-color: #fff;
+        color: #1f6391;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.15s;
+    }
+
+    .desc-btn:hover {
+        background-color: #e8f4fd;
+    }
+
+    .desc-btn.active {
+        background-color: #2980b9;
+        color: #fff;
+    }
+
+    .my-description {
+        max-width: 1400px;
+        margin: 0 auto 20px;
+        padding: 0 10px;
+    }
+
+    .my-description > div {
+        border: 2px dashed #2980b9;
+        background-color: #f0f8ff;
+        padding: 30px;
+        border-radius: 8px;
+    }
+
+    .my-description h3 {
+        margin-top: 0;
+        color: #1f6391;
+    }
+</style>
+
+<script>
+    var descriptions = {
+        'pretest': '<div><h3>Pre-test calculation or post-test evaluation?</h3><p>Вибір режиму роботи калькулятора:</p><ul><li><strong>Pre-test analysis</strong> — розрахунок необхідного розміру вибірки до запуску тесту, виходячи з бажаної потужності, рівня значущості та очікуваного ефекту.</li><li><strong>Test evaluation</strong> — аналіз результатів уже проведеного тесту: обчислення p-value, довірчих інтервалів та статистичної значущості.</li></ul></div>',
+        'pre-analysis': '<div><h3>Pre-test analysis</h3><p>Режим розрахунку до тесту. Використовується на етапі планування, щоб визначити, скільки користувачів потрібно залучити в кожну групу для досягнення статистичної значущості при заданому рівні потужності (зазвичай 80%) та рівні значущості α (зазвичай 0.05).</p></div>',
+        'test-eval': '<div><h3>Test evaluation</h3><p>Режим аналізу результатів тесту. На основі введених даних (кількість відвідувачів та конверсій для груп A і B) калькулятор обчислює p-value, Z-score, стандартні похибки та інші метрики для оцінки статистичної значущості різниці між групами.</p></div>',
+        'settings': '<div><h3>Settings</h3><p>Розділ налаштувань тесту. Включає вибір типу гіпотези (одностороння чи двостороння) та рівня довіри (90%, 95%, 99%), які впливають на обчислення p-value та ширину довірчих інтервалів.</p></div>',
+        'hypothesis': '<div><h3>Hypothesis</h3><p>Вибір типу статистичної гіпотези:</p><ul><li><strong>One-sided (одностороння)</strong> — перевіряє зміну лише в один бік (наприклад, чи стала конверсія B більшою за A). Вимагає меншої вибірки, але не здатна виявити зміну в протилежному напрямку.</li><li><strong>Two-sided (двостороння)</strong> — перевіряє зміну в обидва боки (чи відрізняється конверсія B від A взагалі). Потребує більшої вибірки, але з однаковою чутливістю до покращення чи погіршення.</li></ul></div>',
+        'one-sided': '<div><h3>One-sided hypothesis (одностороння)</h3><p>Використовується, коли вас цікавить зміна лише в одному напрямку. Наприклад: «чи зросла конверсія після змін?». При цьому ви не перевіряєте можливість погіршення. Перевага: вища статистична потужність за того ж розміру вибірки. Недолік: якщо ефект виявиться протилежним очікуваному, тест цього не покаже.</p></div>',
+        'two-sided': '<div><h3>Two-sided hypothesis (двостороння)</h3><p>Використовується, коли вас цікавить будь-яка зміна — як покращення, так і погіршення. Наприклад: «чи відрізняється конверсія нової версії від поточної?». Це стандартний підхід у більшості A/B тестів, оскільки він однаково чутливий до змін в обидва боки. Недолік: потребує дещо більшої вибірки порівняно з односторонньою гіпотезою.</p></div>',
+        'confidence': '<div><h3>Confidence (рівень довіри)</h3><p><strong>Статистична значущість (Significance level, α)</strong> — це поріг, який показує ймовірність того, що ми помилково відкидаємо нульову гіпотезу, коли насправді вона є істинною (тобто, ймовірність отримання хибнопозитивного результату). Найчастіше використовується рівень 0.05, що означає 5% ризику того, що виявлена різниця між групами є випадковою. Іншими словами, якщо тест покаже різницю, то з ймовірністю 95% ми можемо бути впевненими, що ця різниця реальна, а не випадкова.</p><p>Найпоширеніші рівні довіри:</p><ul><li><strong>95%</strong> — стандартний рівень. Ризик помилки 5% (α = 0.05). Якщо p-value < 0.05 — результат статистично значущий.</li><li><strong>90%</strong> — менш суворий рівень. Ризик помилки 10%. Використовується для попередніх/пілотних тестів.</li><li><strong>99%</strong> — дуже суворий рівень. Ризик помилки 1%. Використовується для критичних рішень з високою вартістю помилки.</li></ul></div>',
+        'conf-90': '<div><h3>90% Confidence</h3><p>Рівень довіри 90% (α = 0.10). Менш суворий поріг, який частіше виявляє ефекти, але з вищим ризиком хибно-позитивного результату. Підходить для розвідувальних тестів або коли вартість помилки невисока.</p></div>',
+        'conf-95': '<div><h3>95% Confidence</h3><p>Рівень довіри 95% (α = 0.05). Стандарт для більшості A/B тестів. Баланс між чутливістю та надійністю: лише 5% ймовірності, що знайдена різниця — випадковість.</p></div>',
+        'conf-99': '<div><h3>99% Confidence</h3><p>Рівень довіри 99% (α = 0.01). Дуже суворий поріг. Підходить для рішень з високою вартістю помилки (наприклад, зміна критичного функціоналу). Недолік: потребує значно більшої вибірки для досягнення статистичної значущості.</p></div>',
+        'cr-control': '<div><h3>Conversion Rate Control (Конверсія групи A)</h3><p>Конверсія контрольної групи (A). Розраховується як кількість конверсій поділена на кількість відвідувачів. У прикладі: 1600 / 80000 = 2.00%. Це базовий рівень, з яким порівнюється тестова група B.</p></div>',
+        'cr-b': '<div><h3>Conversion Rate B (Конверсія групи B)</h3><p>Конверсія тестової групи (B). Розраховується як кількість конверсій поділена на кількість відвідувачів. У прикладі: 1696 / 80000 = 2.12%. Якщо цей показник статистично значуще відрізняється від групи A, зміну можна впроваджувати.</p></div>',
+        'uplift': '<div><h3>Relative uplift (Відносний приріст)</h3><p>Показує, на скільки відсотків конверсія групи B вища (або нижча) за групу A. Формула: (CR<sub>B</sub> − CR<sub>A</sub>) / CR<sub>A</sub>. У прикладі: (2.12% − 2.00%) / 2.00% = 6.00%. Це практична значущість результату.</p></div>',
+        'power': '<div><h3>Потужність тесту (Statistical power, 1−β)</h3><p>Це ймовірність правильно виявити реальну різницю між групами, якщо така різниця дійсно існує. Потужність тесту зазвичай встановлюється на рівні 0.8 (80%), що означає 80% шансів виявити істотну різницю, якщо вона є. Іншими словами, ми маємо 20% шансів на хибнонегативний результат, тобто ситуацію, коли ми не виявимо реальної різниці між групами, хоч вона насправді існує.</p></div>',
+        'pvalue': '<div><h3>p value (p-значення)</h3><p>Ймовірність отримати таку саму або більш екстремальну різницю між групами, якщо насправді різниці немає. У прикладі p = 0.0455, що менше за поріг 0.05 — отже, різниця статистично значуща. Якщо p-value > 0.05 — недостатньо доказів для висновку про наявність ефекту.</p></div>',
+        'zscore': '<div><h3>Z-score</h3><p>Показник, який вимірює, на скільки стандартних відхилень спостережувана різниця між групами відхиляється від нульової гіпотези (H₀: різниці немає). Формула: (CR<sub>B</sub> − CR<sub>A</sub>) / SE<sub>difference</sub>.</p><ul><li><strong>Z ≈ 0</strong> — різниці між групами немає або вона мінімальна. Дані повністю відповідають нульовій гіпотезі.</li><li><strong>0 &lt; |Z| &lt; 1.96</strong> — різниця є, але не виходить за межі випадкового шуму. Статистично не значуща.</li><li><strong>|Z| = 1.96</strong> — точний поріг для рівня значущості α = 0.05 (двосторонній тест). 95% усіх можливих значень Z лежать у межах [−1.96; +1.96], якщо H₀ правдива. Якщо |Z| &gt; 1.96 — p-value стає меншим за 0.05, і різниця вважається статистично значущою.</li><li><strong>|Z| &gt; 3</strong> — сильне відхилення (p &lt; 0.003). Дуже вагомі докази на користь того, що різниця реальна.</li><li><strong>|Z| &gt; 5</strong> — екстремальне відхилення (p &lt; 0.000001). Таке майже ніколи не трапляється випадково.</li></ul><p><strong>У прикладі:</strong> Z = 1.6897, що менше за 1.96, тому p-value (0.0455) хоч і менше за 0.05, але дуже близьке до порогу — результат на межі значущості.</p></div>',
+        'se-a': '<div><h3>Standard error A (Стандартна похибка групи A)</h3><p>Міра невизначеності оцінки конверсії для групи A. Розраховується як sqrt(CR<sub>A</sub> × (1 − CR<sub>A</sub>) / Visitors<sub>A</sub>). Чим більше відвідувачів, тим менша похибка. У прикладі: 0.000495.</p></div>',
+        'se-b': '<div><h3>Standard error B (Стандартна похибка групи B)</h3><p>Міра невизначеності оцінки конверсії для групи B. Розраховується аналогічно до групи A: sqrt(CR<sub>B</sub> × (1 − CR<sub>B</sub>) / Visitors<sub>B</sub>). У прикладі: 0.000509.</p></div>',
+        'se-diff': '<div><h3>Std. Error of difference (Стандартна похибка різниці)</h3><p>Комбінована міра невизначеності різниці між групами A та B. Розраховується як sqrt(SE<sub>A</sub>² + SE<sub>B</sub>²). Ця величина використовується для обчислення Z-score та p-value. Чим менша похибка різниці, тим точніша оцінка.</p></div>',
+        'visitors': '<div><h3>Visitors (Відвідувачі)</h3><p>Кількість унікальних користувачів, які потрапили у відповідну групу тесту. Для групи A — 80000, для групи B — 80000. Це значення використовується для розрахунку конверсії (Conversions / Visitors) та стандартної похибки.</p></div>',
+        'conversions': '<div><h3>Conversions (Конверсії)</h3><p>Кількість користувачів, які виконали цільову дію (покупку, реєстрацію тощо). Для групи A — 1600, для групи B — 1696. Разом із кількістю відвідувачів використовується для обчислення конверсії у відсотках.</p></div>',
+        'abn': '<div><h3>A/B/n-тестування (Multivariate Testing)</h3><p>Це метод, що передбачає тестування більше ніж двох варіантів одночасно (наприклад, A/B/C/D). Використовується, коли потрібно порівняти кілька різних версій сторінки, дизайну або функціоналу в одному експерименті. Потребує більшого розміру вибірки та корекції p-value для множинних порівнянь (наприклад, поправка Бонферроні).</p></div>',
+        'aa': '<div><h3>AA-тестування</h3><p>Це метод, за якого аудиторію ділять на групи, але обидві групи бачать оригінальну версію без змін. Це тестування допомагає перевірити рівномірність розподілу аудиторії та коректність системи експериментів. Якщо AA-тест показує статистично значущу різницю між групами — це сигнал про проблеми в системі розподілу або трекінгу даних.</p></div>',
+        'howto': '<div><h3>Як користуватись калькулятором</h3><p>Порядок дій залежить від того, на якому етапі ви перебуваєте — плануєте тест чи вже маєте результати.</p><p><strong>Якщо тест ще не запущено (Pre-test analysis):</strong></p><ul><li>Оберіть режим <strong>Pre-test analysis</strong>.</li><li>Вкажіть поточну конверсію (baseline) та мінімальний ефект, який хочете вміти виявити (Minimum Detectable Effect).</li><li>Виберіть рівень довіри та потужність (зазвичай 95% і 80%).</li><li>Калькулятор поверне необхідну кількість відвідувачів на групу — це і є мета, до якої слід довести тест, не зупиняючи його раніше.</li></ul><p><strong>Якщо тест вже завершено або триває (Test evaluation):</strong></p><ul><li>Оберіть режим <strong>Test evaluation</strong>.</li><li>Введіть фактичні Visitors і Conversions для груп A і B.</li><li>Натисніть «Apply changes» — праворуч оновляться всі метрики (конверсії, uplift, p-value, power, Z-score, похибки).</li><li>Клікніть на будь-яку картку метрики зліва або справа — під сіткою з’явиться пояснення саме цього показника з формулою.</li></ul><p>Після цього переходьте до розділу «Пайплайн прийняття рішення», щоб зрозуміти, що робити з отриманими цифрами.</p></div>',
+        'decision-pipeline': '<div><h3>Пайплайн прийняття рішення</h3><p>Самі по собі цифри (p-value, power, uplift) не дають відповіді «впроваджувати чи ні». Рішення варто приймати послідовно, за такими кроками:</p><ul><li><strong>Крок 1. Чи набрана планова вибірка?</strong> Якщо тест ще не досяг розміру, розрахованого в Pre-test analysis — робити висновки зарано, навіть якщо p-value вже здається значущим. Дострокові висновки підвищують ризик хибного результату (див. «Типові помилки»).</li><li><strong>Крок 2. Чи p-value нижче обраного порогу?</strong> Наприклад, при рівні довіри 95% поріг — 0.05. У прикладі калькулятора p = 0.0455 < 0.05 → різниця статистично значуща.</li><li><strong>Крок 3. Яка спостережувана потужність (Observed Power)?</strong> Якщо вона помітно нижче 80% (як у прикладі — 77.57%), результат все ще може бути ненадійним навіть при значущому p-value: варто або долити трафіку, або сприймати висновок як попередній. Якщо потужність значно нижча за 80% — це говорить про недостатню вибірку, і тест має продовжуватись.</li><li><strong>Крок 4. Чи ефект практично значущий, а не лише статистично?</strong> Приріст 6% конверсії — це помітно чи ні для бізнесу? Порівняйте uplift з вартістю впровадження варіанта B та очікуваним фінансовим ефектом. Статистична значущість не означає автоматичну економічну доцільність.</li><li><strong>Крок 5. Чи немає зовнішніх спотворень?</strong> Сезонність, збій трекінгу, різка зміна трафіку під час тесту, novelty-ефект (тимчасовий сплеск інтересу до нового варіанта) — усе це може імітувати або маскувати реальний ефект.</li></ul><p><strong>Підсумкове правило:</strong> впроваджуйте варіант B, якщо (1) вибірка набрана повністю, (2) p-value нижче порогу, (3) power достатня, і (4) ефект має практичну цінність. Якщо хоча б одна умова не виконана — тест варто продовжити або перезапустити, а не приймати рішення на основі неповних даних.</p></div>',
+        'common-mistakes': '<div><h3>Типові помилки при роботі з A/B тестом</h3><ul><li><strong>Peeking (дострокова зупинка)</strong> — перевірка p-value щодня і зупинка тесту одразу, як тільки він «пробив» 0.05. Через накопичення випадкових коливань це суттєво підвищує ймовірність хибного висновку. Тест слід доводити до заздалегідь розрахованого розміру вибірки.</li><li><strong>Ігнорування потужності</strong> — висновок «різниці немає», зроблений при низькій Observed Power. Це може бути не відсутність ефекту, а недостатньо чутливий тест (замало даних).</li><li><strong>Плутанина статистичної та практичної значущості</strong> — значущий, але мізерний ефект (наприклад, +0.1% конверсії) може не виправдовувати витрат на впровадження.</li><li><strong>Тестування занадто багатьох варіантів без корекції</strong> — у A/B/n-тестах порівняння кількох варіантів одночасно без поправки на множинні порівняння (наприклад, Бонферроні) підвищує шанс хибно-позитивного результату.</li><li><strong>Неправильна інтерпретація p-value</strong> — p-value це не «ймовірність того, що варіант B кращий», а ймовірність отримати такі ж або екстремальніші дані за умови відсутності реальної різниці.</li><li><strong>Не перевірена коректність трекінгу</strong> — якщо є сумніви у розподілі трафіку, варто спершу прогнати AA-тест, щоб переконатись, що система експериментів працює коректно.</li></ul></div>'
+    };
+
+    function showDescription(key) {
+        var area = document.getElementById('descriptionArea');
+        area.innerHTML = descriptions[key] || '<div><p style="color:#999;text-align:center;">Оберіть параметр для пояснення</p></div>';
+        var buttons = document.getElementById('descButtons').getElementsByClassName('desc-btn');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
+            if (buttons[i].getAttribute('data-key') === key) {
+                buttons[i].classList.add('active');
+            }
+        }
+        document.querySelectorAll('.metric-box').forEach(function(box) {
+            box.classList.remove('active-metric');
+            if (box.getAttribute('data-key') === key) {
+                box.classList.add('active-metric');
+            }
+        });
+        document.querySelectorAll('.left-panel [data-key]').forEach(function(el) {
+            el.classList.remove('active-left');
+            if (el.getAttribute('data-key') === key) {
+                el.classList.add('active-left');
+            }
+        });
+    }
+
+    showDescription('test-eval');
+</script>
+</body>
+</html>
