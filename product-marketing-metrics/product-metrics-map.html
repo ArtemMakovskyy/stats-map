@@ -221,6 +221,7 @@
     color:var(--ink);
     transition:border-color .15s, background .15s;
   }
+  .term-node.has-formula{border-width:2.5px; border-color:var(--accent-amber);}
   .term-node:hover{border-color:var(--accent-teal); background:var(--accent-teal-bg);}
   .term-node.active{
     border-color:var(--accent-teal);
@@ -280,7 +281,7 @@
 
 <header class="top">
   <div class="wrap">
-    <p class="eyebrow">Папліна продукт-маркетингових метрик</p>
+    <p class="eyebrow">Пайплайн продукт-маркетингових метрик</p>
     <h1>Від <em>залучення</em> до <em>відтоку</em></h1>
     <p class="sub">Клікай на блоки у схемі — розкриється коротке пояснення кожного етапу життєвого циклу користувача. Це маршрут: як користувач дізнається про продукт, починає ним користуватись, повертається, платить, рекомендує — і, зрештою, йде.</p>
   </div>
@@ -1382,10 +1383,19 @@
 </section>
 
 <footer>
-  Папліна продукт-маркетингових метрик · Acquisition → Activation → Engagement → Retention → Monetization → Referral → Churn
+  Пайплайн продукт-маркетингових метрик · Acquisition → Activation → Engagement → Retention → Monetization → Referral → Churn
 </footer>
 
 <script>
+document.querySelectorAll('.term-node').forEach(function(btn){
+  var panel = document.getElementById('panel-' + btn.getAttribute('data-detail'));
+  if(!panel) return;
+  var hasFormula = Array.prototype.some.call(panel.querySelectorAll('code'), function(c){
+    return c.textContent.indexOf('/') !== -1;
+  });
+  if(hasFormula){ btn.classList.add('has-formula'); }
+});
+
 document.querySelectorAll('.node, .term-node, .clickable-heading').forEach(function(el){
   el.addEventListener('click', function(){
     var id = el.getAttribute('data-detail');
