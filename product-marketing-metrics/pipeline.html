@@ -629,7 +629,7 @@
     <p class="section-subdesc">Показники, спільні для кількох каналів.</p>
     <div class="term-grid">
       <button class="term-node" data-detail="term-ctr">CTR (SEP)</button>
-      <button class="term-node" data-detail="term-cr">CR / CVR (SEP)</button>
+      <button class="term-node" data-detail="term-cr">CR (SEP)</button>
       <button class="term-node" data-detail="term-engagement-rate">Engagement rate (PEC)</button>
       <button class="term-node" data-detail="term-bounce-rate-site">Bounce rate (PSC)</button>
     </div>
@@ -637,13 +637,13 @@
     <div class="detail-panel" id="panel-term-ctr"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
       <h3>CTR — Click-Through Rate</h3>
       <p><strong>Категорії:</strong> SEO · Email · Paid · Content</p>
-      <p><strong>Визначення:</strong> Відсоток кліків від кількості показів. Показує, наскільки оголошення, посилання чи публікація привертає увагу.</p>
-      <p><strong>Формула:</strong> <code>CTR (%) = Clicks (Кількість кліків) / Impressions (Кількість показів) × 100%</code></p>
-      <p><strong>Варіант для email (з глосарія імейл-маркетингу):</strong> <code>CTR (%) = Clicks (Кількість кліків) / Delivered Emails (Кількість доставлених листів) × 100%</code></p>
+      <p><strong>Визначення:</strong> Відсоток кліків від кількості показів. Показує, наскільки оголошення, посилання чи публікація привертає увагу. Формула залежить від каналу.</p>
+      <p><strong>Paid / SEO:</strong> <code>CTR (%) = Clicks (Кількість кліків) / Impressions (Кількість показів) × 100%</code></p>
+      <p><strong>Email:</strong> <code>CTR (%) = Clicks (Кількість кліків) / Delivered Emails (Кількість доставлених листів) × 100%</code></p>
       <p><strong>Приклад (з розрахунку платної кампанії):</strong> 25 000 / 1 200 000 × 100% = 2.08% — нижче цільового CTR (3%), що може вказувати на низьку привабливість оголошення.</p>
     </div></div>
     <div class="detail-panel" id="panel-term-cr"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
-      <h3>CR / CVR — Conversion Rate</h3>
+      <h3>CR — Conversion Rate (альтернативне скорочення — CVR)</h3>
       <p><strong>Категорії:</strong> SEO · Email · Paid · Content</p>
       <p><strong>Визначення:</strong> Відсоток користувачів, які виконали цільову дію (покупку, реєстрацію, підписку) серед усіх, хто перейшов за посиланням чи відвідав сайт.</p>
       <p><strong>Формула:</strong> <code>CR (%) = Conversions (Кількість конверсій) / Visits (Кількість візитів) × 100%</code></p>
@@ -652,13 +652,16 @@
     <div class="detail-panel" id="panel-term-engagement-rate"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
       <h3>Engagement rate — Показник взаємодії</h3>
       <p><strong>Категорії:</strong> Paid · Email · Content</p>
-      <p><strong>Визначення:</strong> Показник взаємодії з контентом (лайки, коментарі, поширення) щодо показів або охоплення.</p>
-      <p><strong>Варіант для email:</strong> Рівень зацікавленості (engagement rate) — загальна оцінка залученості підписників до листів; оцінюється комбінацією Open rate, CTR і CTOR.</p>
+      <p><strong>Визначення:</strong> Показник взаємодії з контентом. Визначення та формула залежать від каналу: для реклами — частка взаємодій щодо показів; для імейлу — оцінка залученості підписників.</p>
+      <p><strong>Advertising / Content:</strong> <code>Engagement rate (%) = Engagements (Кількість взаємодій) / Impressions (Кількість показів) × 100%</code> — лайки, коментарі, поширення щодо показів або охоплення.</p>
+      <p><strong>Email:</strong> Рівень зацікавленості (engagement rate) — загальна оцінка залученості підписників до листів; обчислюється комбінацією Open rate, CTR і CTOR.</p>
     </div></div>
     <div class="detail-panel" id="panel-term-bounce-rate-site"><div class="detail-inner" style="--detail-color:var(--accent-red)">
       <h3>Bounce rate — Показник відмов (сайт)</h3>
       <p><strong>Категорії:</strong> Paid · SEO · Content</p>
       <p><strong>Визначення:</strong> Відсоток користувачів, які покинули сайт після переходу на нього, не вчиняючи жодних дій. Високий показник може вказувати на нерелевантність контенту для користувача.</p>
+      <p><strong>Формула:</strong> <code>Bounce rate (%) = Bounces (Кількість сесій з відмовою) / Sessions (Кількість сесій) × 100%</code></p>
+      <p><strong>Важливо:</strong> Це метрика сайту. Не плутати з «Bounce rate» в імейл-маркетингу — там він позначає відсоток недоставлених листів і є іншою метрикою з тією самою назвою.</p>
     </div></div>
 
     <h3 class="section-subhead">Платні канали (Paid Marketing)</h3>
@@ -698,6 +701,7 @@
       <h3>Frequency — Частота показів</h3>
       <p><strong>Категорії:</strong> Paid</p>
       <p><strong>Визначення:</strong> Кількість разів, коли одному користувачу показали оголошення. Допомагає оцінити оптимальну кількість контактів із користувачем.</p>
+      <p><strong>Формула:</strong> <code>Frequency = Impressions (Кількість показів) / Reach (Охоплення)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-quality-score"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
       <h3>Quality score — Якість оголошення</h3>
@@ -715,16 +719,19 @@
       <h3>CPE — Cost per Engagement</h3>
       <p><strong>Категорії:</strong> Paid</p>
       <p><strong>Визначення:</strong> Вартість за взаємодію з оголошенням (лайки, коментарі тощо).</p>
+      <p><strong>Формула:</strong> <code>CPE = Campaign Cost (Витрати на кампанію) / Engagements (Кількість взаємодій)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-cpv"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
       <h3>CPV — Cost per View</h3>
       <p><strong>Категорії:</strong> Paid</p>
       <p><strong>Визначення:</strong> Вартість за перегляд відеореклами.</p>
+      <p><strong>Формула:</strong> <code>CPV = Campaign Cost (Витрати на кампанію) / Views (Кількість переглядів)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-vtr"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
       <h3>VTR — View-Through Rate</h3>
       <p><strong>Категорії:</strong> Paid</p>
       <p><strong>Визначення:</strong> Відсоток користувачів, які переглянули відео повністю.</p>
+      <p><strong>Формула:</strong> <code>VTR (%) = Completed Views (Кількість переглядів відео до кінця) / Impressions (Кількість показів) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-cpa"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
       <h3>CPA — Cost per Acquisition</h3>
@@ -755,6 +762,7 @@
       <h3>Install rate — Відсоток встановлень</h3>
       <p><strong>Категорії:</strong> Paid</p>
       <p><strong>Визначення:</strong> Відсоток користувачів, які встановили додаток після кліку на оголошення.</p>
+      <p><strong>Формула:</strong> <code>Install rate (%) = Installs (Кількість встановлень) / Clicks (Кількість кліків) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-time-to-conversion"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
       <h3>Time to conversion — Час до конверсії</h3>
@@ -770,11 +778,13 @@
       <h3>First-time conversion rate — Відсоток перших конверсій</h3>
       <p><strong>Категорії:</strong> Paid</p>
       <p><strong>Визначення:</strong> Відсоток користувачів, які вперше здійснили цільову дію.</p>
+      <p><strong>Формула:</strong> <code>First-time conversion rate (%) = First-time Conversions (Кількість перших конверсій) / Total Conversions (Загальна кількість конверсій) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-return-rate"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
       <h3>Return rate — Коефіцієнт повернення</h3>
       <p><strong>Категорії:</strong> Paid</p>
       <p><strong>Визначення:</strong> Відсоток користувачів, які повернулися на сайт через ремаркетингову кампанію.</p>
+      <p><strong>Формула:</strong> <code>Return rate (%) = Returning Users (Кількість користувачів, які повернулися) / Total Users (Загальна кількість користувачів) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-reach"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
       <h3>Reach — Охоплення</h3>
@@ -864,6 +874,7 @@
       <h3>Organic click share — Органічні частки кліків</h3>
       <p><strong>Категорії:</strong> SEO</p>
       <p><strong>Визначення:</strong> Частка органічних кліків від загальної кількості за певними ключовими запитами.</p>
+      <p><strong>Формула:</strong> <code>Organic click share (%) = Organic Clicks (Кількість органічних кліків) / Total Clicks (Загальна кількість кліків) × 100%</code></p>
       <p><strong>Як рахувати:</strong> В SEO-інструментах або Google Search Console.</p>
     </div></div>
     <div class="detail-panel" id="panel-term-image-video-clicks"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
@@ -926,6 +937,7 @@
       <p><strong>Категорії:</strong> Email</p>
       <p><strong>Визначення:</strong> Показник недоставлених листів через некоректні адреси або технічні проблеми. Відсоток листів, які не були доставлені.</p>
       <p><strong>Формула:</strong> <code>Bounce rate (%) = Bounces (Кількість відмов) / Sent Emails (Кількість відправлених листів) × 100%</code></p>
+      <p><strong>Важливо:</strong> Це метрика імейл-розсилки (відсоток недоставлених листів). Не плутати з «Bounce rate» для сайту, де він означає відсоток користувачів, які покинули сайт без дій.</p>
     </div></div>
     <div class="detail-panel" id="panel-term-spam-rate"><div class="detail-inner" style="--detail-color:var(--accent-green)">
       <h3>Spam rate — Спам-рейтинг</h3>
@@ -998,6 +1010,7 @@
       <p><strong>Категорії:</strong> Email</p>
       <p><strong>Визначення:</strong> Показує, скільки доходу приносить кожен вкладений долар у кампанію.</p>
       <p><strong>Формула:</strong> <code>Email ROI (%) = (Campaign Revenue (Загальний дохід) − Campaign Cost (Витрати на кампанію)) / Campaign Cost (Витрати на кампанію) × 100%</code></p>
+      <p><strong>Зв'язок з ROMI:</strong> це частковий випадок загальної метрики ROMI — та сама формула (Дохід − Витрати) / Витрати × 100%, але застосована до окремої імейл-кампанії.</p>
     </div></div>
     <div class="detail-panel" id="panel-term-reply-rate"><div class="detail-inner" style="--detail-color:var(--accent-green)">
       <h3>Reply rate — Частота відповідей</h3>
@@ -1065,6 +1078,7 @@
       <h3>Відсоток відвідуваності (вебінари)</h3>
       <p><strong>Категорії:</strong> Content</p>
       <p><strong>Визначення:</strong> Співвідношення кількості відвідувачів вебінару до кількості зареєстрованих. Основний показник зацікавленості аудиторії.</p>
+      <p><strong>Формула:</strong> <code>Attendance rate (%) = Attendees (Кількість відвідувачів вебінару) / Registrations (Кількість зареєстрованих) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-webinar-duration"><div class="detail-inner" style="--detail-color:var(--accent-red)">
       <h3>Тривалість участі (вебінари)</h3>
@@ -1080,11 +1094,13 @@
       <h3>Average view duration — Середній час перегляду</h3>
       <p><strong>Категорії:</strong> Content</p>
       <p><strong>Визначення:</strong> Показник тривалості перегляду відео, який демонструє зацікавленість користувачів.</p>
+      <p><strong>Формула:</strong> <code>Average view duration = Total Video Watch Time (Загальний час перегляду) / Views (Кількість переглядів)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-completion-rate"><div class="detail-inner" style="--detail-color:var(--accent-red)">
       <h3>Completion rate — Показник завершення перегляду</h3>
       <p><strong>Категорії:</strong> Content</p>
       <p><strong>Визначення:</strong> Відсоток користувачів, які переглянули відео до кінця.</p>
+      <p><strong>Формула:</strong> <code>Completion rate (%) = Completed Views (Кількість переглядів до кінця) / Views (Кількість переглядів) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-downloads-streams"><div class="detail-inner" style="--detail-color:var(--accent-red)">
       <h3>Downloads/streams — Завантаження або прослуховування</h3>
@@ -1095,6 +1111,7 @@
       <h3>Average listen duration — Тривалість прослуховування</h3>
       <p><strong>Категорії:</strong> Content</p>
       <p><strong>Визначення:</strong> Середній час, який слухачі проводять із подкастом.</p>
+      <p><strong>Формула:</strong> <code>Average listen duration = Total Listening Time (Загальний час прослуховування) / Streams (Кількість прослуховувань)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-subscriptions"><div class="detail-inner" style="--detail-color:var(--accent-red)">
       <h3>Subscriptions — Підписки</h3>
@@ -1110,6 +1127,7 @@
       <h3>Темпи зростання аудиторії (соцмережі)</h3>
       <p><strong>Категорії:</strong> Content</p>
       <p><strong>Визначення:</strong> Ріст кількості підписників.</p>
+      <p><strong>Формула:</strong> <code>Followers growth (%) = New Followers (Кількість нових підписників) / Followers at Period Start (Кількість підписників на початку періоду) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-sessions"><div class="detail-inner" style="--detail-color:var(--accent-red)">
       <h3>Кількість сесій (direct traffic)</h3>
@@ -1125,11 +1143,13 @@
       <h3>Кількість сторінок на сесію</h3>
       <p><strong>Категорії:</strong> Content</p>
       <p><strong>Визначення:</strong> Кількість сторінок, які переглядає користувач за один візит.</p>
+      <p><strong>Формула:</strong> <code>Pages per session = Pageviews (Кількість переглядів сторінок) / Sessions (Кількість сесій)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-return-visits"><div class="detail-inner" style="--detail-color:var(--accent-red)">
       <h3>Показник повернень (direct traffic)</h3>
       <p><strong>Категорії:</strong> Content</p>
       <p><strong>Визначення:</strong> Частота повторних відвідувань.</p>
+      <p><strong>Формула:</strong> <code>Return visits (%) = Sessions from Returning Users (Кількість сесій повторних користувачів) / Total Sessions (Загальна кількість сесій) × 100%</code></p>
     </div></div>
 
     <h3 class="section-subhead">Referral (Реферали)</h3>
@@ -1157,16 +1177,19 @@
       <h3>Average Referrals per User — Середня кількість рефералів</h3>
       <p><strong>Категорії:</strong> Referral</p>
       <p><strong>Визначення:</strong> Показує, скільки запрошень надсилає кожен активний користувач, що відображає рівень залучення до реферальної програми.</p>
+      <p><strong>Формула:</strong> <code>Average referrals per user = Total Referrals (Загальна кількість запрошень) / Active Referring Users (Кількість активних користувачів, що надсилають запрошення)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-referral-ltv"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
       <h3>Referral LTV — LTV від реферальних користувачів</h3>
       <p><strong>Категорії:</strong> Referral · Monetization</p>
       <p><strong>Визначення:</strong> Середня цінність життєвого циклу користувачів, які прийшли через рефералів, порівняно з іншими каналами.</p>
+      <p><strong>Формула:</strong> <code>Referral LTV = AOV (Середній чек) × Purchase Frequency (Частота покупок) × Lifespan (Тривалість взаємодії)</code> — розрахунок виконується лише для користувачів, які прийшли через рефералів.</p>
     </div></div>
     <div class="detail-panel" id="panel-term-referral-cost"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
       <h3>Витрати на реферальну програму</h3>
       <p><strong>Категорії:</strong> Referral</p>
       <p><strong>Визначення:</strong> Важливо врахувати всі витрати на стимулювання реферальних залучень, порівнюючи їх із витратами на інші маркетингові канали.</p>
+      <p><strong>Формула:</strong> <code>Referral cost per acquisition = Referral Program Cost (Витрати на реферальну програму) / Successful Referrals (Кількість успішних реферальних залучень)</code></p>
     </div></div>
 
     <h3 class="section-subhead">Product (Продуктові)</h3>
@@ -1213,6 +1236,7 @@
       <h3>Кількість сесій на одного користувача</h3>
       <p><strong>Категорії:</strong> Product</p>
       <p><strong>Визначення:</strong> Метрика залученості, що показує, наскільки активно користувачі взаємодіють із продуктом.</p>
+      <p><strong>Формула:</strong> <code>Sessions per user = Sessions (Загальна кількість сесій) / Users (Загальна кількість користувачів)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-time-on-platform"><div class="detail-inner" style="--detail-color:#A23A6B">
       <h3>Середній час перебування на платформі</h3>
@@ -1243,6 +1267,7 @@
       <h3>Відсоток зареєстрованих користувачів, які активувалися</h3>
       <p><strong>Категорії:</strong> Product</p>
       <p><strong>Визначення:</strong> Відсоток зареєстрованих користувачів, які активувалися протягом певного періоду.</p>
+      <p><strong>Формула:</strong> <code>Activated users (%) = Activated Users (Кількість активованих користувачів) / Registered Users (Кількість зареєстрованих користувачів) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-time-to-activation"><div class="detail-inner" style="--detail-color:#A23A6B">
       <h3>Час до першої активації</h3>
@@ -1273,6 +1298,7 @@
       <h3>Retention rate — Коефіцієнт утримання</h3>
       <p><strong>Категорії:</strong> Product</p>
       <p><strong>Визначення:</strong> Показує, скільки користувачів продовжують використовувати продукт через певний час після першого знайомства з ним.</p>
+      <p><strong>Формула:</strong> <code>Retention rate (%) = Users Still Active (Кількість користувачів, які залишилися) / Users at Start (Кількість користувачів на початку) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-churn-rate"><div class="detail-inner" style="--detail-color:var(--accent-red)">
       <h3>Churn rate — Відтік</h3>
@@ -1285,11 +1311,13 @@
       <h3>Клієнтський churn</h3>
       <p><strong>Категорії:</strong> Product</p>
       <p><strong>Визначення:</strong> Відтік клієнтів — розраховується для точнішого аналізу відтоку користувачів.</p>
+      <p><strong>Формула:</strong> <code>Client churn (%) = Churned Clients (Кількість клієнтів, які пішли) / Clients at Period Start (Кількість клієнтів на початку періоду) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-revenue-churn"><div class="detail-inner" style="--detail-color:var(--accent-red)">
       <h3>Дохідний churn — Revenue churn</h3>
       <p><strong>Категорії:</strong> Product · Monetization</p>
       <p><strong>Визначення:</strong> Втрата доходу від користувачів, які припинили користування.</p>
+      <p><strong>Формула:</strong> <code>Revenue churn (%) = Lost Revenue (Втрачений дохід) / Revenue at Period Start (Дохід на початку періоду) × 100%</code></p>
     </div></div>
 
     <h3 class="section-subhead">Monetization (Монетизація)</h3>
@@ -1308,21 +1336,25 @@
       <h3>ARPU — Average Revenue per User</h3>
       <p><strong>Категорії:</strong> Monetization</p>
       <p><strong>Визначення:</strong> Дохід на користувача — метрика прибутковості, що дозволяє оцінити економічну ефективність продукту.</p>
+      <p><strong>Формула:</strong> <code>ARPU = Revenue (Дохід) / Users (Кількість користувачів)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-ltv"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
       <h3>LTV — Lifetime Value</h3>
       <p><strong>Категорії:</strong> Monetization</p>
       <p><strong>Визначення:</strong> Довічна цінність клієнта — очікувана загальна вартість клієнта за весь час його взаємодії з продуктом.</p>
+      <p><strong>Формула:</strong> <code>LTV = AOV (Середній чек) × Purchase Frequency (Частота покупок) × Customer Lifespan (Тривалість взаємодії)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-aov"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
       <h3>AOV — Average Order Value</h3>
       <p><strong>Категорії:</strong> Monetization</p>
       <p><strong>Визначення:</strong> Середній чек покупки, допомагає оцінити прибутковість користувача. Разом із кількістю конверсій дозволяє порахувати виручку кампанії та її ROMI.</p>
+      <p><strong>Формула:</strong> <code>AOV = Revenue (Дохід) / Number of Orders (Кількість замовлень)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-margin"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
       <h3>Margin — Маржа</h3>
       <p><strong>Категорії:</strong> Monetization</p>
       <p><strong>Визначення:</strong> Різниця між доходом і витратами. Показує фінансовий результат після всіх витрат.</p>
+      <p><strong>Формула:</strong> <code>Margin (%) = (Revenue (Дохід) − Cost (Витрати)) / Revenue (Дохід) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-revenue"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
       <h3>Revenue — Дохід</h3>
@@ -1334,7 +1366,8 @@
     <div class="detail-panel" id="panel-term-roi"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
       <h3>ROI — Return on Investment</h3>
       <p><strong>Категорії:</strong> Monetization</p>
-      <p><strong>Визначення:</strong> Показник рентабельності інвестицій — метрика прибутковості.</p>
+      <p><strong>Визначення:</strong> Показник рентабельності інвестицій — загальна метрика прибутковості: скільки доходу компанія отримує з кожного вкладеного долара.</p>
+      <p><strong>Зв'язок з ROMI:</strong> у маркетингу використовується ROMI (Return on Marketing Investment) — той самий розрахунок, але лише для маркетингових інвестицій. Формулу див. у картці ROMI.</p>
     </div></div>
     <div class="detail-panel" id="panel-term-romi"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
       <h3>ROMI — Return on Marketing Investment</h3>
@@ -1343,20 +1376,6 @@
       <p><strong>Формула:</strong> <code>ROMI (%) = (Revenue (Дохід) − Marketing Cost (Витрати на маркетинг)) / Marketing Cost (Витрати на маркетинг) × 100%</code></p>
       <p><strong>Приклад (з розрахунку платної кампанії):</strong> (60 000 − 15 000) / 15 000 × 100% = 300% — кожен витрачений долар приносить 3 долари доходу; вище за цільове значення 200%, тому кампанія вважається прибутковою.</p>
     </div></div>
-
-    <h3 class="section-subhead">Виявлені суперечності в джерелі</h3>
-    <p class="section-subdesc">Знайдені розбіжності в різних формулах, визначеннях та назвах одних і тих самих метрик. Не виправлено — наведено як є у вихідному матеріалі.</p>
-    <table class="dc-table">
-      <thead><tr><th>Метрика</th><th>Суперечність</th></tr></thead>
-      <tbody>
-        <tr><td>CTR</td><td>Стандартна формула — Clicks / Impressions × 100%; в глосарії імейл-маркетингу — Clicks / Delivered Emails × 100% (різний знаменник).</td></tr>
-        <tr><td>Bounce rate</td><td>Для сайту — відсоток користувачів, які покинули сайт без дій; для імейлу — відсоток недоставлених листів (різні визначення).</td></tr>
-        <tr><td>Engagement rate</td><td>Для реклами — взаємодії щодо показів/охоплення; для імейлу — комбінація Open rate, CTR і CTOR (різні визначення).</td></tr>
-        <tr><td>Conversion rate (CR / CVR)</td><td>У глосарії SEO згадується як CVR; у загальному контексті — як CR (різні скорочення однієї метрики).</td></tr>
-        <tr><td>ROI / ROMI</td><td>Email ROI і ROMI мають ідентичну формулу (Дохід − Витрати) / Витрати × 100%, але різні назви; ROI згадується як метрика прибутковості без окремої формули.</td></tr>
-        <tr><td>Clicks</td><td>У глосарії платних каналів — «Click» (однина), у глосарії SEO — «Кліки (Clicks)», у розділах також «натискання» (різні варіанти запису однієї змінної).</td></tr>
-      </tbody>
-    </table>
 
     <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> трафік, розподілений за каналами з відомою вартістю залучення (CAC/CPA) і якістю (CTR, CR, ROAS/ROMI). Наступний крок — <strong>етап 2</strong>: перевірити, чи отримує новий користувач швидкий і простий перший позитивний досвід (активація).</p>
   </div>
