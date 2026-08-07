@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
@@ -167,6 +167,65 @@
   }
   .metric-list{margin:8px 0 0; padding-left:18px;}
   .metric-list li{font-size:14px; margin-bottom:5px;}
+
+  /* compact churn scheme */
+  .churn-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 24px 24px;
+    margin-top:12px;
+  }
+  .churn-steps{
+    display:flex; align-items:stretch; justify-content:center; gap:0;
+  }
+  .churn-step{
+    flex:1 1 0; max-width:210px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:11px;
+    padding:16px 14px 14px;
+    box-shadow:0 1px 2px rgba(0,0,0,0.03);
+  }
+  .churn-step .step-caption{
+    font-size:13px; font-weight:500; color:var(--ink);
+  }
+  .churn-step .step-sub{
+    font-size:11px; color:var(--ink-soft); margin-top:2px;
+  }
+  .churn-step .step-value{
+    font-family:var(--mono); font-size:28px; font-weight:600; color:var(--ink);
+    line-height:1.15; margin-top:10px;
+  }
+  .churn-sep{
+    align-self:center; flex:0 0 auto;
+    font-size:15px; color:#B9B4A5;
+    padding:0 10px;
+  }
+  .churn-formula{
+    text-align:center; margin-top:18px;
+    font-family:var(--mono); font-size:14px; color:var(--ink-soft);
+  }
+  .churn-formula b{color:var(--ink); font-weight:600;}
+  .churn-result{
+    display:block; text-align:center;
+    margin:16px auto 0;
+    max-width:280px; min-width:240px;
+    background:var(--accent-green-bg);
+    border:1px solid var(--accent-green);
+    border-radius:11px;
+    padding:12px 16px 10px;
+    box-shadow:0 10px 26px rgba(0,0,0,0.07);
+  }
+  .churn-result .step-caption{
+    font-size:11px; color:var(--accent-green); letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .churn-result .step-value{
+    font-family:var(--mono); font-size:34px; font-weight:600; color:var(--accent-green);
+    line-height:1.05; margin-top:4px;
+  }
 
   /* standalone context / next blocks (used directly inside a section, not only inside .detail-inner) */
   p.pipeline-context{
@@ -1379,6 +1438,443 @@
     </div></div>
 
     <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> трафік, розподілений за каналами з відомою вартістю залучення (CAC/CPA) і якістю (CTR, CR, ROAS/ROMI). Наступний крок — <strong>етап 2</strong>: перевірити, чи отримує новий користувач швидкий і простий перший позитивний досвід (активація).</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 2: АКТИВАЦІЯ (ACTIVATION) ============ -->
+<section class="scheme" id="s2">
+  <div class="wrap">
+    <div class="scheme-head">
+      <span class="scheme-num">02</span>
+      <h2>Активація (Activation)</h2>
+    </div>
+    <p class="scheme-desc">Етап, коли новий користувач переходить від простої цікавості до активного користування продуктом і отримує першу цінність. Саме швидкість і простота першого позитивного досвіду визначають подальше утримання та монетизацію.</p>
+
+    <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> залучених користувачів (етап 1) та розуміння, які канали приносять найцінніший трафік. <strong>Проблема:</strong> якщо перший досвід складний чи повільний, користувач не побачить цінності та піде. <strong>Рішення:</strong> визначаємо «момент усвідомлення цінності» та допомагаємо користувачеві дійти до нього швидше й простіше.</p>
+
+    <p><strong>Активація</strong> — це перехід від реєстрації до перших дій, що вказують на залученість. Для SaaS це перше використання ключової функції, для e-commerce — перша покупка, для мобільного додатку — використання основних функцій. Користувачі, які досягли активації, з достатньою ймовірністю залишаться, бо вже побачили цінність.</p>
+
+    <h3 class="section-subhead">Як активація впливає на продукт</h3>
+    <ul class="metric-list">
+      <li><strong>Зростання Retention</strong> — активовані користувачі лишаються довше, збільшуючи свою загальну вартість.</li>
+      <li><strong>Зниження Churn</strong> — високий рівень активації зменшує кількість відмов після першого використання.</li>
+      <li><strong>Зростання LTV</strong> — залучені користувачі зазвичай приносять більше прибутку.</li>
+      <li><strong>Оптимізація маркетингу</strong> — знання етапу активації дозволяє точніше налаштовувати стратегії.</li>
+    </ul>
+
+    <h3 class="section-subhead">Як заміряти активацію</h3>
+    <p class="section-subdesc">Потрібно визначити конкретні дії, що підтверджують початок отримання цінності. Показники активації залежать від типу продукту:</p>
+    <div class="term-grid">
+      <button class="term-node" data-detail="act-keyaction">Ключова дія</button>
+      <button class="term-node" data-detail="act-rate">Процент активованих</button>
+      <button class="term-node" data-detail="act-time">Час до активації</button>
+    </div>
+
+    <div class="detail-panel" id="panel-act-keyaction"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>Кількість користувачів, які виконали ключову дію</h3>
+      <p>Наприклад: завантажили документ, пройшли перший рівень, додали перших друзів, відправили перші повідомлення.</p>
+      <p><strong>Формула:</strong> <code>Key Action Completion = Users Who Completed Key Action (Користувачі, що виконали дію) / Total Registered (Загальна кількість зареєстрованих) × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-act-rate"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>Відсоток зареєстрованих, які активувалися</h3>
+      <p>Частка користувачів, які активувалися протягом певного періоду після реєстрації.</p>
+      <p><strong>Формула:</strong> <code>Activated (%) = Activated Users (Активовані) / Registered Users (Зареєстровані) × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-act-time"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>Час до першої активації</h3>
+      <p>Показує, чи швидко нові користувачі починають активно використовувати продукт. Чим менший час — тим швидше користувач бачить цінність.</p>
+      <p>Відстежування тривалості процесу допомагає зрозуміти, наскільки швидко користувачі досягають активації.</p>
+    </div></div>
+
+    <h3 class="section-subhead">Приклади метрик активації відомих компаній</h3>
+    <p class="section-subdesc">Клікни на компанію, щоб побачити її метрику активації, чому вона важлива та як вимірюється.</p>
+    <div class="term-grid">
+      <button class="term-node" data-detail="act-co-dropbox">Dropbox</button>
+      <button class="term-node" data-detail="act-co-facebook">Facebook</button>
+      <button class="term-node" data-detail="act-co-slack">Slack</button>
+      <button class="term-node" data-detail="act-co-linkedin">LinkedIn</button>
+      <button class="term-node" data-detail="act-co-netflix">Netflix</button>
+    </div>
+
+    <div class="detail-panel" id="panel-act-co-dropbox"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Dropbox — Завантаження та синхронізація перших файлів</h3>
+      <p><strong>Чому важливо:</strong> Dropbox допомагає зберігати та синхронізувати файли. Якщо користувачі додають файли й використовують синхронізацію — вони бачать цінність продукту.</p>
+      <p><strong>Як вимірюється:</strong> відсоток нових користувачів, які завантажили хоча б один файл протягом перших 7 днів після реєстрації. Також відстежується тривалість процесу.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-act-co-facebook"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Facebook — Додавання перших друзів і взаємодія</h3>
+      <p><strong>Метрика:</strong> додавання перших друзів і взаємодія з ними.</p>
+      <p><strong>Чому важливо:</strong> соціальна мережа стає корисною, коли є з ким взаємодіяти.</p>
+      <p><strong>Як вимірюється:</strong> кількість користувачів, які додали хоча б 10 друзів протягом перших 14 днів після реєстрації — мінімальний рівень для початку соціальної взаємодії.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-act-co-slack"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Slack — Відправка перших 200 повідомлень</h3>
+      <p><strong>Метрика:</strong> відправка перших 200 повідомлень у команді.</p>
+      <p><strong>Чому важливо:</strong> Slack — інструмент для командної роботи, цінність видно при активному спілкуванні.</p>
+      <p><strong>Як вимірюється:</strong> відсоток команд, які відправили понад 200 повідомлень протягом перших 30 днів.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-act-co-linkedin"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>LinkedIn — Створення профілю та досвіду роботи</h3>
+      <p><strong>Метрика:</strong> створення профілю та додавання першого досвіду роботи.</p>
+      <p><strong>Чому важливо:</strong> для повноцінного використання платформи користувача повинен мати заповнений профіль.</p>
+      <p><strong>Як вимірюється:</strong> відсоток користувачів, які заповнили щонайменше 70% профілю та додали досвід роботи за перший тиждень.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-act-co-netflix"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Netflix — Перегляд першого фільму або серіалу</h3>
+      <p><strong>Метрика:</strong> перегляд першого фільму або серіалу.</p>
+      <p><strong>Чому важливо:</strong> Netflix — платформа для перегляду, користувач має почати дивитися контент, щоб усвідомити цінність.</p>
+      <p><strong>Як вимірюється:</strong> відсоток користувачів, які розпочали перегляд хоча б одного відео протягом першого дня після підписки.</p>
+    </div></div>
+
+    <h3 class="section-subhead">Як використовувати дані про активацію</h3>
+    <ul class="metric-list">
+      <li><strong>Аналіз воронки</strong> — зрозуміти, на якому етапі користувачі найчастіше покидають продукт і де потрібна підтримка.</li>
+      <li><strong>Персоналізація онбордингу</strong> — налаштування допомоги, щоб користувачі швидше досягали ключових дій.</li>
+      <li><strong>Оптимізація інтерфейсу</strong> — спрощення основи, підказки для легшого доступу до цінності.</li>
+    </ul>
+
+    <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> активовані користувачі, які вже бачать цінність. Наступний крок — <strong>етап 3</strong>: переходимо до регулярної взаємодії (залученість / engagement).</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 3: ЗАЛУЧЕНІСТЬ (ENGAGEMENT) ============ -->
+<section class="scheme" id="s3">
+  <div class="wrap">
+    <div class="scheme-head">
+      <span class="scheme-num">03</span>
+      <h2>Залученість (Engagement)</h2>
+    </div>
+    <p class="scheme-desc">Engagement вимірює, наскільки активно користувачі взаємодіють із продуктом. Це не кількість зареєстрованих, а фактична зацікавленість і повторна взаємодія, що показує, чи отримують користувачі цінність і чи залишаються вірними продукту надовго.</p>
+
+    <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> активованих користувачів. <strong>Проблема:</strong> не знаємо, наскільки продукт став частиною життя користувача та які функції найцінніші. <strong>Рішення:</strong> відстежуємо рівень залучення, частоту та інтенсивність взаємодій.</p>
+
+    <h3 class="section-subhead">Переваги високої залученості для бізнесу</h3>
+    <ul class="metric-list">
+      <li><strong>Утримання</strong> — чим вище engagement, тим вища ймовірність утримання користувачів.</li>
+      <li><strong>Рекомендації</strong> — залучені користувачі частіше рекомендують продукт, сприяючи органічному зростанню.</li>
+      <li><strong>Поліпшення продукту</strong> — активна аудиторія допомагає зрозуміти, що їй подобається, а що слід змінити.</li>
+    </ul>
+
+    <h3 class="section-subhead">Ключові метрики залученості</h3>
+    <div class="term-grid">
+      <button class="term-node" data-detail="eng-dau">DAU / MAU</button>
+      <button class="term-node" data-detail="eng-stickiness">Stickiness</button>
+      <button class="term-node" data-detail="eng-sessions">Sessions / user</button>
+      <button class="term-node" data-detail="eng-time">Time on platform</button>
+      <button class="term-node" data-detail="eng-feature">Feature usage</button>
+    </div>
+
+    <div class="detail-panel" id="panel-eng-dau"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>DAU / MAU — активні користувачі</h3>
+      <p>Кількість щоденних (DAU) і щомісячних (MAU) активних користувачів. Допомагають з'ясувати, наскільки продукт став частиною життя користувачів.</p>
+      <p><strong>Формула:</strong> <code>DAU/MAU = Daily Active Users (Щоденні) / Monthly Active Users (Щомісячні)</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-eng-stickiness"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>Stickiness — «прилиплість»</h3>
+      <p>Частка днів активності порівняно з активною базою за місяць. Висока stickiness (понад 50%) означає, що користувачі повертаються майже кожен день.</p>
+      <p><strong>Формула:</strong> <code>Stickiness = DAU / MAU × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-eng-sessions"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>Sessions per user / частота сеансів</h3>
+      <p>Скільки разів і в якій частоті один користувач відкриває продукт за певний проміжок часу.</p>
+      <p><strong>Формула:</strong> <code>Sessions per user = Sessions (Сеанси) / Users (Користувачі)</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-eng-time"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>Середній час перебування на платформі</h3>
+      <p>Скільки час в середньому користувач проводить у продукті за сесію або день. Довший час часто свідчить про цінність і втягування.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-eng-feature"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>Feature usage</h3>
+      <p>Які функції приносять найбільшу цінність і найчастіше використовуються. Допомагає зрозуміти, на чому сфокусуватися в розвитку.</p>
+    </div></div>
+
+    <h3 class="section-subhead">Приклади метрик залученості від компаній</h3>
+    <p class="section-subdesc">Клікни на картку, щоб дізнатись, як компанії вимірюють залученість конкретного продукту.</p>
+    <div class="term-grid">
+      <button class="term-node" data-detail="eng-co-dropbox">Dropbox</button>
+      <button class="term-node" data-detail="eng-co-facebook">Facebook</button>
+      <button class="term-node" data-detail="eng-co-slack">Slack</button>
+      <button class="term-node" data-detail="eng-co-linkedin">LinkedIn</button>
+      <button class="term-node" data-detail="eng-co-netflix">Netflix</button>
+    </div>
+
+    <div class="detail-panel" id="panel-eng-co-dropbox"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Dropbox</h3>
+      <p><strong>Як вимірюється:</strong> активні користувачі, які щомісяця або щотижня завантажують і переглядають файли.</p>
+      <p><strong>Чому важливо:</strong> активна робота з файлами показує корисність продукту та підвищує шанси на підписку.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-eng-co-facebook"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Facebook</h3>
+      <p><strong>Як вимірюється:</strong> DAU, які робили ключові дії — переглядали рекламу, додавали друзів, створювали публікації.</p>
+      <p><strong>Чому важливо:</strong> більше часу — більше публікацій та даних для персоналізації, тим більше можливостей монетизації.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-eng-co-slack"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Slack</h3>
+      <p><strong>Як вимірюється:</strong> кількість надісланих повідомлень та активних учасників у каналах.</p>
+      <p><strong>Чому важливо:</strong> чим більше повідомлень і участі — тим вища залученість і успішність продукту як інструмента комунікації.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-eng-co-linkedin"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>LinkedIn</h3>
+      <p><strong>Як вимірюється:</strong> відвідування профілів, лайки, коментарі, репости у професійному середовищі.</p>
+      <p><strong>Чому важливо:</strong> висока участь вказує, що платформа цінна для кар'єри користувача.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-eng-co-netflix"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Netflix</h3>
+      <p><strong>Як вимірюється:</strong> час перегляду та кількість переглянутих епізодів, швидкість переходу між серіями.</p>
+      <p><strong>Чому важливо:</strong> залученість через час перегляду — показник задоволення й утримання підписки.</p>
+    </div></div>
+
+    <p class="hint">🤔 Може бути кілька варіантів показників залученості — головне пояснити, чому обрані.</p>
+
+    <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> залучена аудиторія. Наступний крок — <strong>етап 4</strong>: перевіряємо, чи користувач регулярно повертається (утримання / retention).</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 4: УТРИМАННЯ (RETENTION) ============ -->
+<section class="scheme" id="s4">
+  <div class="wrap">
+    <div class="scheme-head">
+      <span class="scheme-num">04</span>
+      <h2>Утримання (Retention)</h2>
+    </div>
+    <p class="scheme-desc">Retention показує, наскільки довго користувачі продовжують активно користуватися продуктом після першого знайомства. Високий рівень утримання свідчить про задоволення продуктом і лояльність до бренду.</p>
+
+    <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> залучена аудиторія. <strong>Проблема:</strong> не зрозуміло, що саме утримує користувача та чи достатньо продукт дає цінності. <strong>Рішення:</strong> відстежуємо регулярність повернень і корисність функцій.</p>
+
+    <h3 class="section-subhead">Чому утримання важливе для продукту</h3>
+    <ul class="metric-list">
+      <li><strong>Довгострокова стабільність</strong> — нових клієнтів залучати складніше й дорожче, ніж утримувати існуючих.</li>
+      <li><strong>Більш прогнозна виручка</strong> — високе утримання сприяє сталого доходу.</li>
+      <li><strong>Покращення якості продукту</strong> — аналітика retention показує, що потрібно покращити.</li>
+      <li><strong>Зниження витрат на залучення</strong> — лояльні користувачі приносять нових через рекомендації.</li>
+    </ul>
+
+    <h3 class="section-subhead">Ключові метрики утримання</h3>
+    <div class="term-grid">
+      <button class="term-node" data-detail="ret-rate">Retention rate</button>
+      <button class="term-node" data-detail="ret-cohort">Cohort retention</button>
+      <button class="term-node" data-detail="ret-dau-mau">DAU / MAU</button>
+      <button class="term-node" data-detail="ret-churn">Churn rate</button>
+    </div>
+
+    <div class="detail-panel" id="panel-ret-rate"><div class="detail-inner" style="--detail-color:#A23A6B">
+      <h3>Retention rate</h3>
+      <p>Відсоток користувачів, які продовжують користуватися продуктом у відповідний період після знайомства.</p>
+      <p><strong>Формула:</strong> <code>Retention (%) = Users Still Active / Users at Start × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-ret-cohort"><div class="detail-inner" style="--detail-color:#A23A6B">
+      <h3>Cohort retention</h3>
+      <p>Утримання за когортами — групами користувачів, залучених за той самий період. Допомагає бачити тренди утримання в часі.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-ret-dau-mau"><div class="detail-inner" style="--detail-color:#A23A6B">
+      <h3>DAU / MAU</h3>
+      <p>Коефіцієнт активності платформи: високий (50%+) означає щоденну залученість і сильне утримання.</p>
+      <p><strong>Формула:</strong> <code>DAU/MAU = DAU / MAU</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-ret-churn"><div class="detail-inner" style="--detail-color:var(--accent-red)">
+      <h3>Churn rate</h3>
+      <p>Обернене до утримання значення — відсоток користувачів, які залишили продукт за період.</p>
+      <p><strong>Формула:</strong> <code>Churn (%) = Users Who Left / Users at Start × 100%</code></p>
+    </div></div>
+
+    <h3 class="section-subhead">Приклади метрик утримання компаній</h3>
+    <div class="term-grid">
+      <button class="term-node" data-detail="ret-co-dropbox">Dropbox</button>
+      <button class="term-node" data-detail="ret-co-facebook">Facebook</button>
+      <button class="term-node" data-detail="ret-co-slack">Slack</button>
+      <button class="term-node" data-detail="ret-co-linkedin">LinkedIn</button>
+      <button class="term-node" data-detail="ret-co-netflix">Netflix</button>
+    </div>
+
+    <div class="detail-panel" id="panel-ret-co-dropbox"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Dropbox</h3>
+      <p><strong>Метрика:</strong> кількість користувачів, які повертаються для збереження/перегляду файлів щомісячно.</p>
+      <p><strong>Як вимірюється:</strong> Monthly Active Retention = кількість активних користувачів, що повернулися за місяць, / загальна кількість активних у попередні місяці.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-ret-co-facebook"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Facebook</h3>
+      <p><strong>Метрика:</strong> DAU відносно MAU.</p>
+      <p><strong>Як вимірюється:</strong> DAU/MAU; високий показник (50%+) свідчить, що користувачі взаємодіють майже кожен день.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-ret-co-slack"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Slack</h3>
+      <p><strong>Метрика:</strong> активні користувачі, які надсилають бодай одне повідомлення щотижня.</p>
+      <p><strong>Як вимірюється:</strong> частка активних, що надсилають повідомлення щотижня, відносно загального числа користувачів.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-ret-co-linkedin"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>LinkedIn</h3>
+      <p><strong>Метрика:</strong> щомісячна активність у професійній взаємодії (перегляд профілів, повідомлення, контакти).</p>
+      <p><strong>Як вимірюється:</strong> порівняння активних користувачів із загальною базою, що входила на платформу.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-ret-co-netflix"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Netflix</h3>
+      <p><strong>Метрика:</strong> відсоток користувачів, які переглянули хоча б один фільм/серіал за місяць.</p>
+      <p><strong>Як вимірюється:</strong> порівняння активних користувачів із загальною базою — допомагає точніше прогнозувати.</p>
+    </div></div>
+
+    <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> стабільна лояльна база. Наступний крок — <strong>етап 5</strong>: монетизація (переходимо до генерації доходу).</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 5: РЕФЕРАЛЬНИЙ МАРКЕТИНГ (REFERRAL) ============ -->
+<section class="scheme" id="s5">
+  <div class="wrap">
+    <div class="scheme-head">
+      <span class="scheme-num">05</span>
+      <h2>Реферальний маркетинг (Referral)</h2>
+    </div>
+    <p class="scheme-desc">Referral — канал залучення нових користувачів шляхом запрошення від вже існуючих. Це ефективний інструмент для продуктів, яким користувачі довіряють і готові рекомендувати; він спирається на лояльних клієнтів та їхні рекомендації.</p>
+
+    <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> лояльні користувачі, які вже активні і платять. <strong>Проблема:</strong> не знаємо, наскільки задоволені користувачі готові рекомендувати продукт. <strong>Рішення:</strong> відстежуємо рекомендації та розвиваємо реферальні програми для залучення нових користувачів.</p>
+
+    <h3 class="section-subhead">Як заміряти ефективність реферальних програм</h3>
+    <div class="term-grid">
+      <button class="term-node" data-detail="ref-sent">Referrals Sent</button>
+      <button class="term-node" data-detail="ref-conv">Referral Conversion</button>
+      <button class="term-node" data-detail="ref-avg">Avg Referrals / User</button>
+      <button class="term-node" data-detail="ref-ltv">Referral LTV</button>
+      <button class="term-node" data-detail="ref-cost">Referral cost</button>
+    </div>
+
+    <div class="detail-panel" id="panel-ref-sent"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>Referrals Sent — кількість запрошень</h3>
+      <p>Кількість запрошень, відправлених існуючими користувачами. Базова метрика обсягу.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-ref-conv"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>Referral Conversion Rate</h3>
+      <p>Відсоток запрошених користувачів, які стали активними.</p>
+      <p><strong>Формула:</strong> <code>Referral Conversion (%) = Successful Registrations (Успішні реєстрації) / Sent Invitations (Відправлені запрошення) × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-ref-avg"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>Average Referrals per User</h3>
+      <p>Скільки запрошень надсилає кожен активний користувач — рівень залучення до реферальної програми.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-ref-ltv"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>Referral LTV</h3>
+      <p>Середня цінність життєвого циклу користувачів, які прийшли через рефералів, порівняно з іншими каналами.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-ref-cost"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>Витрат на реферальну програму</h3>
+      <p>Усі витрати на стимулювання реферальних залучень, порівнювані з іншими каналами.</p>
+      <p><strong>Формула:</strong> <code>Referral cost / acquisition = Program Cost / Successful Referrals</code></p>
+    </div></div>
+
+    <h3 class="section-subhead">Де реферальні програми доцільні</h3>
+    <p class="section-subdesc">Найефективніші для продуктів, які користувачі схильні рекомендувати друзям і колегам.</p>
+    <ul class="metric-list">
+      <li><strong>Dropbox</strong> — додаткове місце для збереження за кожного запрошеного друга.</li>
+      <li><strong>Uber</strong> — бонуси за кожного нового клієнта-користувача.</li>
+      <li><strong>Airbnb</strong> — бонуси на подорожі за запрошених друзів.</li>
+      <li><strong>Duolingo</strong> — бонуси за запрошення, підвищуючи активність.</li>
+    </ul>
+
+    <h3 class="section-subhead">Де реферальні програми менш доцільні</h3>
+    <ul class="metric-list">
+      <li><strong>B2B з тривалим циклом продажу</strong> — рішення приймається кількома особами, результат передається далі рідко.</li>
+      <li><strong>Продукти з високим бар'єром входу</strong> — нові користувачі не матимуть мотивації користуватися.</li>
+      <li><strong>Вузька аудиторія</strong> — обмежене коло цільових користувачів не дає масових запрошень.</li>
+    </ul>
+
+    <p class="hint">💡 Реферальний маркетинг ефективний для рекомендованих продуктів; для вузької і складної аудиторії ефективність обмежена.</p>
+
+    <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> зростання через рекомендації. Водночас відстежуємо частину користувачів, які припиняють використання — <strong>етап 7 / фокус розділу</strong>: аналізу відтоку (churn).</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 6: ВІДТІК (CHURN) ============ -->
+<section class="scheme" id="s6">
+  <div class="wrap">
+    <div class="scheme-head">
+      <span class="scheme-num">06</span>
+      <h2>Відтік (Churn)</h2>
+    </div>
+    <p class="scheme-desc">Churn — частка користувачів, що припинили використовувати продукт за певний період. Він критичний для підписок і продуктів із постійним користуванням, де ключове утримання. Churn — індикатор задоволеності та ефективності утримання бази.</p>
+
+    <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> дані користувачів з усіх попередніх етапів. <strong>Проблема:</strong> не зрозуміло, на якому етапі й чому відбувається відтік. <strong>Рішення:</strong> аналізуємо churn і розробляємо стратегії для зниження.</p>
+
+    <h3 class="section-subhead">Як заміряти Churn Rate</h3>
+    <p>Churn rate розраховується як відсоток користувачів, що покинули продукт, від загальної кількості на початку періоду:</p>
+    <div class="churn-card">
+
+      <div class="churn-steps">
+
+        <div class="churn-step">
+          <div>
+            <div class="step-caption">Початок періоду</div>
+            <div class="step-sub">Start users</div>
+          </div>
+          <div class="step-value">1000</div>
+        </div>
+
+        <div class="churn-sep">➜</div>
+
+        <div class="churn-step">
+          <div>
+            <div class="step-caption">Кінець періоду</div>
+            <div class="step-sub">End users</div>
+          </div>
+          <div class="step-value">950</div>
+        </div>
+
+        <div class="churn-sep">➜</div>
+
+        <div class="churn-step">
+          <div>
+            <div class="step-caption">Втрачено користувачів</div>
+            <div class="step-sub">Lost users</div>
+          </div>
+          <div class="step-value">50</div>
+        </div>
+
+      </div>
+
+      <div class="churn-formula"><b>(1000 − 950)</b> ÷ 1000 × 100% = <b>5%</b></div>
+
+      <div class="churn-result">
+        <div class="step-caption">Churn Rate</div>
+        <div class="step-value">5%</div>
+      </div>
+
+    </div>
+
+    <h3 class="section-subhead">Види відтоку</h3>
+    <div class="term-grid">
+      <button class="term-node" data-detail="churn-user">Користувацький churn</button>
+      <button class="term-node" data-detail="churn-client">Клієнтський churn</button>
+      <button class="term-node" data-detail="churn-revenue">Дохідний churn</button>
+    </div>
+    <div class="detail-panel" id="panel-churn-user"><div class="detail-inner" style="--detail-color:var(--accent-red)">
+      <h3>Користувацький churn</h3>
+      <p>Втрата активних користувачів продукту.</p>
+      <p><strong>Формула:</strong> <code>User Churn (%) = Users Who Left / Users at Period Start × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-churn-client"><div class="detail-inner" style="--detail-color:var(--accent-red)">
+      <h3>Клієнтський churn</h3>
+      <p>Відтік платних клієнтів — важливо для точного аналізу відтоку користувачів.</p>
+      <p><strong>Формула:</strong> <code>Client Churn (%) = Churned Clients / Clients at Period Start × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-churn-revenue"><div class="detail-inner" style="--detail-color:var(--accent-red)">
+      <h3>Дохідний churn</h3>
+      <p>Втрата доходу від користувачів, які припинили користуватися продуктом.</p>
+      <p><strong>Формула:</strong> <code>Revenue Churn (%) = Lost Revenue / Revenue at Period Start × 100%</code></p>
+    </div></div>
+
+    <h3 class="section-subhead">Де доцільно вимірювати churn</h3>
+    <ul class="metric-list">
+      <li><strong>Стрімінгові сервіси (Netflix)</strong> — контроль скасувань підписки.</li>
+      <li><strong>SaaS (Slack, Salesforce)</strong> — відтік прямо впливає на дохід.</li>
+      <li><strong>Мобільні додатки (Duolingo, Spotify)</strong> — розуміння етапів відтоку.</li>
+      <li><strong>Інтернет-провайдери (AT&amp;T)</strong> — утримання критичне для зростання.</li>
+    </ul>
+
+    <h3 class="section-subhead">Де churn менш доречний</h3>
+    <ul class="metric-list">
+      <li><strong>Одноразові продукти</strong> — без повторної покупки churn не інформативний.</li>
+      <li><strong>Продукти низької частоти</strong> (меблі, техніка) — важливіші повторні покупки та задоволеність.</li>
+      <li><strong>Бізнес без повторної взаємодії</strong> (ремонт) — користувачі рідко звертаються.</li>
+    </ul>
+
+    <p class="pipeline-next">🏁 <strong>Кінцевий результат:</strong> розуміння причин відтоку та обґрунтовані стратегії його зниження, які закривають цикл і повертають дані у продукт на етап залучення.</p>
   </div>
 </section>
 
