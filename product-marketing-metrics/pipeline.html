@@ -167,6 +167,91 @@
   .metric-list{margin:8px 0 0; padding-left:18px;}
   .metric-list li{font-size:14px; margin-bottom:5px;}
 
+  /* standalone context / next blocks (used directly inside a section, not only inside .detail-inner) */
+  p.pipeline-context{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--accent-teal);
+    border-radius:10px;
+    padding:14px 18px;
+    font-size:14px;
+    color:var(--ink);
+    margin:0 0 28px;
+  }
+  p.pipeline-next{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--accent-teal);
+    border-radius:10px;
+    padding:14px 18px;
+    font-size:14px;
+    margin:28px 0 0;
+  }
+
+  .section-subhead{
+    font-family:Georgia, serif;
+    font-weight:400;
+    font-size:20px;
+    margin:40px 0 4px;
+    color:var(--ink);
+  }
+  .section-subdesc{
+    color:var(--ink-soft);
+    font-size:14px;
+    margin:0 0 16px;
+    max-width:680px;
+  }
+
+  .term-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(150px,1fr));
+    gap:10px;
+    margin:0 0 8px;
+  }
+  .term-node{
+    font-family:var(--mono);
+    font-size:13px;
+    text-align:left;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 14px;
+    cursor:pointer;
+    color:var(--ink);
+    transition:border-color .15s, background .15s;
+  }
+  .term-node:hover{border-color:var(--accent-teal); background:var(--accent-teal-bg);}
+
+  .dc-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:8px 0 8px;
+    font-size:13.5px;
+  }
+  .dc-table th, .dc-table td{
+    border:1px solid var(--line);
+    padding:8px 10px;
+    text-align:left;
+    vertical-align:top;
+  }
+  .dc-table th{
+    background:var(--bg);
+    font-family:var(--mono);
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--ink-soft);
+  }
+  .dc-table code{
+    font-family:var(--mono);
+    font-size:12.5px;
+    background:rgba(0,0,0,0.05);
+    padding:1px 5px;
+    border-radius:4px;
+  }
+
+  .subdiagram{margin:0 0 28px;}
+
   footer{
     padding:40px 24px 20px;
     text-align:center;
@@ -348,7 +433,7 @@
       <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> дані користувачів з усіх попередніх етапів. <strong>Проблема:</strong> не зрозуміло, на якому етапі й чомуе користувачі покидють продукт. <strong>Рішення:</strong> аналізуємо відтік і розробляємо стратегії для його зниження.</p>
       <p>На цьому етапі користувач <strong>припиняє використовувати продукт</strong>.</p>
       <p>Важливо розуміти, на якому етапі й чому відбувається відтік, щоб розробляти стратегії для його зниження.</p>
-      <p><strong>Ключові метрики:</strong></п>
+      <p><strong>Ключові метрики:</strong></p>
       <ul class="metric-list">
         <li>Churn rate — відсоток користувачів, які перестали користуються</li>
         <li>Revenue churn — втрата доходу від відтоку</li>
@@ -359,21 +444,307 @@
   </div>
 </section>
 
+<!-- ============ SECTION 1: ЗАЛУЧЕННЯ (ACQUISITION) ============ -->
+<section class="scheme" id="s1">
+  <div class="wrap">
+    <div class="scheme-head">
+      <span class="scheme-num">01</span>
+      <h2>Залучення (Acquisition)</h2>
+    </div>
+    <p class="scheme-desc">Перший етап пайплайну: користувач ще не знає про продукт. Канали залучення діляться на платні (Paid) — швидко масштабуються, але коштують грошей за кожного відвідувача, і органічні (Organic) — повільніші, зате безкоштовні й довгострокові.</p>
+
+    <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> трафік з реклами, пошуку, контенту та рекомендацій. <strong>Проблема:</strong> незрозуміло, які канали і повідомлення приносять найбільше цінних користувачів за прийнятну ціну. <strong>Рішення:</strong> рахуємо вартість і якість трафіку з кожного каналу окремо (CAC, CPA, ROAS/ROMI), щоб перерозподіляти бюджет на користь ефективних каналів.</p>
+
+    <div class="diagram-card subdiagram">
+      <svg viewBox="0 0 700 400" id="svg-acquisition">
+        <defs><marker id="arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+        <text x="175" y="16" text-anchor="middle" font-size="11" font-weight="600" font-family="monospace" letter-spacing="0.05em" fill="var(--ink-soft)">ПЛАТНІ КАНАЛИ (PAID)</text>
+        <text x="525" y="16" text-anchor="middle" font-size="11" font-weight="600" font-family="monospace" letter-spacing="0.05em" fill="var(--ink-soft)">ОРГАНІЧНІ КАНАЛИ (ORGANIC)</text>
+
+        <!-- paid column -->
+        <g class="node" data-detail="ch-search-ads" data-color="var(--accent-blue)">
+          <rect x="20" y="30" width="310" height="54" rx="9" fill="var(--accent-blue-bg)" stroke="var(--accent-blue)" stroke-width="0.75"/>
+          <text x="175" y="50" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--accent-blue)">Пошукова реклама</text>
+          <text x="175" y="68" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="var(--accent-blue)" opacity="0.8">Google Ads, Bing Ads</text>
+        </g>
+
+        <g class="node" data-detail="ch-social-ads" data-color="var(--accent-coral)">
+          <rect x="20" y="94" width="310" height="54" rx="9" fill="var(--accent-coral-bg)" stroke="var(--accent-coral)" stroke-width="0.75"/>
+          <text x="175" y="114" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--accent-coral)">Реклама в соцмережах</text>
+          <text x="175" y="132" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="var(--accent-coral)" opacity="0.8">Facebook, Instagram, LinkedIn, TikTok</text>
+        </g>
+
+        <g class="node" data-detail="ch-remarketing" data-color="var(--accent-teal)">
+          <rect x="20" y="158" width="310" height="54" rx="9" fill="var(--accent-teal-bg)" stroke="var(--accent-teal)" stroke-width="0.75"/>
+          <text x="175" y="178" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--accent-teal)">Ремаркетинг</text>
+          <text x="175" y="196" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="var(--accent-teal)" opacity="0.8">повернення тих, хто вже заходив</text>
+        </g>
+
+        <g class="node" data-detail="ch-influencer-affiliate" data-color="var(--accent-purple)">
+          <rect x="20" y="222" width="310" height="54" rx="9" fill="var(--accent-purple-bg)" stroke="var(--accent-purple)" stroke-width="0.75"/>
+          <text x="175" y="242" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--accent-purple)">Інфлюенсери й партнерки</text>
+          <text x="175" y="260" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="var(--accent-purple)" opacity="0.8">influencer marketing, affiliate marketing</text>
+        </g>
+
+        <!-- organic column -->
+        <g class="node" data-detail="ch-seo" data-color="var(--accent-amber)">
+          <rect x="370" y="30" width="310" height="54" rx="9" fill="var(--accent-amber-bg)" stroke="var(--accent-amber)" stroke-width="0.75"/>
+          <text x="525" y="50" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--accent-amber)">SEO</text>
+          <text x="525" y="68" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="var(--accent-amber)" opacity="0.8">органічна видача пошукових систем</text>
+        </g>
+
+        <g class="node" data-detail="ch-email" data-color="var(--accent-green)">
+          <rect x="370" y="94" width="310" height="54" rx="9" fill="var(--accent-green-bg)" stroke="var(--accent-green)" stroke-width="0.75"/>
+          <text x="525" y="114" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--accent-green)">Email-маркетинг</text>
+          <text x="525" y="132" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="var(--accent-green)" opacity="0.8">розсилки наявній базі контактів</text>
+        </g>
+
+        <g class="node" data-detail="ch-content" data-color="var(--accent-red)">
+          <rect x="370" y="158" width="310" height="54" rx="9" fill="var(--accent-red-bg)" stroke="var(--accent-red)" stroke-width="0.75"/>
+          <text x="525" y="178" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--accent-red)">Контент-маркетинг</text>
+          <text x="525" y="196" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="var(--accent-red)" opacity="0.8">блоги, відео, вебінари, подкасти</text>
+        </g>
+
+        <g class="node" data-detail="ch-organic-social-referral" data-color="var(--accent-blue)">
+          <rect x="370" y="222" width="310" height="54" rx="9" fill="var(--accent-blue-bg)" stroke="var(--accent-blue)" stroke-width="0.75"/>
+          <text x="525" y="242" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--accent-blue)">Соцмережі та реферали</text>
+          <text x="525" y="260" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="var(--accent-blue)" opacity="0.8">безплатний контент, сарафанне радіо</text>
+        </g>
+
+        <!-- convergence -->
+        <line x1="175" y1="276" x2="175" y2="304" stroke="#999" stroke-width="1.5"/>
+        <line x1="525" y1="276" x2="525" y2="304" stroke="#999" stroke-width="1.5"/>
+        <line x1="175" y1="304" x2="525" y2="304" stroke="#999" stroke-width="1.5"/>
+        <line x1="350" y1="304" x2="350" y2="322" stroke="#999" stroke-width="1.5" marker-end="url(#arrowA)"/>
+
+        <rect x="20" y="326" width="660" height="54" rx="9" fill="none" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="350" y="346" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="600" fill="var(--ink-soft)">Трафік потрапляє у продукт</text>
+        <text x="350" y="364" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="var(--ink-soft)">оцінюємо вартість і якість залучення (CAC, CPA, ROAS/ROMI) → етап 2</text>
+      </svg>
+    </div>
+    <p class="hint">клікни на канал, щоб побачити ключові метрики</p>
+
+    <div class="detail-panel" id="panel-ch-search-ads"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Пошукова реклама (Search Advertising)</h3>
+      <p>Оголошення у верхній частині видачі Google чи Bing. Ефективна, коли користувач вже сам шукає продукт або рішення проблеми.</p>
+      <ul class="metric-list">
+        <li>CTR — наскільки оголошення привертає увагу</li>
+        <li>CPC — середня вартість одного кліку</li>
+        <li>Conversion rate — відсоток кліків, що завершились цільовою дією</li>
+        <li>Quality score — оцінка Google релевантності оголошення, ключових слів і посадкової сторінки</li>
+      </ul>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ch-social-ads"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>Реклама в соцмережах (Social Media Advertising)</h3>
+      <p>Показ оголошень у Facebook, Instagram, LinkedIn чи TikTok із таргетингом за демографією та поведінкою аудиторії.</p>
+      <ul class="metric-list">
+        <li>Impressions — кількість показів</li>
+        <li>Engagement rate — частка взаємодій (лайки, коментарі, поширення) від показів</li>
+        <li>CPE — вартість однієї взаємодії</li>
+        <li>ROAS — дохід на кожну вкладену в рекламу одиницю</li>
+      </ul>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ch-remarketing"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>Ремаркетинг (Remarketing)</h3>
+      <p>Показ оголошень тим, хто вже заходив на сайт або взаємодіяв із продуктом. Ефективний спосіб повернути «теплих» відвідувачів і підштовхнути їх до повторної конверсії.</p>
+      <ul class="metric-list">
+        <li>Return rate — відсоток тих, хто повернувся через ремаркетингову кампанію</li>
+        <li>CPC ремаркетингу</li>
+        <li>Conversion rate — після повернення на сайт</li>
+        <li>Frequency — скільки разів одному користувачу показали оголошення</li>
+      </ul>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ch-influencer-affiliate"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>Інфлюенсери й партнерки (Influencer &amp; Affiliate Marketing)</h3>
+      <p>Просування через лідерів думок (охоплення широкої аудиторії, довіра до рекомендації) або партнерські сайти, де оплата йде за фактичний результат — покупку чи іншу цільову дію.</p>
+      <ul class="metric-list">
+        <li>Reach — охоплення від інфлюенсера чи партнера</li>
+        <li>Engagement — лайки, коментарі, поширення</li>
+        <li>CPA — вартість залучення одного клієнта через партнерську програму</li>
+        <li>ROI партнерської реклами</li>
+      </ul>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ch-seo"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>SEO (пошукова оптимізація)</h3>
+      <p>Підвищення видимості сайту в органічній видачі. Складається з технічного SEO (швидкість, мобільна адаптивність, robots.txt/sitemap.xml), внутрішнього (ключові слова, контент, заголовки, meta-теги) і зовнішнього (backlinks, згадки бренду).</p>
+      <ul class="metric-list">
+        <li>Organic traffic — відвідувачі з органічного пошуку</li>
+        <li>Impressions / Clicks / CTR — дані Google Search Console</li>
+        <li>Average position — середня позиція за ключовими запитами</li>
+        <li>Indexed pages, backlinks — технічне здоров'я сайту</li>
+      </ul>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ch-email"><div class="detail-inner" style="--detail-color:var(--accent-green)">
+      <h3>Email-маркетинг</h3>
+      <p>Пряма комунікація з базою контактів: вітальні листи, промо-кампанії, тригерні серії, newsletter, листи повторного залучення. Персоналізований і економічно ефективний канал.</p>
+      <ul class="metric-list">
+        <li>Open rate — відсоток відкритих листів</li>
+        <li>CTR / CTOR — кліки від доставлених листів / від відкриттів</li>
+        <li>Unsubscribe rate — відписки</li>
+        <li>Bounce rate — недоставлені листи</li>
+      </ul>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ch-content"><div class="detail-inner" style="--detail-color:var(--accent-red)">
+      <h3>Контент-маркетинг</h3>
+      <p>Блоги, вебінари, відео та подкасти — формують експертність бренду і генерують органічний трафік без прямих витрат на рекламу за клік.</p>
+      <ul class="metric-list">
+        <li>Traffic / views / downloads — охоплення контенту</li>
+        <li>Time on page / avg. watch or listen duration — глибина інтересу</li>
+        <li>Engagement rate — коментарі, лайки, поширення</li>
+        <li>Completion / attendance rate — відсоток тих, хто дійшов до кінця</li>
+      </ul>
+    </div></div>
+
+    <div class="detail-panel" id="panel-ch-organic-social-referral"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Соцмережі та реферали (органіка)</h3>
+      <p>Безплатний контент у соцмережах і сарафанне радіо: задоволені користувачі самі діляться продуктом із друзями та колегами.</p>
+      <ul class="metric-list">
+        <li>Reach / followers growth — органічне охоплення</li>
+        <li>Engagement rate — взаємодія з контентом</li>
+        <li>Referral traffic — переходи за рекомендаціями</li>
+        <li>Viral coefficient — скільки нових користувачів приводить один існуючий</li>
+      </ul>
+    </div></div>
+
+    <h3 class="section-subhead">Глосарій метрик залучення</h3>
+    <p class="section-subdesc">Ключові показники, які повторюються майже в кожному каналі — платному чи органічному. Клікни на термін, щоб побачити означення та формулу.</p>
+    <div class="term-grid">
+      <button class="term-node" data-detail="term-cac">CAC</button>
+      <button class="term-node" data-detail="term-cpa">CPA</button>
+      <button class="term-node" data-detail="term-cpl">CPL</button>
+      <button class="term-node" data-detail="term-cpc">CPC</button>
+      <button class="term-node" data-detail="term-ctr">CTR</button>
+      <button class="term-node" data-detail="term-cr">CR / CVR</button>
+      <button class="term-node" data-detail="term-impressions">Impressions</button>
+      <button class="term-node" data-detail="term-roas">ROAS</button>
+      <button class="term-node" data-detail="term-romi">ROMI</button>
+      <button class="term-node" data-detail="term-organic-traffic">Organic traffic</button>
+      <button class="term-node" data-detail="term-avg-position">Average position</button>
+      <button class="term-node" data-detail="term-backlinks">Backlinks</button>
+      <button class="term-node" data-detail="term-open-rate">Open rate</button>
+      <button class="term-node" data-detail="term-ctor">CTOR</button>
+      <button class="term-node" data-detail="term-unsubscribe">Unsubscribe rate</button>
+      <button class="term-node" data-detail="term-aov">AOV</button>
+    </div>
+
+    <div class="detail-panel" id="panel-term-cac"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>CAC — Customer Acquisition Cost</h3>
+      <p>Загальна вартість залучення одного нового клієнта з урахуванням усіх витрат на маркетинг і рекламу. Ключова метрика, з якою порівнюють LTV (правило LTV/CAC ≥ 3 вважається здоровим).</p>
+      <p><code>CAC = Загальні витрати на маркетинг / Кількість нових клієнтів</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-cpa"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>CPA — Cost per Acquisition</h3>
+      <p>Вартість залучення одного клієнта, який виконав цільову дію (не обов'язково покупку — може бути реєстрація чи лід).</p>
+      <p><code>CPA = Витрати на кампанію / Кількість конверсій</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-cpl"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>CPL — Cost per Lead</h3>
+      <p>Середня вартість одного ліда (потенційного клієнта, який залишив контакт, але ще не купив).</p>
+      <p><code>CPL = Витрати на кампанію / Кількість лідів</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-cpc"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>CPC — Cost per Click</h3>
+      <p>Середня вартість одного кліку на оголошення. Використовується для контролю рекламних витрат.</p>
+      <p><code>CPC = Витрати на кампанію / Кількість кліків</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-ctr"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>CTR — Click-Through Rate</h3>
+      <p>Відсоток кліків від кількості показів. Показує, наскільки оголошення чи посилання привертає увагу.</p>
+      <p><code>CTR (%) = Кількість кліків / Кількість показів × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-cr"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>CR / CVR — Conversion Rate</h3>
+      <p>Відсоток користувачів, які виконали цільову дію (покупку, реєстрацію, підписку) серед усіх, хто перейшов за посиланням чи відвідав сайт.</p>
+      <p><code>CR (%) = Кількість конверсій / Кількість візитів (кліків) × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-impressions"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>Impressions — Покази</h3>
+      <p>Кількість разів, коли оголошення чи сторінку сайту показали користувачам. Початкова метрика охоплення, з якої рахуються CTR і CPC.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-roas"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>ROAS — Return on Ad Spend</h3>
+      <p>Дохід на кожну вкладену в рекламу одиницю коштів. Показує ефективність рекламного бюджету без урахування інших витрат бізнесу.</p>
+      <p><code>ROAS = Дохід від реклами / Витрати на рекламу</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-romi"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>ROMI — Return on Marketing Investment</h3>
+      <p>Рентабельність маркетингових інвестицій: скільки доходу компанія отримує з кожного вкладеного в маркетинг долара, з урахуванням усіх витрат.</p>
+      <p><code>ROMI (%) = (Дохід − Витрати на маркетинг) / Витрати на маркетинг × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-organic-traffic"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Organic traffic — Органічний трафік</h3>
+      <p>Кількість відвідувачів, що прийшли на сайт з органічного (безплатного) пошуку. У Google Analytics: розділ Acquisition → All Traffic → Channels → Organic Search.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-avg-position"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Average position — Середня позиція</h3>
+      <p>Середня позиція сайту в результатах пошуку за всіма запитами. Дивись у звіті Performance в Google Search Console.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-backlinks"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Backlinks — Зворотні посилання</h3>
+      <p>Кількість і якість посилань з інших сайтів на твій. Підвищують авторитет сайту в очах пошукових систем. Дивись у Google Search Console → Links, або в Ahrefs/SEMrush.</p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-open-rate"><div class="detail-inner" style="--detail-color:var(--accent-green)">
+      <h3>Open rate — Відсоток відкриттів</h3>
+      <p>Частка підписників, які відкрили лист, від кількості доставлених листів.</p>
+      <p><code>Open rate (%) = Кількість відкритих листів / Кількість доставлених листів × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-ctor"><div class="detail-inner" style="--detail-color:var(--accent-green)">
+      <h3>CTOR — Click-to-Open Rate</h3>
+      <p>Відсоток підписників, які натиснули на посилання, серед тих, хто відкрив лист. Точніше за звичайний CTR показує якість контенту всередині листа.</p>
+      <p><code>CTOR (%) = Кількість кліків / Кількість відкриттів × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-unsubscribe"><div class="detail-inner" style="--detail-color:var(--accent-green)">
+      <h3>Unsubscribe rate — Відсоток відписок</h3>
+      <p>Частка підписників, які відписалися від розсилки після отримання листа.</p>
+      <p><code>Unsubscribe rate (%) = Кількість відписок / Кількість доставлених листів × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-term-aov"><div class="detail-inner" style="--detail-color:var(--accent-red)">
+      <h3>AOV — Average Order Value</h3>
+      <p>Середній чек одного замовлення. Разом із кількістю конверсій дозволяє порахувати виручку кампанії та її ROMI.</p>
+    </div></div>
+
+    <h3 class="section-subhead">Приклад розрахунку метрик платної кампанії</h3>
+    <p class="section-subdesc">Вхідні дані: витрати на кампанію — 15 000 USD; покази — 1 200 000; кліки — 25 000; конверсії — 500; середній чек (AOV) — 120 USD; цільові показники: CTR 3%, CPA 25 USD, ROMI 200%.</p>
+    <table class="dc-table">
+      <thead><tr><th>Метрика</th><th>Формула</th><th>Результат</th><th>Висновок</th></tr></thead>
+      <tbody>
+        <tr><td>CTR</td><td><code>25 000 / 1 200 000 × 100%</code></td><td>2.08%</td><td>нижче цілі (3%) — оголошення недостатньо привабливе</td></tr>
+        <tr><td>CPC</td><td><code>15 000 / 25 000</code></td><td>0.6 USD</td><td>прийнятно для більшості ніш</td></tr>
+        <tr><td>CPA</td><td><code>15 000 / 500</code></td><td>30 USD</td><td>вище цілі (25 USD) — варто оптимізувати таргетинг</td></tr>
+        <tr><td>CR</td><td><code>500 / 25 000 × 100%</code></td><td>2%</td><td>у межах норми для e-commerce (2–3%)</td></tr>
+        <tr><td>Revenue</td><td><code>500 × 120</code></td><td>60 000 USD</td><td>—</td></tr>
+        <tr><td>ROMI</td><td><code>(60 000 − 15 000) / 15 000 × 100%</code></td><td>300%</td><td>вище цілі (200%) — кампанія прибуткова</td></tr>
+      </tbody>
+    </table>
+    <p class="section-subdesc">Загальний висновок: попри слабший CTR і завищений CPA, кампанія прибуткова завдяки високому чеку. Рекомендації — переглянути креатив заради CTR і протестувати вужчий таргетинг заради зниження CPA, не зупиняючи кампанію.</p>
+
+    <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> трафік, розподілений за каналами з відомою вартістю залучення (CAC/CPA) і якістю (CTR, CR, ROAS/ROMI). Наступний крок — <strong>етап 2</strong>: перевірити, чи отримує новий користувач швидкий і простий перший позитивний досвід (активація).</p>
+  </div>
+</section>
+
 <footer>
   Папліна продукт-маркетингових метрик · Acquisition → Activation → Engagement → Retention → Monetization → Referral → Churn
 </footer>
 
 <script>
-document.querySelectorAll('.node').forEach(function(node){
-  node.addEventListener('click', function(){
-    var id = node.getAttribute('data-detail');
-    var color = node.getAttribute('data-color');
+document.querySelectorAll('.node, .term-node, .clickable-heading').forEach(function(el){
+  el.addEventListener('click', function(){
+    var id = el.getAttribute('data-detail');
+    var color = el.getAttribute('data-color');
     var panel = document.getElementById('panel-' + id);
     if(!panel) return;
 
     var wasOpen = panel.classList.contains('open');
+    var scope = el.closest('section.scheme') || document;
 
-    document.querySelectorAll('#panel-pp-01, #panel-pp-02, #panel-pp-03, #panel-pp-04, #panel-pp-05, #panel-pp-06, #panel-pp-07').forEach(function(p){
+    scope.querySelectorAll('.detail-panel.open').forEach(function(p){
       p.classList.remove('open');
     });
 
