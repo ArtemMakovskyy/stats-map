@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Пайплайн продукт-маркетингових метрик</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%231E7A63'/%3E%3Ctext x='50' y='42' text-anchor='middle' font-family='Arial,sans-serif' font-size='30' font-weight='bold' fill='%23fff'%3EA%3C/text%3E%3Ctext x='50' y='70' text-anchor='middle' font-family='Arial,sans-serif' font-size='20' font-weight='bold' fill='%23fff'%3E→R%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#F6F4EF;
+    --ink:#1F2421;
+    --ink-soft:#5B6059;
+    --line:#D8D4C8;
+    --card:#FFFFFF;
+    --accent-blue:#2F5D8A;
+    --accent-blue-bg:#E6F0F8;
+    --accent-coral:#B5562F;
+    --accent-coral-bg:#FBEBE2;
+    --accent-teal:#1E7A63;
+    --accent-teal-bg:#E2F2EC;
+    --accent-purple:#5B4B8A;
+    --accent-purple-bg:#ECE8F6;
+    --accent-amber:#9A6B16;
+    --accent-amber-bg:#FAF0DB;
+    --accent-green:#3B7A23;
+    --accent-green-bg:#EBF4E3;
+    --accent-red:#A23A2E;
+    --accent-red-bg:#F8E5E2;
+    --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    line-height:1.5;
+    padding-bottom:80px;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;}
+
+  header.top{
+    padding:64px 24px 40px;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(0,0,0,0.015), transparent);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 14px;
+  }
+  h1{
+    font-family:Georgia, 'Times New Roman', serif;
+    font-weight:400;
+    font-size:clamp(32px, 5vw, 48px);
+    line-height:1.08;
+    margin:0 0 16px;
+    letter-spacing:-0.01em;
+  }
+  h1 em{font-style:italic; color:var(--accent-teal);}
+  .sub{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:680px;
+    margin:0;
+  }
+
+  section.scheme{
+    padding:56px 24px;
+    border-bottom:1px solid var(--line);
+    scroll-margin-top:24px;
+  }
+  .scheme-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px;}
+  .scheme-num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  h2{
+    font-family:Georgia, serif;
+    font-weight:400;
+    font-size:28px;
+    margin:0;
+    letter-spacing:-0.005em;
+  }
+  .scheme-desc{
+    color:var(--ink-soft);
+    font-size:15px;
+    margin:8px 0 28px;
+    max-width:680px;
+  }
+
+  .diagram-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:8px;
+    overflow:hidden;
+  }
+  svg{display:block; width:100%; height:auto;}
+
+  .node{cursor:pointer;}
+  .node rect{transition:filter .15s, transform .15s;}
+  .node:hover rect{filter:brightness(0.96);}
+  .node:active rect{transform:scale(0.99);}
+  .node text{pointer-events:none;}
+
+  .hint{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-soft);
+    text-align:center;
+    margin-top:14px;
+    letter-spacing:0.02em;
+  }
+
+  .detail-panel{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease, margin-top .35s ease;
+  }
+  .detail-panel.open{
+    margin-top:18px;
+    max-height:600px;
+    overflow-y:auto;
+  }
+  .detail-inner{
+    border:1px solid var(--line);
+    border-left:4px solid var(--detail-color, var(--accent-teal));
+    border-radius:10px;
+    padding:20px 22px;
+    background:var(--card);
+  }
+  .detail-inner h3{
+    font-family:Georgia, serif;
+    font-weight:400;
+    font-size:18px;
+    margin:0 0 10px;
+    color:var(--detail-color, var(--accent-teal));
+  }
+  .detail-inner p{margin:0 0 10px; font-size:14.5px; color:var(--ink);}
+  .detail-inner p:last-child{margin-bottom:0;}
+  .detail-inner .pipeline-context{
+    background:var(--bg);
+    border-left:3px solid var(--detail-color, var(--accent-teal));
+    border-radius:6px;
+    padding:10px 14px;
+    font-size:13.5px;
+  }
+  .detail-inner .pipeline-next{
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid var(--line);
+    font-size:13.5px;
+  }
+  .detail-inner code{
+    font-family:var(--mono);
+    background:rgba(0,0,0,0.05);
+    padding:1px 6px;
+    border-radius:4px;
+    font-size:13px;
+  }
+  .metric-list{margin:8px 0 0; padding-left:18px;}
+  .metric-list li{font-size:14px; margin-bottom:5px;}
+
+  footer{
+    padding:40px 24px 20px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:13px;
+    font-family:var(--mono);
+  }
+
+  @media (max-width:640px){
+    header.top{padding:48px 20px 32px;}
+    section.scheme{padding:40px 20px;}
+    h2{font-size:22px;}
+    .scheme-num{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">Папліна продукт-маркетингових метрик</p>
+    <h1>Від <em>залучення</em> до <em>відтоку</em></h1>
+    <p class="sub">Клікай на блоки у схемі — розкриється коротке пояснення кожного етапу життєвого циклу користувача. Це маршрут: як користувач дізнається про продукт, починає ним користуватись, повертається, платить, рекомендує — і, зрештою, йде.</p>
+  </div>
+</header>
+
+<!-- ============ SECTION 0: PIPELINE OVERVIEW ============ -->
+<section class="scheme" id="s0">
+  <div class="wrap">
+    <div class="scheme-head">
+      <span class="scheme-num">00</span>
+      <h2>Загальна карта пайплайну</h2>
+    </div>
+    <p class="scheme-desc">Сім етапів життєвого циклу користувача — від першого контакту з продуктом до відтоку. Кожен наступний етап спирається на попередній.</p>
+
+    <div class="diagram-card">
+      <svg viewBox="0 0 680 620" id="svg-overview">
+        <defs><marker id="arrowP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+        <g class="node" data-detail="pp-01" data-color="var(--accent-blue)">
+          <rect x="40" y="20" width="600" height="56" rx="10" fill="var(--accent-blue-bg)" stroke="var(--accent-blue)" stroke-width="0.75"/>
+          <text x="340" y="38" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-blue)">1. Залучення (Acquisition)</text>
+          <text x="340" y="58" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-blue)" opacity="0.8">реклама, SEO, контент, реферальні програми</text>
+        </g>
+        <line x1="340" y1="76" x2="340" y2="94" stroke="#999" stroke-width="1.5" marker-end="url(#arrowP)"/>
+
+        <g class="node" data-detail="pp-02" data-color="var(--accent-coral)">
+          <rect x="40" y="94" width="600" height="56" rx="10" fill="var(--accent-coral-bg)" stroke="var(--accent-coral)" stroke-width="0.75"/>
+          <text x="340" y="112" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-coral)">2. Активація (Activation)</text>
+          <text x="340" y="132" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-coral)" opacity="0.8">реєстрація, перші дії, знайомство з функціями</text>
+        </g>
+        <line x1="340" y1="150" x2="340" y2="168" stroke="#999" stroke-width="1.5" marker-end="url(#arrowP)"/>
+
+        <g class="node" data-detail="pp-03" data-color="var(--accent-teal)">
+          <rect x="40" y="168" width="600" height="56" rx="10" fill="var(--accent-teal-bg)" stroke="var(--accent-teal)" stroke-width="0.75"/>
+          <text x="340" y="186" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-teal)">3. Взаємодія (Engagement)</text>
+          <text x="340" y="206" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-teal)" opacity="0.8">DAU/MAU, частота та інтенсивність взаємодій</text>
+        </g>
+        <line x1="340" y1="224" x2="340" y2="242" stroke="#999" stroke-width="1.5" marker-end="url(#arrowP)"/>
+
+        <g class="node" data-detail="pp-04" data-color="#A23A6B">
+          <rect x="40" y="242" width="600" height="56" rx="10" fill="#FBEAF0" stroke="#A23A6B" stroke-width="0.75"/>
+          <text x="340" y="260" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#A23A6B">4. Утримання (Retention)</text>
+          <text x="340" y="280" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#A23A6B" opacity="0.8">регулярні повернення, корисність функцій</text>
+        </g>
+        <line x1="340" y1="298" x2="340" y2="316" stroke="#999" stroke-width="1.5" marker-end="url(#arrowP)"/>
+
+        <g class="node" data-detail="pp-05" data-color="var(--accent-amber)">
+          <rect x="40" y="316" width="600" height="56" rx="10" fill="var(--accent-amber-bg)" stroke="var(--accent-amber)" stroke-width="0.75"/>
+          <text x="340" y="334" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-amber)">5. Монетизація (Monetization)</text>
+          <text x="340" y="354" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-amber)" opacity="0.8">покупки, передплати, преміум-функції</text>
+        </g>
+        <line x1="340" y1="372" x2="340" y2="390" stroke="#999" stroke-width="1.5" marker-end="url(#arrowP)"/>
+
+        <g class="node" data-detail="pp-06" data-color="var(--accent-purple)">
+          <rect x="40" y="390" width="600" height="56" rx="10" fill="var(--accent-purple-bg)" stroke="var(--accent-purple)" stroke-width="0.75"/>
+          <text x="340" y="408" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-purple)">6. Рекомендація (Referral)</text>
+          <text x="340" y="428" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-purple)" opacity="0.8">задоволені користувачі рекомендують продукт</text>
+        </g>
+        <line x1="340" y1="446" x2="340" y2="464" stroke="#999" stroke-width="1.5" marker-end="url(#arrowP)"/>
+
+        <g class="node" data-detail="pp-07" data-color="var(--accent-red)">
+          <rect x="40" y="464" width="600" height="56" rx="10" fill="var(--accent-red-bg)" stroke="var(--accent-red)" stroke-width="0.75"/>
+          <text x="340" y="482" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--accent-red)">7. Відтік (Churn)</text>
+          <text x="340" y="502" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--accent-red)" opacity="0.8">припинення використання, стратегії зниження</text>
+        </g>
+
+        <text x="340" y="548" text-anchor="middle" font-size="11" fill="#888" font-family="monospace">клікни на будь-який блок, щоб розкрити деталі →</text>
+      </svg>
+    </div>
+    <p class="hint">клікни на блок схеми</p>
+
+    <div class="detail-panel" id="panel-pp-01"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>1. Залучення (Acquisition)</h3>
+      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> трафік із маркетингових каналів — реклами, SEO, контенту, реферальних програм. <strong>Проблема:</strong> незрозуміло, які канали та повідомлення працюють найефективніше. <strong>Рішення:</strong> відстежуємо залучення, щоб визначити найрезультативніші канали.</p>
+      <p>Це перший етап, коли користувач дізнається про продукт через маркетингові канали.</p>
+      <p><strong>Акquisition зазвичай не включають у продуктові метрики</strong>, тому що вся взаємодія з користувачем відбувається поза продуктом.</p>
+      <p><strong>Ключові метрики:</strong></p>
+      <ul class="metric-list">
+        <li>CAC (customer acquisition cost) — вартість залучення нового клієнта</li>
+        <li>Impressions, Clicks, CTR — обсяг та ефективність каналів</li>
+        <li>CPA (cost per acquisition), CPL (cost per lead)</li>
+      </ul>
+      <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> залучений трафік. Наступний крок — <strong>етап 2</strong>: допомогти користувачеві отримати перший позитивний досвід (активація).</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-pp-02"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>2. Активація (Activation)</h3>
+      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> користувачів, які дізналися про продукт. <strong>Проблема:</strong> якщо перший досвід буде складним чи повільним, користувач покине продукт. <strong>Рішення:</strong> відстежуємо, як швидко та просто користувач досягне першого позитивного досвіду.</p>
+      <p>На цьому етапі користувач не просто знайомиться, а й починає <strong>активно взаємодіяти</strong> з продуктом: реєструється, пробує функції або налаштовує свій профіль.</p>
+      <p><strong>Важливо:</strong> швидкість і простота досягнення першого позитивного досвіду напряму впливають на подальше утримання (етап 4).</p>
+      <p><strong>Ключові метрики:</strong></p>
+      <ul class="metric-list">
+        <li>Conversion rate (CR) — відсоток цільових дій після реєстрації</li>
+        <li>Onboarding completion / Time to first value (TTFV)</li>
+        <li>Activation rate — відсоток користувачів, які виконали ключову дію</li>
+      </ul>
+      <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> активовані користувачі. Наступний крок — <strong>етап 3</strong>: переходимо до регулярної взаємодії (engagement).</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-pp-03"><div class="detail-inner" style="--detail-color:var(--accent-teal)">
+      <h3>3. Взаємодія (Engagement)</h3>
+      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> активованих користувачів. <strong>Проблема:</strong> не знаємо, наскільки продукт став частиною життя користувача та які функції найцінніші. <strong>Рішення:</strong> відстежуємо рівень залученості, частоту та інтенсивність взаємодій.</p>
+      <p>На цьому етапі відбувається <strong>регулярне користування</strong> продуктом.</p>
+      <p><strong>Метрики залучення, як-от DAU/MAU</strong> (щоденні/місячні активні користувачі), допомагають зрозуміти, наскільки продукт став частиною життя користувача.</p>
+      <p><strong>Ключові метрики:</strong></p>
+      <ul class="metric-list">
+        <li>DAU / MAU / WAU — щоденні, тижневі, місячні активні користувачі</li>
+        <li>Stickiness = DAU / MAU</li>
+        <li>Session duration, session frequency, feature usage</li>
+      </ul>
+      <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> залучена аудиторія. Наступний крок — <strong>етап 4</strong>: визначити, чи коридувач регулярно повертається (retention).</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-pp-04"><div class="detail-inner" style="--detail-color:#A23A6B">
+      <h3>4. Утримання (Retention)</h3>
+      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> завідчену аудиторію, яка взаємодіє з продуктом. <strong>Проблема:</strong> не зрозуміло, що саме утримує користувача та чи достатньо продукту цінності. <strong>Рішення:</strong> відстежуємо регулярність повернень і корисність функцій.</p>
+      <p>Це етап, коли користувач <strong>регулярно повертається</strong> до продукту і використовує його.</p>
+      <p>Хороші показаники утримання свідчать про <strong>високу цінність продукту</strong>.</p>
+      <p><strong>Ключові метрики:</strong></p>
+      <ul class="metric-list">
+        <li>Retention rate — відсоток користувачів, які повертаються через певний час</li>
+        <li>Churn rate — обернене значення до утримання</li>
+        <li>Cohort retention — утримання за когортами</li>
+      </ul>
+      <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> стабільна база користувачів. Наступний крок — <strong>етап 5</strong>: переходимо до генерації доходу (монетизація).</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-pp-05"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>5. Монетизація (Monetization)</h3>
+      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> утримання фер з високою цінністю продукту. <strong>Проблема:</strong> не зрозуміло, коли та за яких умов користучувачі готові платити. <strong>Рішення:</strong> відстежуємо момент та умови першої оплати, щоб створити вигідні пропозиції.</p>
+      <p>На цьому етапі користувачі починають приносити бізнесу дохід — <strong>покупка, передплата, користування преміум-функціями</strong>.</p>
+      <p><strong>Ключові метрики:</strong></p>
+      <ul class="metric-list">
+        <li>LTV (lifetime value), ARPU (average revenue per user)</li>
+        <li>LTV / CAC співвідношення</li>
+        <li>ARPPU (revenue per paying user)</li>
+        <li>ROAS, ROMI, Margin</li>
+      </ul>
+      <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> дохід від користувачів. Наступний крок — <strong>етап 6</strong>: за допомогою лояльних користувачів залучаємо нових (referral).</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-pp-06"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>6. Рекомендація (Referral)</h3>
+      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> лояльних користувачів, які вже платять і задоволені продуктом. <strong>Проблема:</strong> не знаємо, наскільки задоволені користувачів готові рекомендувати продукт. <strong>Рішення:</strong> відстежуємо рекомендації та розвиваємо реферальні програми.</p>
+      <p>Лояльні користувачі, задоволені продуктом, <strong>рекомендують його іншим</strong>.</p>
+      <p>Відстеження рекомендацій допомагає зрозуміти рівень задоволеності існуючих користувачів і залучати нових клієнтів через реферальні програми.</p>
+      <p><strong>Ключові метрики:</strong></p>
+      <ul class="metric-list">
+        <li>NPS (Net Promoter Score)</li>
+        <li>Viral coefficient — коефіцієнт віральності</li>
+        <li>Referral rate — кількість нових користувачів з реферальних програм</li>
+      </ul>
+      <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> зростання через рекомендації. Водночас частину користувачів продовжуємо вивчати — <strong>етап 7</strong>: аналіз відтоку.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-pp-07"><div class="detail-inner" style="--detail-color:var(--accent-red)">
+      <h3>7. Відтік (Churn)</h3>
+      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> дані користувачів з усіх попередніх етапів. <strong>Проблема:</strong> не зрозуміло, на якому етапі й чомуе користувачі покидють продукт. <strong>Рішення:</strong> аналізуємо відтік і розробляємо стратегії для його зниження.</p>
+      <p>На цьому етапі користувач <strong>припиняє використовувати продукт</strong>.</p>
+      <p>Важливо розуміти, на якому етапі й чому відбувається відтік, щоб розробляти стратегії для його зниження.</p>
+      <p><strong>Ключові метрики:</strong></п>
+      <ul class="metric-list">
+        <li>Churn rate — відсоток користувачів, які перестали користуються</li>
+        <li>Revenue churn — втрата доходу від відтоку</li>
+        <li>Reason analysis — аналіз причин відтоку</li>
+      </ul>
+      <p class="pipeline-next">🏁 <strong>Кінцевий результат:</strong> розуміння причин відтоку та обґрунтовані стратегії його зниження, що повертає дані назад у продукт (закриває цикл етапу залучення).</p>
+    </div></div>
+  </div>
+</section>
+
+<footer>
+  Папліна продукт-маркетингових метрик · Acquisition → Activation → Engagement → Retention → Monetization → Referral → Churn
+</footer>
+
+<script>
+document.querySelectorAll('.node').forEach(function(node){
+  node.addEventListener('click', function(){
+    var id = node.getAttribute('data-detail');
+    var color = node.getAttribute('data-color');
+    var panel = document.getElementById('panel-' + id);
+    if(!panel) return;
+
+    var wasOpen = panel.classList.contains('open');
+
+    document.querySelectorAll('#panel-pp-01, #panel-pp-02, #panel-pp-03, #panel-pp-04, #panel-pp-05, #panel-pp-06, #panel-pp-07').forEach(function(p){
+      p.classList.remove('open');
+    });
+
+    if(!wasOpen){
+      if(color){ panel.querySelector('.detail-inner').style.setProperty('--detail-color', color); }
+      panel.classList.add('open');
+      setTimeout(function(){
+        panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+      }, 200);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
