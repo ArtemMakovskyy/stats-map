@@ -107,6 +107,7 @@
   .node rect{transition:filter .15s, transform .15s;}
   .node:hover rect{filter:brightness(0.96);}
   .node:active rect{transform:scale(0.99);}
+  .node.active rect{filter:brightness(1); stroke-width:3; stroke-opacity:1;}
   .node text{pointer-events:none;}
 
   .hint{
@@ -221,6 +222,13 @@
     transition:border-color .15s, background .15s;
   }
   .term-node:hover{border-color:var(--accent-teal); background:var(--accent-teal-bg);}
+  .term-node.active{
+    border-color:var(--accent-teal);
+    border-width:2px;
+    background:var(--accent-teal-bg);
+    box-shadow:0 0 0 2px var(--accent-teal-bg), inset 0 0 0 1px var(--accent-teal);
+    font-weight:600;
+  }
 
   .dc-table{
     width:100%;
@@ -1372,10 +1380,14 @@ document.querySelectorAll('.node, .term-node, .clickable-heading').forEach(funct
     scope.querySelectorAll('.detail-panel.open').forEach(function(p){
       p.classList.remove('open');
     });
+    scope.querySelectorAll('.active').forEach(function(n){
+      n.classList.remove('active');
+    });
 
     if(!wasOpen){
       if(color){ panel.querySelector('.detail-inner').style.setProperty('--detail-color', color); }
       panel.classList.add('open');
+      el.classList.add('active');
       setTimeout(function(){
         panel.scrollIntoView({behavior:'smooth', block:'nearest'});
       }, 200);
