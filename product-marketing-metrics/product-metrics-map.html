@@ -294,6 +294,23 @@
     font-weight:600;
   }
 
+  .term-inline{
+    font-family:var(--mono);
+    font-size:.92em;
+    font-weight:600;
+    color:var(--accent-blue);
+    background:var(--accent-blue-bg);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:0 .3em;
+    cursor:pointer;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:border-color .15s, background .15s, color .15s;
+  }
+  .term-inline:hover{ border-color:var(--accent-teal); background:var(--accent-teal-bg); color:var(--accent-teal); }
+  .term-inline.active{ border-color:var(--accent-teal); background:var(--accent-teal-bg); color:var(--accent-teal); box-shadow:0 0 0 2px var(--accent-teal-bg); }
+
   .dc-table{
     width:100%;
     border-collapse:collapse;
@@ -338,6 +355,10 @@
     h2{font-size:22px;}
     .scheme-num{display:none;}
   }
+
+  /* Local metric details: open in the current section without moving the page */
+  .context-detail-host{ width:100%; }
+  .context-detail-host .detail-panel{ width:100%; max-width:100%; box-sizing:border-box; margin:12px 0 0; }
 </style>
 </head>
 <body>
@@ -424,9 +445,9 @@
       <p><strong>Акquisition зазвичай не включають у продуктові метрики</strong>, тому що вся взаємодія з користувачем відбувається поза продуктом.</p>
       <p><strong>Ключові метрики:</strong></p>
       <ul class="metric-list">
-        <li>CAC (customer acquisition cost) — вартість залучення нового клієнта</li>
-        <li>Impressions, Clicks, CTR — обсяг та ефективність каналів</li>
-        <li>CPA (cost per acquisition), CPL (cost per lead)</li>
+        <li><a class="term-inline" data-detail="term-cac">CAC</a> (customer acquisition cost) — вартість залучення нового клієнта</li>
+        <li>Impressions, Clicks, <a class="term-inline" data-detail="term-ctr">CTR</a> — обсяг та ефективність каналів</li>
+        <li><a class="term-inline" data-detail="term-cpa">CPA</a> (cost per acquisition), <a class="term-inline" data-detail="term-cpl">CPL</a> (cost per lead)</li>
       </ul>
       <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> залучений трафік. Наступний крок — <strong>етап 2</strong>: допомогти користувачеві отримати перший позитивний досвід (активація).</p>
     </div></div>
@@ -438,7 +459,7 @@
       <p><strong>Важливо:</strong> швидкість і простота досягнення першого позитивного досвіду напряму впливають на подальше утримання (етап 4).</p>
       <p><strong>Ключові метрики:</strong></p>
       <ul class="metric-list">
-        <li>Conversion rate (CR) — відсоток цільових дій після реєстрації</li>
+        <li>Conversion rate (<a class="term-inline" data-detail="term-cr">CR</a>) — відсоток цільових дій після реєстрації</li>
         <li>Onboarding completion / Time to first value (TTFV)</li>
         <li>Activation rate — відсоток користувачів, які виконали ключову дію</li>
       </ul>
@@ -449,11 +470,11 @@
       <h3>3. Взаємодія (Engagement)</h3>
       <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> активованих користувачів. <strong>Проблема:</strong> не знаємо, наскільки продукт став частиною життя користувача та які функції найцінніші. <strong>Рішення:</strong> відстежуємо рівень залученості, частоту та інтенсивність взаємодій.</p>
       <p>На цьому етапі відбувається <strong>регулярне користування</strong> продуктом.</p>
-      <p><strong>Метрики залучення, як-от DAU/MAU</strong> (щоденні/місячні активні користувачі), допомагають зрозуміти, наскільки продукт став частиною життя користувача.</p>
+      <p><strong>Метрики залучення, як-от <a class="term-inline" data-detail="term-dau">DAU</a>/<a class="term-inline" data-detail="term-mau">MAU</a></strong> (щоденні/місячні активні користувачі), допомагають зрозуміти, наскільки продукт став частиною життя користувача.</p>
       <p><strong>Ключові метрики:</strong></p>
       <ul class="metric-list">
-        <li>DAU / MAU / WAU — щоденні, тижневі, місячні активні користувачі</li>
-        <li>Stickiness = DAU / MAU</li>
+        <li><a class="term-inline" data-detail="term-dau">DAU</a> / <a class="term-inline" data-detail="term-mau">MAU</a> / WAU — щоденні, тижневі, місячні активні користувачі</li>
+        <li>Stickiness = <a class="term-inline" data-detail="term-dau">DAU</a> / <a class="term-inline" data-detail="term-mau">MAU</a></li>
         <li>Session duration, session frequency, feature usage</li>
       </ul>
       <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> залучена аудиторія. Наступний крок — <strong>етап 4</strong>: визначити, чи користувач регулярно повертається (retention).</p>
@@ -479,10 +500,10 @@
       <p>На цьому етапі користувачі починають приносити бізнесу дохід — <strong>покупка, передплата, користування преміум-функціями</strong>.</p>
       <p><strong>Ключові метрики:</strong></p>
       <ul class="metric-list">
-        <li>LTV (lifetime value), ARPU (average revenue per user)</li>
-        <li>LTV / CAC співвідношення</li>
-        <li>ARPPU (revenue per paying user)</li>
-        <li>ROAS, ROMI, Margin</li>
+        <li><a class="term-inline" data-detail="term-ltv">LTV</a> (lifetime value), <a class="term-inline" data-detail="term-arpu">ARPU</a> (average revenue per user)</li>
+        <li><a class="term-inline" data-detail="term-ltv">LTV</a> / <a class="term-inline" data-detail="term-cac">CAC</a> співвідношення</li>
+        <li><a class="term-inline" data-detail="mon-arppu">ARPPU</a> (revenue per paying user)</li>
+        <li><a class="term-inline" data-detail="term-roas">ROAS</a>, <a class="term-inline" data-detail="term-romi">ROMI</a>, Margin</li>
       </ul>
       <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> дохід від користувачів. Наступний крок — <strong>етап 6</strong>: за допомогою лояльних користувачів залучаємо нових (referral).</p>
     </div></div>
@@ -494,7 +515,7 @@
       <p>Відстеження рекомендацій допомагає зрозуміти рівень задоволеності існуючих користувачів і залучати нових клієнтів через реферальні програми.</p>
       <p><strong>Ключові метрики:</strong></p>
       <ul class="metric-list">
-        <li>NPS (Net Promoter Score)</li>
+        <li><a class="term-inline" data-detail="b2b-svc-nps">NPS</a> (Net Promoter Score)</li>
         <li>Viral coefficient — коефіцієнт віральності</li>
         <li>Referral rate — кількість нових користувачів з реферальних програм</li>
       </ul>
@@ -526,7 +547,7 @@
     </div>
     <p class="scheme-desc">Перший етап пайплайну: користувач ще не знає про продукт. Канали залучення діляться на платні (Paid) — швидко масштабуються, але коштують грошей за кожного відвідувача, і органічні (Organic) — повільніші, зате безкоштовні й довгострокові.</p>
 
-    <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> трафік з реклами, пошуку, контенту та рекомендацій. <strong>Проблема:</strong> незрозуміло, які канали і повідомлення приносять найбільше цінних користувачів за прийнятну ціну. <strong>Рішення:</strong> рахуємо вартість і якість трафіку з кожного каналу окремо (CAC, CPA, ROAS/ROMI), щоб перерозподіляти бюджет на користь ефективних каналів.</p>
+    <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> трафік з реклами, пошуку, контенту та рекомендацій. <strong>Проблема:</strong> незрозуміло, які канали і повідомлення приносять найбільше цінних користувачів за прийнятну ціну. <strong>Рішення:</strong> рахуємо вартість і якість трафіку з кожного каналу окремо (<a class="term-inline" data-detail="term-cac">CAC</a>, <a class="term-inline" data-detail="term-cpa">CPA</a>, <a class="term-inline" data-detail="term-roas">ROAS</a>/<a class="term-inline" data-detail="term-romi">ROMI</a>), щоб перерозподіляти бюджет на користь ефективних каналів.</p>
 
     <div class="diagram-card subdiagram">
       <svg viewBox="0 0 700 400" id="svg-acquisition">
@@ -602,8 +623,8 @@
       <h3>Пошукова реклама (Search Advertising)</h3>
       <p>Оголошення у верхній частині видачі Google чи Bing. Ефективна, коли користувач вже сам шукає продукт або рішення проблеми.</p>
       <ul class="metric-list">
-        <li>CTR — наскільки оголошення привертає увагу</li>
-        <li>CPC — середня вартість одного кліку</li>
+        <li><a class="term-inline" data-detail="term-ctr">CTR</a> — наскільки оголошення привертає увагу</li>
+        <li><a class="term-inline" data-detail="term-cpc">CPC</a> — середня вартість одного кліку</li>
         <li>Conversion rate — відсоток кліків, що завершились цільовою дією</li>
         <li>Quality score — оцінка Google релевантності оголошення, ключових слів і посадкової сторінки</li>
       </ul>
@@ -615,8 +636,8 @@
       <ul class="metric-list">
         <li>Impressions — кількість показів</li>
         <li>Engagement rate — частка взаємодій (лайки, коментарі, поширення) від показів</li>
-        <li>CPE — вартість однієї взаємодії</li>
-        <li>ROAS — дохід на кожну вкладену в рекламу одиницю</li>
+        <li><a class="term-inline" data-detail="term-cpe">CPE</a> — вартість однієї взаємодії</li>
+        <li><a class="term-inline" data-detail="term-roas">ROAS</a> — дохід на кожну вкладену в рекламу одиницю</li>
       </ul>
     </div></div>
 
@@ -625,7 +646,7 @@
       <p>Показ оголошень тим, хто вже заходив на сайт або взаємодіяв із продуктом. Ефективний спосіб повернути «теплих» відвідувачів і підштовхнути їх до повторної конверсії.</p>
       <ul class="metric-list">
         <li>Return rate — відсоток тих, хто повернувся через ремаркетингову кампанію</li>
-        <li>CPC ремаркетингу</li>
+        <li><a class="term-inline" data-detail="term-cpc">CPC</a> ремаркетингу</li>
         <li>Conversion rate — після повернення на сайт</li>
         <li>Frequency — скільки разів одному користувачу показали оголошення</li>
       </ul>
@@ -637,8 +658,8 @@
       <ul class="metric-list">
         <li>Reach — охоплення від інфлюенсера чи партнера</li>
         <li>Engagement — лайки, коментарі, поширення</li>
-        <li>CPA — вартість залучення одного клієнта через партнерську програму</li>
-        <li>ROI партнерської реклами</li>
+        <li><a class="term-inline" data-detail="term-cpa">CPA</a> — вартість залучення одного клієнта через партнерську програму</li>
+        <li><a class="term-inline" data-detail="term-roi">ROI</a> партнерської реклами</li>
       </ul>
     </div></div>
 
@@ -647,7 +668,7 @@
       <p>Підвищення видимості сайту в органічній видачі. Складається з технічного SEO (швидкість, мобільна адаптивність, robots.txt/sitemap.xml), внутрішнього (ключові слова, контент, заголовки, meta-теги) і зовнішнього (backlinks, згадки бренду).</p>
       <ul class="metric-list">
         <li>Organic traffic — відвідувачі з органічного пошуку</li>
-        <li>Impressions / Clicks / CTR — дані Google Search Console</li>
+        <li>Impressions / Clicks / <a class="term-inline" data-detail="term-ctr">CTR</a> — дані Google Search Console</li>
         <li>Average position — середня позиція за ключовими запитами</li>
         <li>Indexed pages, backlinks — технічне здоров'я сайту</li>
       </ul>
@@ -658,7 +679,7 @@
       <p>Пряма комунікація з базою контактів: вітальні листи, промо-кампанії, тригерні серії, newsletter, листи повторного залучення. Персоналізований і економічно ефективний канал.</p>
       <ul class="metric-list">
         <li>Open rate — відсоток відкритих листів</li>
-        <li>CTR / CTOR — кліки від доставлених листів / від відкриттів</li>
+        <li><a class="term-inline" data-detail="term-ctr">CTR</a> / <a class="term-inline" data-detail="term-ctor">CTOR</a> — кліки від доставлених листів / від відкриттів</li>
         <li>Unsubscribe rate — відписки</li>
         <li>Bounce rate — недоставлені листи</li>
       </ul>
@@ -1453,7 +1474,7 @@
       <p><strong>Приклад (з розрахунку платної кампанії):</strong> (60 000 − 15 000) / 15 000 × 100% = 300% — кожен витрачений долар приносить 3 долари доходу; вище за цільове значення 200%, тому кампанія вважається прибутковою.</p>
     </div></div>
 
-    <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> трафік, розподілений за каналами з відомою вартістю залучення (CAC/CPA) і якістю (CTR, CR, ROAS/ROMI). Наступний крок — <strong>етап 2</strong>: перевірити, чи отримує новий користувач швидкий і простий перший позитивний досвід (активація).</p>
+    <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> трафік, розподілений за каналами з відомою вартістю залучення (<a class="term-inline" data-detail="term-cac">CAC</a>/<a class="term-inline" data-detail="term-cpa">CPA</a>) і якістю (<a class="term-inline" data-detail="term-ctr">CTR</a>, <a class="term-inline" data-detail="term-cr">CR</a>, <a class="term-inline" data-detail="term-roas">ROAS</a>/<a class="term-inline" data-detail="term-romi">ROMI</a>). Наступний крок — <strong>етап 2</strong>: перевірити, чи отримує новий користувач швидкий і простий перший позитивний досвід (активація).</p>
   </div>
 </section>
 
@@ -1474,7 +1495,7 @@
     <ul class="metric-list">
       <li><strong>Зростання Retention</strong> — активовані користувачі лишаються довше, збільшуючи свою загальну вартість.</li>
       <li><strong>Зниження Churn</strong> — високий рівень активації зменшує кількість відмов після першого використання.</li>
-      <li><strong>Зростання LTV</strong> — залучені користувачі зазвичай приносять більше прибутку.</li>
+      <li><strong>Зростання <a class="term-inline" data-detail="term-ltv">LTV</a></strong> — залучені користувачі зазвичай приносять більше прибутку.</li>
       <li><strong>Оптимізація маркетингу</strong> — знання етапу активації дозволяє точніше налаштовувати стратегії.</li>
     </ul>
 
@@ -1741,7 +1762,8 @@
     </div>
     <p class="scheme-desc">Монетизація — це процес перетворення користувацької активності та інтересу до продукту на реальний дохід. Для будь-якого IT-продукту, мобільного застосунку або вебсервісу це ключовий крок у підтримці фінансової стійкості та зростання.</p>
 
-    <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> стабільна лояльна база користувачів (етап 4). <strong>Проблема:</strong> активна аудиторія ще не конвертується в дохід. <strong>Рішення:</strong> обираємо модель монетизації, впроваджуємо платні механізми та вимірюємо фінансові метрики (ARPU, LTV, CAC, ROMI, ARPPU).</p>
+    <p class="pipeline-context monetization-context">📋 <strong>Що отримуємо:</strong> стабільна лояльна база користувачів (етап 4). <strong>Проблема:</strong> активна аудиторія ще не конвертується в дохід. <strong>Рішення:</strong> обираємо модель монетизації, впроваджуємо платні механізми та вимірюємо фінансові метрики (<a class="term-inline context-local-metric" data-detail="term-arpu">ARPU</a>, <a class="term-inline context-local-metric" data-detail="term-ltv">LTV</a>, <a class="term-inline context-local-metric" data-detail="term-cac">CAC</a>, <a class="term-inline context-local-metric" data-detail="term-romi">ROMI</a>, <a class="term-inline context-local-metric" data-detail="mon-arppu">ARPPU</a>).</p>
+    <div class="context-detail-host" aria-live="polite"></div>
 
     <h3 class="section-subhead">Що таке монетизація та її функції</h3>
     <p>Монетизація дозволяє компанії <strong>покривати витрати</strong> на розробку, маркетинг, підтримку і розвиток продукту, залучати інвесторів та масштабуватися. Стратегії можуть включати підписки, внутрішньоігрові покупки, рекламу або платні функції. Правильно побудована монетизація підвищує лояльність: наприклад, freemium-модель дає спробувати базові функції безплатно і купити преміум лише тоді, коли користувач переконався в цінності продукту.</p>
@@ -1817,24 +1839,72 @@
     <h3 class="section-subhead">Метрики монетизації</h3>
     <p class="section-subdesc">Ключові показники оцінюють фінансову ефективність продукту, зрозумілість вигоди від груп користувачів і успішність моделі монетизації.</p>
     <div class="term-grid">
-      <button class="term-node" data-detail="term-revenue">Revenue (M)</button>
+      <button class="term-node" data-detail="mon-revenue">Revenue (M)</button>
       <button class="term-node" data-detail="mon-arppu">ARPPU</button>
-      <button class="term-node" data-detail="term-arpu">ARPU (M)</button>
-      <button class="term-node" data-detail="term-ltv">LTV (M)</button>
-      <button class="term-node" data-detail="term-cac">CAC (PPr)</button>
-      <button class="term-node" data-detail="term-romi">ROMI (M)</button>
-      <button class="term-node" data-detail="term-roi">ROI (M)</button>
+      <button class="term-node" data-detail="mon-arpu">ARPU (M)</button>
+      <button class="term-node" data-detail="mon-ltv">LTV (M)</button>
+      <button class="term-node" data-detail="mon-cac">CAC (PPr)</button>
+      <button class="term-node" data-detail="mon-romi">ROMI (M)</button>
+      <button class="term-node" data-detail="mon-roi">ROI (M)</button>
       <button class="term-node" data-detail="mon-mrr">MRR</button>
       <button class="term-node" data-detail="mon-arr">ARR</button>
       <button class="term-node" data-detail="mon-ecpm">eCPM</button>
       <button class="term-node" data-detail="mon-gmv">GMV</button>
       <button class="term-node" data-detail="mon-take-rate">Take rate</button>
       <button class="term-node" data-detail="mon-conv-purchase">Conversion rate (purchase)</button>
+      <button class="term-node" data-detail="mon-conv-free-paid">Conversion rate (free → paid)</button>
       <button class="term-node" data-detail="mon-avg-purchase-value">Average purchase value</button>
       <button class="term-node" data-detail="mon-purchase-frequency">Purchase frequency</button>
       <button class="term-node" data-detail="mon-renewal-rate">Renewal rate</button>
       <button class="term-node" data-detail="mon-avg-transaction-value">Average transaction value</button>
     </div>
+
+    <!-- дубль panel-term-revenue, синхронізувати за потреби -->
+    <div class="detail-panel" id="panel-mon-revenue"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>Revenue — Дохід</h3>
+      <p><strong>Категорії:</strong> Monetization</p>
+      <p><strong>Визначення:</strong> Дохід кампанії, отриманий від конверсій.</p>
+      <p><strong>Формула:</strong> <code>Revenue = Conversions (Кількість конверсій) × AOV (Середній чек)</code></p>
+      <p><strong>Приклад (з розрахунку платної кампанії):</strong> 500 × 120 = 60 000 USD.</p>
+    </div></div>
+    <!-- дубль panel-term-arpu, синхронізувати за потреби -->
+    <div class="detail-panel" id="panel-mon-arpu"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>ARPU — Average Revenue per User</h3>
+      <p><strong>Категорії:</strong> Monetization</p>
+      <p><strong>Визначення:</strong> Дохід на користувача — метрика прибутковості, що дозволяє оцінити економічну ефективність продукту.</p>
+      <p><strong>Формула:</strong> <code>ARPU = Revenue (Дохід) / Users (Кількість користувачів)</code></p>
+    </div></div>
+    <!-- дубль panel-term-ltv, синхронізувати за потреби -->
+    <div class="detail-panel" id="panel-mon-ltv"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>LTV — Lifetime Value</h3>
+      <p><strong>Категорії:</strong> Monetization</p>
+      <p><strong>Визначення:</strong> Довічна цінність клієнта — очікувана загальна вартість клієнта за весь час його взаємодії з продуктом.</p>
+      <p><strong>Формула:</strong> <code>LTV = ARPU (Середній дохід на користувача) × Середній період утримання користувача (в місяцях/роках)</code></p>
+      <p><strong>Приклад:</strong> <code>ARPU $2 × 12 міс. = LTV $24</code> — якщо середній ARPU дорівнює $2 на місяць, а користувач у середньому взаємодіє з продуктом 12 місяців.</p>
+      <p><strong>Альтернативна деталізована формула:</strong> <code>LTV = AOV (Середній чек) × Purchase Frequency (Частота покупок) × Customer Lifespan (Тривалість взаємодії)</code></p>
+    </div></div>
+    <!-- дубль panel-term-cac, синхронізувати за потреби -->
+    <div class="detail-panel" id="panel-mon-cac"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>CAC — Customer Acquisition Cost</h3>
+      <p><strong>Категорії:</strong> Paid · Product</p>
+      <p><strong>Визначення:</strong> Загальна вартість залучення одного нового клієнта з урахуванням усіх витрат на маркетинг і рекламу. Ключова метрика, з якою порівнюють LTV.</p>
+      <p><strong>Формула:</strong> <code>CAC = Marketing Cost (Витрати на маркетинг) / New Customers (Кількість нових клієнтів)</code></p>
+    </div></div>
+    <!-- дубль panel-term-romi, синхронізувати за потреби -->
+    <div class="detail-panel" id="panel-mon-romi"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>ROMI — Return on Marketing Investment</h3>
+      <p><strong>Категорії:</strong> Monetization</p>
+      <p><strong>Визначення:</strong> Рентабельність маркетингових інвестицій: скільки доходу компанія отримує з кожного вкладеного в маркетинг долара, з урахуванням усіх витрат.</p>
+      <p><strong>Формула:</strong> <code>ROMI (%) = (Revenue (Дохід) − Marketing Cost (Витрати на маркетинг)) / Marketing Cost (Витрати на маркетинг) × 100%</code></p>
+      <p><strong>Приклад (з розрахунку платної кампанії):</strong> (60 000 − 15 000) / 15 000 × 100% = 300% — кожен витрачений долар приносить 3 долари доходу; вище за цільове значення 200%, тому кампанія вважається прибутковою.</p>
+    </div></div>
+    <!-- дубль panel-term-roi, синхронізувати за потреби -->
+    <div class="detail-panel" id="panel-mon-roi"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>ROI — Return on Investment</h3>
+      <p><strong>Категорії:</strong> Monetization</p>
+      <p><strong>Визначення:</strong> Показник рентабельності інвестицій — загальна метрика прибутковості: скільки доходу компанія отримує з кожного вкладеного долара.</p>
+      <p><strong>Зв'язок з ROMI:</strong> у маркетингу використовується ROMI (Return on Marketing Investment) — той самий розрахунок, але лише для маркетингових інвестицій. Формулу див. у картці ROMI.</p>
+    </div></div>
 
     <div class="detail-panel" id="panel-mon-arppu"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>ARPPU — середній дохід на платного користувача</h3>
@@ -1873,6 +1943,12 @@
       <p>Відсоток користувачів, які зробили покупку всередині програми. Ключова метрика моделі In-App Purchases.</p>
       <p><strong>Формула:</strong> <code>Conversion rate (%) = Users Who Made a Purchase (Кількість користувачів, які зробили покупку) / Total Users (Загальна кількість користувачів) × 100%</code></p>
     </div></div>
+    <div class="detail-panel" id="panel-mon-conv-free-paid"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Conversion rate (free → paid) — конверсія у платну версію</h3>
+      <p>Відсоток безплатних користувачів, які перейшли на платну версію. Ключова метрика для Freemium-моделі та маркетплейсів із платними розширеннями.</p>
+      <p><strong>Формула:</strong> <code>Conversion rate (free → paid) (%) = Users Who Upgraded (Користувачі, які перейшли на платну версію) / Free Users (Загальна кількість безкоштовних користувачів) × 100%</code></p>
+      <p><strong>Приклад:</strong> 1000 безплатних користувачів, 50 перейшли на платну версію → 50 / 1000 × 100% = 5%.</p>
+    </div></div>
     <div class="detail-panel" id="panel-mon-avg-purchase-value"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Average purchase value — середня вартість покупки</h3>
       <p>Середня вартість покупки всередині програми — скільки в середньому витрачає користувач за одну покупку.</p>
@@ -1910,12 +1986,12 @@
         <tr><th>Модель</th><th>Ключові метрики</th></tr>
       </thead>
       <tbody>
-        <tr><td>Freemium</td><td>Conversion rate (free → paid), ARPU, Retention rate, Churn rate</td></tr>
-        <tr><td>Підписка</td><td>MRR, LTV, CAC, Churn rate</td></tr>
-        <tr><td>Реклама</td><td>Ad Impressions, CTR, eCPM, Engagement rate</td></tr>
-        <tr><td>In-App Purchases</td><td>ARPPU, Conversion rate (purchase), Average purchase value, Purchase frequency</td></tr>
-        <tr><td>Ліцензійна</td><td>ARR, Renewal rate, Retention rate, CAC</td></tr>
-        <tr><td>Комісійна</td><td>Take rate, GMV, Conversion rate, Average transaction value</td></tr>
+        <tr><td>Freemium</td><td>Conversion rate (free → paid), <a class="term-inline" data-detail="term-arpu">ARPU</a>, Retention rate, Churn rate</td></tr>
+        <tr><td>Підписка</td><td><a class="term-inline" data-detail="mon-mrr">MRR</a>, <a class="term-inline" data-detail="term-ltv">LTV</a>, <a class="term-inline" data-detail="term-cac">CAC</a>, Churn rate</td></tr>
+        <tr><td>Реклама</td><td>Ad Impressions, <a class="term-inline" data-detail="term-ctr">CTR</a>, <a class="term-inline" data-detail="mon-ecpm">eCPM</a>, Engagement rate</td></tr>
+        <tr><td>In-App Purchases</td><td><a class="term-inline" data-detail="mon-arppu">ARPPU</a>, Conversion rate (purchase), Average purchase value, Purchase frequency</td></tr>
+        <tr><td>Ліцензійна</td><td><a class="term-inline" data-detail="mon-arr">ARR</a>, Renewal rate, Retention rate, <a class="term-inline" data-detail="term-cac">CAC</a></td></tr>
+        <tr><td>Комісійна</td><td>Take rate, <a class="term-inline" data-detail="mon-gmv">GMV</a>, Conversion rate, Average transaction value</td></tr>
       </tbody>
     </table>
 
@@ -2103,9 +2179,9 @@
       <span class="scheme-num">08</span>
       <h2>Фреймворки аналізу продукту</h2>
     </div>
-    <p class="scheme-desc">Цей розділ — не ще один етап воронки, а <strong>інструментальна площина, що застосовується ПОВЕРХ метрик етапів вище</strong>: фреймворки не додають нових етапів життєвого циклу, а структурують ті самі дані картки (CAC, conversions, retention, ARPU, LTV) у системи для стратегічних рішень. Вони дають продуктовій, маркетинговій, аналітичній командам і менеджменту спільну мову для обговорення результатів.</p>
+    <p class="scheme-desc">Цей розділ — не ще один етап воронки, а <strong>інструментальна площина, що застосовується ПОВЕРХ метрик етапів вище</strong>: фреймворки не додають нових етапів життєвого циклу, а структурують ті самі дані картки (<a class="term-inline" data-detail="term-cac">CAC</a>, conversions, retention, <a class="term-inline" data-detail="term-arpu">ARPU</a>, <a class="term-inline" data-detail="term-ltv">LTV</a>) у системи для стратегічних рішень. Вони дають продуктовій, маркетинговій, аналітичній командам і менеджменту спільну мову для обговорення результатів.</p>
 
-    <p class="pipeline-context"><strong>Примітка про AARRR і пайплайн вище:</strong> AARRR у цьому джерелі — класична 5-етапна версія «Pirate Metrics» (Acquisition → Activation → Retention → Referral → Revenue). Це НЕ те саме, що 7-етапний пайплайн на сторінці вище, де окремо виділено Engagement, а Revenue названо Monetization. Зіставлення: <strong>Acquisition = Acquisition · Activation = Activation · (Engagement не виділено окремо) · Retention = Retention · Revenue = Monetization · Referral = Referral (немає окремого Churn)</strong>.</p>
+    <p class="pipeline-context"><strong>Примітка про <a class="term-inline" data-detail="fw-aarrr">AARRR</a> і пайплайн вище:</strong> AARRR у цьому джерелі — класична 5-етапна версія «Pirate Metrics» (Acquisition → Activation → Retention → Referral → Revenue). Це НЕ те саме, що 7-етапний пайплайн на сторінці вище, де окремо виділено Engagement, а Revenue названо Monetization. Зіставлення: <strong>Acquisition = Acquisition · Activation = Activation · (Engagement не виділено окремо) · Retention = Retention · Revenue = Monetization · Referral = Referral (немає окремого Churn)</strong>.</p>
 
     <h3 class="section-subhead">Директорія фреймворків</h3>
     <p class="section-subdesc">Шість продуктово-аналітичних фреймворків із джерела. Клікни на картку, щоб розкрити панель з визначенням, правилами застосування та прикладом.</p>
@@ -2128,11 +2204,11 @@
       </ul>
       <p><strong>Ключові метрики:</strong></p>
       <ul class="metric-list">
-        <li>Acquisition — нові користувачі, CAC, конверсія відвідувачів у користувачів.</li>
+        <li>Acquisition — нові користувачі, <a class="term-inline" data-detail="term-cac">CAC</a>, конверсія відвідувачів у користувачів.</li>
         <li>Activation — активація (частка тих, хто виконав першу цінну дію), час до активації.</li>
         <li>Retention — retention rate, сесії на користувача, час у продукті.</li>
         <li>Referral — реферали на користувача, конверсія рефералів.</li>
-        <li>Revenue — <code>ARPU = Revenue / Users</code>, CLV, частка платних користувачів.</li>
+        <li>Revenue — <code><a class="term-inline" data-detail="term-arpu">ARPU</a> = Revenue / Users</code>, <a class="term-inline" data-detail="b2b-sales-clv">CLV</a>, частка платних користувачів.</li>
       </ul>
       <p><strong>Приклад компанії:</strong> <strong>Dropbox</strong> — реєстрація (Acquisition) → завантаження першого файлу (Activation) → частота повернень (Retention) → додаткова пам'ять за запрошення друзів (Referral) → перехід на платні плани (Revenue).</p>
     </div></div>
@@ -2285,7 +2361,7 @@
       <p><strong>Чому підходить:</strong> для освітніх платформ важливо не лише залучати користувачів, а й забезпечувати результати навчання — завершені курси чи модулі показують цінність платформи.</p>
     </div></div>
 
-    <p class="pipeline-context"><strong>Зв'язок з картою вище:</strong> ці фреймворки не додають нових показників — вони перевикористовують метрики етапів 01–07: CAC і conversions (залучення), retention rate і cohort retention (утримання), ARPU і LTV (монетизація), NPS і viral coefficient (реферали).</p>
+    <p class="pipeline-context"><strong>Зв'язок з картою вище:</strong> ці фреймворки не додають нових показників — вони перевикористовують метрики етапів 01–07: <a class="term-inline" data-detail="term-cac">CAC</a> і conversions (залучення), retention rate і cohort retention (утримання), <a class="term-inline" data-detail="term-arpu">ARPU</a> і <a class="term-inline" data-detail="term-ltv">LTV</a> (монетизація), <a class="term-inline" data-detail="b2b-svc-nps">NPS</a> і viral coefficient (реферали).</p>
   </div>
 </section>
 
@@ -2296,7 +2372,7 @@
       <span class="scheme-num">09</span>
       <h2>B2B-метрики</h2>
     </div>
-    <p class="scheme-desc">B2B-метрики (business-to-business) — ключові показники ефективності компаній, що продають товари чи послуги іншим компаніям, а не кінцевим споживачам. Це не черговий етап B2C-воронки вище, а альтернативний бізнес-контекст з іншими акцентами: довший цикл угоди, менше клієнтів, а на перший план виходять метрики продажів і клієнтського сервісу, а не масові продуктові метрики (DAU/MAU).</p>
+    <p class="scheme-desc">B2B-метрики (business-to-business) — ключові показники ефективності компаній, що продають товари чи послуги іншим компаніям, а не кінцевим споживачам. Це не черговий етап B2C-воронки вище, а альтернативний бізнес-контекст з іншими акцентами: довший цикл угоди, менше клієнтів, а на перший план виходять метрики продажів і клієнтського сервісу, а не масові продуктові метрики (<a class="term-inline" data-detail="term-dau">DAU</a>/<a class="term-inline" data-detail="term-mau">MAU</a>).</p>
 
     <h3 class="section-subhead">B2B vs B2C: основні відмінності</h3>
       <p>B2B-компанії співпрацюють з іншими компаніями, надаючи товари чи послуги, що підтримують їхню діяльність. Саме тому акценти в метриках зміщуються:</p>
@@ -2327,9 +2403,9 @@
     <h3 class="section-subhead">Класифікація B2B-метрик</h3>
       <p>Чотири категорії, за якими групуються показники нижче:</p>
       <ul class="metric-list">
-        <li><strong>Метрики продажів</strong> — конверсії лідів у клієнтів, дохід за клієнта, CAC.</li>
-        <li><strong>Метрики маркетингу</strong> — ROI маркетингових кампаній, CPL, конверсія лідів у продажі.</li>
-        <li><strong>Метрики клієнтського обслуговування</strong> — CSAT / NPS, час відповіді.</li>
+        <li><strong>Метрики продажів</strong> — конверсії лідів у клієнтів, дохід за клієнта, <a class="term-inline" data-detail="term-cac">CAC</a>.</li>
+        <li><strong>Метрики маркетингу</strong> — <a class="term-inline" data-detail="term-roi">ROI</a> маркетингових кампаній, <a class="term-inline" data-detail="term-cpl">CPL</a>, конверсія лідів у продажі.</li>
+        <li><strong>Метрики клієнтського обслуговування</strong> — <a class="term-inline" data-detail="b2b-svc-csat">CSAT</a> / <a class="term-inline" data-detail="b2b-svc-nps">NPS</a>, час відповіді.</li>
         <li><strong>Метрики фінансової ефективності</strong> — валовий і чистий прибуток, операційна маржа.</li>
       </ul>
 
@@ -2507,12 +2583,13 @@
         <li><strong>Частота відгуків після підтримки</strong> — відсоток клієнтів, які надають відгук після взаємодії, і рівень їхньої задоволеності; допомагає залучати клієнтів у зворотний зв'язок.</li>
       </ul>
 
-    <p class="pipeline-context"><strong>Зв'язок з картою вище:</strong> ці картки доповнюють наявні CAC (розділ «Залучення»), LTV (розділ «Монетизація») і NPS (розділ «Рекомендації») у B2B-контексті: тут формули рахуються через угоди й тривалість співпраці, а не через масову базу користувачів. Тому відмінні формули LTV/CAC на сторінці — не суперечність, а усвідомлене доповнення для іншої бізнес-моделі.</p>
+    <p class="pipeline-context"><strong>Зв'язок з картою вище:</strong> ці картки доповнюють наявні <a class="term-inline" data-detail="term-cac">CAC</a> (розділ «Залучення»), <a class="term-inline" data-detail="term-ltv">LTV</a> (розділ «Монетизація») і <a class="term-inline" data-detail="b2b-svc-nps">NPS</a> (розділ «Рекомендації») у B2B-контексті: тут формули рахуються через угоди й тривалість співпраці, а не через масову базу користувачів. Тому відмінні формули LTV/CAC на сторінці — не суперечність, а усвідомлене доповнення для іншої бізнес-моделі.</p>
   </div>
 </section>
 
 <footer>
   Пайплайн продукт-маркетингових метрик · Acquisition → Activation → Engagement → Retention → Monetization → Referral → Churn
+  <br><a href="../index.html" target="_blank" rel="noopener noreferrer" style="color:var(--accent-teal);text-decoration:none">← Карта статистичного аналізу даних</a>
 </footer>
 
 <script>
@@ -2523,6 +2600,62 @@ document.querySelectorAll('.term-node').forEach(function(btn){
     return c.textContent.indexOf('/') !== -1;
   });
   if(hasFormula){ btn.classList.add('has-formula'); }
+});
+
+document.querySelectorAll('.term-inline').forEach(function(el){
+  el.addEventListener('click', function(event){
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    var id = el.getAttribute('data-detail');
+    var source = document.getElementById('panel-' + id);
+    var section = el.closest('section.scheme');
+    if(!source || !section) return;
+
+    /*
+     * Clicking the same inline metric a second time closes its already-open
+     * local detail panel. Clicking another metric replaces the previous one.
+     */
+    var currentPanel = section.querySelector('.context-generated-detail[data-source-detail="' + id + '"]');
+    if(currentPanel && el.classList.contains('active')){
+      currentPanel.remove();
+      el.classList.remove('active');
+      return;
+    }
+
+    /* Remove any previously generated inline detail panel in this section. */
+    section.querySelectorAll('.context-generated-detail').forEach(function(panel){
+      panel.remove();
+    });
+    section.querySelectorAll('.term-inline.active').forEach(function(item){
+      item.classList.remove('active');
+    });
+
+    /*
+     * Place the existing detail content directly after the meaningful
+     * content block containing the clicked metric:
+     * - after the whole table for metrics inside a table cell;
+     * - after the paragraph for inline metrics in prose;
+     * - after the list item for inline metrics inside a list.
+     */
+    var anchor = el.closest('table, p, li');
+    if(anchor && anchor.tagName === 'TD'){
+      anchor = anchor.closest('table');
+    }
+    if(!anchor) anchor = el.parentElement;
+
+    var clone = source.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.setAttribute('data-source-detail', id);
+    clone.classList.remove('open');
+    clone.classList.add('open', 'context-generated-detail');
+    clone.style.setProperty('width', '100%');
+    clone.style.setProperty('max-width', '100%');
+    clone.style.setProperty('box-sizing', 'border-box');
+
+    anchor.insertAdjacentElement('afterend', clone);
+    el.classList.add('active');
+  });
 });
 
 document.querySelectorAll('.node, .term-node, .clickable-heading').forEach(function(el){
