@@ -28,6 +28,8 @@
     --accent-red-bg:#F8E5E2;
     --accent-slate:#46586E;
     --accent-slate-bg:#E7EDF3;
+    --accent-indigo:#4A4E94;
+    --accent-indigo-bg:#ECEDF7;
     --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
   }
   *{box-sizing:border-box;}
@@ -413,6 +415,7 @@
       </svg>
     </div>
     <p class="hint">клікни на блок схеми</p>
+    <p class="pipeline-context">Нижче на сторінці ще два розділи: <strong>08 «Фреймворки аналізу продукту»</strong> — аналітичні методи, що застосовуються поверх цих метрик, і <strong>09 «B2B-метрики»</strong> — альтернативний контекст для продажів між бізнесами.</p>
 
     <div class="detail-panel" id="panel-pp-01"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
       <h3>1. Залучення (Acquisition)</h3>
@@ -453,14 +456,14 @@
         <li>Stickiness = DAU / MAU</li>
         <li>Session duration, session frequency, feature usage</li>
       </ul>
-      <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> залучена аудиторія. Наступний крок — <strong>етап 4</strong>: визначити, чи коридувач регулярно повертається (retention).</p>
+      <p class="pipeline-next">➡ <strong>Результат передаємо далі:</strong> залучена аудиторія. Наступний крок — <strong>етап 4</strong>: визначити, чи користувач регулярно повертається (retention).</p>
     </div></div>
 
     <div class="detail-panel" id="panel-pp-04"><div class="detail-inner" style="--detail-color:#A23A6B">
       <h3>4. Утримання (Retention)</h3>
-      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> завідчену аудиторію, яка взаємодіє з продуктом. <strong>Проблема:</strong> не зрозуміло, що саме утримує користувача та чи достатньо продукту цінності. <strong>Рішення:</strong> відстежуємо регулярність повернень і корисність функцій.</p>
+      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> залучену аудиторію, яка взаємодіє з продуктом. <strong>Проблема:</strong> не зрозуміло, що саме утримує користувача та чи достатньо продукту цінності. <strong>Рішення:</strong> відстежуємо регулярність повернень і корисність функцій.</p>
       <p>Це етап, коли користувач <strong>регулярно повертається</strong> до продукту і використовує його.</p>
-      <p>Хороші показаники утримання свідчать про <strong>високу цінність продукту</strong>.</p>
+      <p>Хороші показники утримання свідчать про <strong>високу цінність продукту</strong>.</p>
       <p><strong>Ключові метрики:</strong></p>
       <ul class="metric-list">
         <li>Retention rate — відсоток користувачів, які повертаються через певний час</li>
@@ -472,7 +475,7 @@
 
     <div class="detail-panel" id="panel-pp-05"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>5. Монетизація (Monetization)</h3>
-      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> утримання фер з високою цінністю продукту. <strong>Проблема:</strong> не зрозуміло, коли та за яких умов користучувачі готові платити. <strong>Рішення:</strong> відстежуємо момент та умови першої оплати, щоб створити вигідні пропозиції.</p>
+      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> аудиторію з високою цінністю продукту. <strong>Проблема:</strong> не зрозуміло, коли та за яких умов користувачі готові платити. <strong>Рішення:</strong> відстежуємо момент та умови першої оплати, щоб створити вигідні пропозиції.</p>
       <p>На цьому етапі користувачі починають приносити бізнесу дохід — <strong>покупка, передплата, користування преміум-функціями</strong>.</p>
       <p><strong>Ключові метрики:</strong></p>
       <ul class="metric-list">
@@ -500,12 +503,12 @@
 
     <div class="detail-panel" id="panel-pp-07"><div class="detail-inner" style="--detail-color:var(--accent-red)">
       <h3>7. Відтік (Churn)</h3>
-      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> дані користувачів з усіх попередніх етапів. <strong>Проблема:</strong> не зрозуміло, на якому етапі й чомуе користувачі покидють продукт. <strong>Рішення:</strong> аналізуємо відтік і розробляємо стратегії для його зниження.</p>
+      <p class="pipeline-context">📋 <strong>Що отримуємо:</strong> дані користувачів з усіх попередніх етапів. <strong>Проблема:</strong> не зрозуміло, на якому етапі й чому користувачі покидають продукт. <strong>Рішення:</strong> аналізуємо відтік і розробляємо стратегії для його зниження.</p>
       <p>На цьому етапі користувач <strong>припиняє використовувати продукт</strong>.</p>
       <p>Важливо розуміти, на якому етапі й чому відбувається відтік, щоб розробляти стратегії для його зниження.</p>
       <p><strong>Ключові метрики:</strong></p>
       <ul class="metric-list">
-        <li>Churn rate — відсоток користувачів, які перестали користуються</li>
+        <li>Churn rate — відсоток користувачів, які перестали користуватися</li>
         <li>Revenue churn — втрата доходу від відтоку</li>
         <li>Reason analysis — аналіз причин відтоку</li>
       </ul>
@@ -2283,6 +2286,228 @@
     </div></div>
 
     <p class="pipeline-context"><strong>Зв'язок з картою вище:</strong> ці фреймворки не додають нових показників — вони перевикористовують метрики етапів 01–07: CAC і conversions (залучення), retention rate і cohort retention (утримання), ARPU і LTV (монетизація), NPS і viral coefficient (реферали).</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 09: B2B-МЕТРИКИ ============ -->
+<section class="scheme" id="s9">
+  <div class="wrap">
+    <div class="scheme-head">
+      <span class="scheme-num">09</span>
+      <h2>B2B-метрики</h2>
+    </div>
+    <p class="scheme-desc">B2B-метрики (business-to-business) — ключові показники ефективності компаній, що продають товари чи послуги іншим компаніям, а не кінцевим споживачам. Це не черговий етап B2C-воронки вище, а альтернативний бізнес-контекст з іншими акцентами: довший цикл угоди, менше клієнтів, а на перший план виходять метрики продажів і клієнтського сервісу, а не масові продуктові метрики (DAU/MAU).</p>
+
+    <h3 class="section-subhead">B2B vs B2C: основні відмінності</h3>
+      <p>B2B-компанії співпрацюють з іншими компаніями, надаючи товари чи послуги, що підтримують їхню діяльність. Саме тому акценти в метриках зміщуються:</p>
+      <table class="dc-table">
+        <thead><tr><th>Аспект</th><th>Акцент у B2B</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Тривалість циклу продажів</strong></td><td>Довший цикл — метрики орієнтовані на довготривалі відносини, а не одноразові продажі.</td></tr>
+          <tr><td><strong>Вартість клієнта</strong></td><td>Залучення та утримання клієнтів дорожчі: складніша взаємодія, індивідуальний підхід у маркетингу та продажах.</td></tr>
+          <tr><td><strong>Відносини з клієнтами</strong></td><td>Ключові лояльність і довгострокове партнерство; фокус на сервісі та якості взаємодії.</td></tr>
+          <tr><td><strong>Кількість клієнтів</strong></td><td>Клієнтів значно менше — це компанії, з якими укладають договори на співпрацю.</td></tr>
+        </tbody>
+      </table>
+
+    <h3 class="section-subhead">Приклади B2B-компаній</h3>
+      <p>Хто саме продає між бізнесами — за галузями:</p>
+      <table class="dc-table">
+        <thead><tr><th>Галузь</th><th>Компанії</th><th>Що продають</th></tr></thead>
+        <tbody>
+          <tr><td>Технологічні компанії</td><td>Microsoft, Salesforce, SAP, Oracle</td><td>Хмарні рішення (Azure, Office 365), CRM/ERP-системи, бази даних та корпоративні послуги.</td></tr>
+          <tr><td>Маркетинг та реклама</td><td>HubSpot, Adobe, Mailchimp</td><td>Платформи для цифрового маркетингу, автоматизації email-кампаній і аналітики маркетингового контенту.</td></tr>
+          <tr><td>Логістика та транспорт</td><td>DHL Supply Chain, FedEx, Maersk</td><td>Логістичні послуги, експрес-доставка та морські перевезення для компаній.</td></tr>
+          <tr><td>Виробництво та постачання</td><td>Caterpillar, 3M, BASF</td><td>Важка техніка, промислові товари та хімікати для виробничих компаній.</td></tr>
+          <tr><td>Фінансові послуги</td><td>American Express Business, Stripe, Square</td><td>Бізнес-картки, платіжні платформи та фінансова аналітика для бізнесу.</td></tr>
+          <tr><td>Консалтинг</td><td>Deloitte, PwC, EY, KPMG, McKinsey, Accenture</td><td>Аудит, оподаткування, стратегічний та IT-консалтинг для корпорацій.</td></tr>
+        </tbody>
+      </table>
+
+    <h3 class="section-subhead">Класифікація B2B-метрик</h3>
+      <p>Чотири категорії, за якими групуються показники нижче:</p>
+      <ul class="metric-list">
+        <li><strong>Метрики продажів</strong> — конверсії лідів у клієнтів, дохід за клієнта, CAC.</li>
+        <li><strong>Метрики маркетингу</strong> — ROI маркетингових кампаній, CPL, конверсія лідів у продажі.</li>
+        <li><strong>Метрики клієнтського обслуговування</strong> — CSAT / NPS, час відповіді.</li>
+        <li><strong>Метрики фінансової ефективності</strong> — валовий і чистий прибуток, операційна маржа.</li>
+      </ul>
+
+    <h3 class="section-subhead">Детальні метрики: продажі та воронка</h3>
+      <p>Ключові показники, які відстежують на етапах воронки B2B-продажів:</p>
+      <div class="term-grid">
+        <button class="term-node" data-detail="b2b-sales-cac">CAC (B2B-контекст)</button>
+        <button class="term-node" data-detail="b2b-sales-ltv">LTV (варіант через угоди)</button>
+        <button class="term-node" data-detail="b2b-sales-clv">CLV</button>
+        <button class="term-node" data-detail="b2b-sales-conv">Конверсія на етапах</button>
+        <button class="term-node" data-detail="b2b-sales-mql-sql">MQL → SQL</button>
+        <button class="term-node" data-detail="b2b-sales-dropoff">Втрати лідів</button>
+      </div>
+
+      <div class="detail-panel" id="panel-b2b-sales-cac"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>CAC — Customer Acquisition Cost</h3>
+        <p><strong>Категорії:</strong> Метрики продажів.</p>
+        <p><strong>Визначення:</strong> Та сама формула, що в картці CAC у розділі «Залучення», але в B2B враховуються витрати і на маркетинг, і на продажі — бо взаємодія з компанією вимагає індивідуального підходу.</p>
+        <p><strong>Формула:</strong> <code>CAC = Витрати на маркетинг і продажі / Кількість залучених клієнтів</code></p>
+        <p><strong>Приклад:</strong> <code>$50,000 / 100 = $500</code></p>
+        <p><strong>Чому важливо:</strong> високий CAC свідчить про неефективну стратегію залучення або потребу оптимізувати воронку.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-sales-ltv"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>LTV — Lifetime Value (B2B-варіант)</h3>
+        <p><strong>Категорії:</strong> Метрики продажів.</p>
+        <p><strong>Визначення:</strong> Скільки доходу приносить один клієнт за весь період співпраці.</p>
+        <p><strong>Відмінність:</strong> У карті LTV вище рахується через масових користувачів: <code>LTV = ARPU × Період утримання</code> (розділ «Монетизація») або <code>LTV = AOV × Purchase Frequency × Lifespan</code> (розділ «Фреймворки»). Тут B2B-варіант рахується через угоди — усі три формули валідні, просто відповідають різним бізнес-контекстам.</p>
+        <p><strong>Формула:</strong> <code>LTV = Середній дохід на угоду × Середня кількість угод за час співпраці</code></p>
+        <p><strong>Деталізація:</strong> <code>LTV = (Загальний дохід / Кількість угод) × Середня кількість угод за час співпраці</code></p>
+        <p><strong>Приклад:</strong> <code>$1,000 × 5 = $5,000</code></p>
+        <p><strong>Чому важливо:</strong> LTV має бути значно вищим за CAC, інакше бізнес залучає клієнтів собі в збиток.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-sales-clv"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>CLV — Customer Lifetime Value</h3>
+        <p><strong>Категорії:</strong> Метрики продажів.</p>
+        <p><strong>Визначення:</strong> Прогнозована загальна сума доходу від одного клієнта за весь період його співпраці.</p>
+        <p><strong>Формула:</strong> <code>CLV = Середній розмір угоди (за міс./рік) × Середня тривалість співпраці (у міс./роках)</code></p>
+        <p><strong>Чому важливо:</strong> допомагає оцінити, скільки компанія може витратити на залучення та утримання клієнта, зберігаючи прибутковість.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-sales-conv"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>Конверсія на етапах воронки продажів</h3>
+        <p><strong>Категорії:</strong> Метрики продажів.</p>
+        <p><strong>Визначення:</strong> Відсоток лідів, які переходять з одного етапу воронки на наступний.</p>
+        <p><strong>Формула:</strong> <code>Конверсія (%) = Кількість переходів на наступний етап / Кількість лідів на поточному етапі × 100%</code></p>
+        <p><strong>Приклад:</strong> <code>200 лідів → 50 перейшли = 25%</code></p>
+        <p><strong>Чому важливо:</strong> допомагає знайти «вузькі місця» воронки та цілеспрямовано їх оптимізувати.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-sales-mql-sql"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>MQL → SQL — якість лідів</h3>
+        <p><strong>Категорії:</strong> Метрики продажів і маркетингу.</p>
+        <p><strong>MQL (marketing qualified lead):</strong> лід, який відповідає маркетинговим критеріям і є потенційним клієнтом.</p>
+        <p><strong>SQL (sales qualified lead):</strong> лід, який вважається перспективним з точки зору продажів і має високу ймовірність стати клієнтом.</p>
+        <p><strong>Чому важливо:</strong> співвідношення MQL/SQL показує, наскільки добре маркетинг генерує якісні ліди, і допомагає правильно організувати передачу лідів у відділ продажів.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-sales-dropoff"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>Втрати лідів (Lead Drop-off)</h3>
+        <p><strong>Категорії:</strong> Метрики продажів.</p>
+        <p><strong>Визначення:</strong> Частка лідів, які випадають з воронки на конкретному етапі, не доходячи до наступного.</p>
+        <p><strong>Формула:</strong> <code>Втрати лідів (%) = Кількість втрачених лідів / Кількість лідів на етапі × 100%</code></p>
+        <p><strong>Чому важливо:</strong> показує, на якому етапі процес продажів потребує вдосконалення.</p>
+      </div></div>
+
+    <h3 class="section-subhead">Показники відділу продажів</h3>
+      <p>Метрики роботи окремих менеджерів і команди загалом:</p>
+      <div class="term-grid">
+        <button class="term-node" data-detail="b2b-team-avgdeal">Середній обсяг угоди</button>
+        <button class="term-node" data-detail="b2b-team-cycle">Середній цикл продажів</button>
+        <button class="term-node" data-detail="b2b-team-winrate">Win rate</button>
+      </div>
+
+      <div class="detail-panel" id="panel-b2b-team-avgdeal"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>Середній обсяг угоди</h3>
+        <p><strong>Категорії:</strong> Показники відділу продажів.</p>
+        <p><strong>Визначення:</strong> Середня вартість однієї закритої угоди.</p>
+        <p><strong>Формула:</strong> <code>Середній обсяг угоди = Загальний дохід / Кількість угод</code></p>
+        <p><strong>Чому важливо:</strong> показує основні джерела прибутку та ефективність продажів у розрізі клієнтів або груп.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-team-cycle"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>Середній цикл продажів</h3>
+        <p><strong>Категорії:</strong> Показники відділу продажів.</p>
+        <p><strong>Визначення:</strong> Середній час від першого контакту з лідом до закриття угоди.</p>
+        <p><strong>Формула:</strong> <code>Середній цикл продажів = Сума всіх циклів продажів / Кількість угод</code></p>
+        <p><strong>Чому важливо:</strong> допомагає зрозуміти, наскільки процес продажів можна прискорити.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-team-winrate"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>Win rate (% успішних угод)</h3>
+        <p><strong>Категорії:</strong> Показники відділу продажів.</p>
+        <p><strong>Визначення:</strong> Відсоток угод, які вдалося успішно закрити.</p>
+        <p><strong>Формула:</strong> <code>Win rate (%) = Кількість успішних угод / Загальна кількість угод × 100%</code></p>
+        <p><strong>Чому важливо:</strong> оцінює ефективність стратегії продажів і показує, скільки лідів потрібно для досягнення цільових продажів.</p>
+      </div></div>
+
+    <h3 class="section-subhead">Метрики обслуговування та задоволеності</h3>
+      <p>Показники якості підтримки та лояльності B2B-клієнтів:</p>
+      <div class="term-grid">
+        <button class="term-node" data-detail="b2b-svc-frt">FRT</button>
+        <button class="term-node" data-detail="b2b-svc-art">ART</button>
+        <button class="term-node" data-detail="b2b-svc-fcr">FCR</button>
+        <button class="term-node" data-detail="b2b-svc-tickets">Звернення на клієнта</button>
+        <button class="term-node" data-detail="b2b-svc-csat">CSAT</button>
+        <button class="term-node" data-detail="b2b-svc-nps">NPS</button>
+        <button class="term-node" data-detail="b2b-svc-ces">CES</button>
+      </div>
+
+      <div class="detail-panel" id="panel-b2b-svc-frt"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>FRT — First Response Time</h3>
+        <p><strong>Категорії:</strong> Клієнтське обслуговування.</p>
+        <p><strong>Визначення:</strong> Час від запиту клієнта до першої відповіді служби підтримки.</p>
+        <p><strong>Формула:</strong> <code>Середній час відповіді = Сума часу для всіх запитів / Кількість запитів</code></p>
+        <p><strong>Чому важливо:</strong> клієнти цінують швидку реакцію — менший час відповіді підвищує задоволеність.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-svc-art"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>ART — Average Resolution Time</h3>
+        <p><strong>Категорії:</strong> Клієнтське обслуговування.</p>
+        <p><strong>Визначення:</strong> Середній час, потрібний для повного розв'язання звернення клієнта.</p>
+        <p><strong>Формула:</strong> <code>Середній час розв'язання = Сума часу для всіх звернень / Кількість звернень</code></p>
+        <p><strong>Чому важливо:</strong> швидке розв'язання проблем сприяє лояльності клієнтів.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-svc-fcr"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>FCR — First Contact Resolution</h3>
+        <p><strong>Категорії:</strong> Клієнтське обслуговування.</p>
+        <p><strong>Визначення:</strong> Відсоток звернень, розв'язаних під час першого контакту, без повторних звернень.</p>
+        <p><strong>Формула:</strong> <code>FCR (%) = Звернення, розв'язані за перший контакт / Загальна кількість звернень × 100%</code></p>
+        <p><strong>Чому важливо:</strong> високий FCR знижує кількість повторних запитів і витрати на підтримку.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-svc-tickets"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>Кількість звернень на клієнта</h3>
+        <p><strong>Категорії:</strong> Клієнтське обслуговування.</p>
+        <p><strong>Визначення:</strong> Середня частота, з якою клієнт звертається до підтримки.</p>
+        <p><strong>Формула:</strong> <code>Звернень на клієнта = Загальна кількість звернень / Кількість клієнтів</code></p>
+        <p><strong>Чому важливо:</strong> висока частота звернень може вказувати на проблеми з продуктом або якістю обслуговування.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-svc-csat"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>CSAT — Customer Satisfaction Score</h3>
+        <p><strong>Категорії:</strong> Клієнтське обслуговування.</p>
+        <p><strong>Визначення:</strong> Оцінка задоволеності клієнта конкретною взаємодією або обслуговуванням загалом; вимірюється опитуванням після кожного звернення за шкалою 1–5.</p>
+        <p><strong>Формула:</strong> <code>CSAT = Сума оцінок задоволеності / Кількість респондентів × 100%</code></p>
+        <p><strong>Чому важливо:</strong> високий CSAT свідчить про задоволеність, що підтримує лояльність і продовження співпраці.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-svc-nps"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>NPS — Net Promoter Score</h3>
+        <p><strong>Категорії:</strong> Клієнтське обслуговування / лояльність.</p>
+        <p><strong>Визначення:</strong> Готовність клієнта рекомендувати компанію іншим; вимірюється на шкалі 0–10.</p>
+        <p><strong>Поділ респондентів:</strong> <code>прихильники (9–10) · нейтрали (7–8) · критики (0–6)</code></p>
+        <p><strong>Формула:</strong> <code>NPS = % прихильників − % критиків</code> (нейтрали не враховуються)</p>
+        <p><strong>Розгорнуто:</strong> <code>NPS = (Прихильники / Опитані × 100%) − (Критики / Опитані × 100%)</code></p>
+        <p><strong>Чому важливо:</strong> оцінює загальну лояльність і ймовірність рекомендацій у B2B-середовищі.</p>
+      </div></div>
+
+      <div class="detail-panel" id="panel-b2b-svc-ces"><div class="detail-inner" style="--detail-color:var(--accent-indigo)">
+        <h3>CES — Customer Effort Score</h3>
+        <p><strong>Категорії:</strong> Клієнтське обслуговування.</p>
+        <p><strong>Визначення:</strong> Оцінка того, наскільки легко клієнту було взаємодіяти з компанією або розв'язати свою проблему; вимірюється за шкалою 1–7.</p>
+        <p><strong>Інтерпретація:</strong> чим менше зусиль доклав клієнт, тим краще — високий CES означає, що процеси й підтримка працюють без тертя.</p>
+        <p><strong>Чому важливо:</strong> допомагає виявити проблемні процеси, які змушують клієнта докладати зайві зусилля та підвищують ризик відтоку.</p>
+      </div></div>
+
+    <h3 class="section-subhead">Аналіз зворотного зв'язку</h3>
+      <p>Процеси, які допомагають перетворити відгуки клієнтів на дії, а не просто їх зібрати:</p>
+      <ul class="metric-list">
+        <li><strong>Аналіз відгуків клієнтів</strong> — збір і аналіз відгуків (опитування, відгуки на сайті, коментарі в соцмережах) для виявлення сильних сторін і недоліків підтримки.</li>
+        <li><strong>Аналіз негативного зворотного зв'язку</strong> — виявлення системних проблем, оперативне реагування та запобігання повторним ситуаціям.</li>
+        <li><strong>Частота відгуків після підтримки</strong> — відсоток клієнтів, які надають відгук після взаємодії, і рівень їхньої задоволеності; допомагає залучати клієнтів у зворотний зв'язок.</li>
+      </ul>
+
+    <p class="pipeline-context"><strong>Зв'язок з картою вище:</strong> ці картки доповнюють наявні CAC (розділ «Залучення»), LTV (розділ «Монетизація») і NPS (розділ «Рекомендації») у B2B-контексті: тут формули рахуються через угоди й тривалість співпраці, а не через масову базу користувачів. Тому відмінні формули LTV/CAC на сторінці — не суперечність, а усвідомлене доповнення для іншої бізнес-моделі.</p>
   </div>
 </section>
 
