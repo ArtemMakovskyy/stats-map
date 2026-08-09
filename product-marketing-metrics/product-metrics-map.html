@@ -1252,7 +1252,7 @@
       <h3>Referral LTV — LTV від реферальних користувачів</h3>
       <p><strong>Категорії:</strong> Referral · Monetization</p>
       <p><strong>Визначення:</strong> Середня цінність життєвого циклу користувачів, які прийшли через рефералів, порівняно з іншими каналами.</p>
-      <p><strong>Формула:</strong> <code>Referral LTV = AOV (Середній чек) × Purchase Frequency (Частота покупок) × Lifespan (Тривалість взаємодії)</code> — розрахунок виконується лише для користувачів, які прийшли через рефералів.</p>
+      <p>Це LTV (розрахунок — за формулою <code>LTV = ARPU × Середній період утримання користувача</code>), обчислений лише для користувачів, які прийшли через рефералів. Окремої формули в матеріалі для цієї метрики немає — лише порівняльний опис.</p>
     </div></div>
     <div class="detail-panel" id="panel-term-referral-cost"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
       <h3>Витрати на реферальну програму</h3>
@@ -1411,7 +1411,9 @@
       <h3>LTV — Lifetime Value</h3>
       <p><strong>Категорії:</strong> Monetization</p>
       <p><strong>Визначення:</strong> Довічна цінність клієнта — очікувана загальна вартість клієнта за весь час його взаємодії з продуктом.</p>
-      <p><strong>Формула:</strong> <code>LTV = AOV (Середній чек) × Purchase Frequency (Частота покупок) × Customer Lifespan (Тривалість взаємодії)</code></p>
+      <p><strong>Формула:</strong> <code>LTV = ARPU (Середній дохід на користувача) × Середній період утримання користувача (в місяцях/роках)</code></p>
+      <p><strong>Приклад:</strong> <code>ARPU $2 × 12 міс. = LTV $24</code> — якщо середній ARPU дорівнює $2 на місяць, а користувач у середньому взаємодіє з продуктом 12 місяців.</p>
+      <p><strong>Альтернативна деталізована формула:</strong> <code>LTV = AOV (Середній чек) × Purchase Frequency (Частота покупок) × Customer Lifespan (Тривалість взаємодії)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-aov"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
       <h3>AOV — Average Order Value</h3>
@@ -1822,6 +1824,11 @@
       <button class="term-node" data-detail="mon-ecpm">eCPM</button>
       <button class="term-node" data-detail="mon-gmv">GMV</button>
       <button class="term-node" data-detail="mon-take-rate">Take rate</button>
+      <button class="term-node" data-detail="mon-conv-purchase">Conversion rate (purchase)</button>
+      <button class="term-node" data-detail="mon-avg-purchase-value">Average purchase value</button>
+      <button class="term-node" data-detail="mon-purchase-frequency">Purchase frequency</button>
+      <button class="term-node" data-detail="mon-renewal-rate">Renewal rate</button>
+      <button class="term-node" data-detail="mon-avg-transaction-value">Average transaction value</button>
     </div>
 
     <div class="detail-panel" id="panel-mon-arppu"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
@@ -1855,6 +1862,31 @@
       <h3>Take rate — частка комісії платформи</h3>
       <p>Середня комісія, яку компанія отримує від кожної транзакції на маркетплейсі.</p>
       <p><strong>Формула:</strong> <code>Take rate (%) = Commission Revenue (Дохід від комісій) / GMV (Загальний обсяг транзакцій) × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-mon-conv-purchase"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Conversion rate (purchase) — конверсія у покупку</h3>
+      <p>Відсоток користувачів, які зробили покупку всередині програми. Ключова метрика моделі In-App Purchases.</p>
+      <p><strong>Формула:</strong> <code>Conversion rate (%) = Users Who Made a Purchase (Кількість користувачів, які зробили покупку) / Total Users (Загальна кількість користувачів) × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-mon-avg-purchase-value"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Average purchase value — середня вартість покупки</h3>
+      <p>Середня вартість покупки всередині програми — скільки в середньому витрачає користувач за одну покупку.</p>
+      <p><strong>Формула:</strong> <code>Average purchase value = Total Purchase Revenue (Загальний дохід від покупок) / Number of Purchases (Кількість покупок)</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-mon-purchase-frequency"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Purchase frequency — частота покупок</h3>
+      <p>Частота покупок серед користувачів, які вже зробили покупку. Ключова метрика моделі In-App Purchases.</p>
+      <p><strong>Формула:</strong> <code>Purchase frequency = Number of Purchases (Кількість покупок) / Users Who Made Purchases (Кількість користувачів, які зробили покупки)</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-mon-renewal-rate"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Renewal rate — частка оновлень ліцензії</h3>
+      <p>Частка користувачів, які оновили ліцензію після завершення терміну. Ключова метрика ліцензійної моделі.</p>
+      <p><strong>Формула:</strong> <code>Renewal rate (%) = Users Who Renewed (Кількість користувачів, які оновили ліцензію) / Users Whose License Expired (Кількість користувачів, чия ліцензія закінчилась) × 100%</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-mon-avg-transaction-value"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Average transaction value — середня вартість транзакції</h3>
+      <p>Середня вартість однієї транзакції на платформі. Ключова метрика комісійної моделі.</p>
+      <p><strong>Формула:</strong> <code>Average transaction value = Total Transaction Volume (Загальний обсяг транзакцій) / Number of Transactions (Кількість транзакцій)</code></p>
     </div></div>
 
     <h3 class="section-subhead">Як обрати модель монетизації?</h3>
