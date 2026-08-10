@@ -293,6 +293,16 @@
     box-shadow:0 0 0 2px var(--accent-teal-bg), inset 0 0 0 1px var(--accent-teal);
     font-weight:600;
   }
+  .term-node-overview{
+    border-color:var(--accent-teal);
+    background:var(--accent-teal-bg);
+    color:var(--accent-teal);
+  }
+  .term-node-overview.active{
+    background:var(--accent-teal);
+    color:#fff;
+    box-shadow:0 0 0 2px var(--accent-teal-bg), inset 0 0 0 1px var(--accent-teal);
+  }
 
   .term-inline{
     font-family:var(--mono);
@@ -1785,6 +1795,10 @@
     <h3 class="section-subhead">Моделі монетизації</h3>
     <p class="section-subdesc">Шість класичних моделей: обирай відповідно до типу продукту, аудиторії та потреби в стабільному доході.</p>
     <div class="term-grid">
+      <button class="term-node term-node-overview" data-detail="mon-models-common">Що спільного?</button>
+      <button class="term-node term-node-overview" data-detail="mon-models-diff">У чому різниця?</button>
+      <button class="term-node term-node-overview" data-detail="mon-models-how-to-choose">Як обрати?</button>
+      <button class="term-node term-node-overview" data-detail="mon-models-metrics">Аналітика й ризики</button>
       <button class="term-node" data-detail="mon-freemium">Freemium</button>
       <button class="term-node" data-detail="mon-subscription">Підписка (Subscription)</button>
       <button class="term-node" data-detail="mon-ads">Реклама (Ad-Supported)</button>
@@ -1834,6 +1848,77 @@
       <p><strong>Переваги:</strong> гнучкість у наданні сервісів; контент генерують користувачі, тож нема потреби постійно його оновлювати.</p>
       <p><strong>Недоліки:</strong> сильна залежність від кількості та якості пропозицій на платформі; потрібен постійний моніторинг для уникнення шахрайства.</p>
       <p><strong>Коли обирати?</strong> Маркетплейси, агрегатори, сервіси бронювання.</p>
+    </div></div>
+
+    <div class="detail-panel" id="panel-mon-models-common"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Що спільного між моделями монетизації</h3>
+      <p>Попри різні механізми оплати, усі моделі спираються на спільні принципи перетворення цінності продукту на дохід.</p>
+      <table class="dc-table">
+        <thead>
+          <tr><th>Спільна характеристика</th><th>Як проявляється</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Мета</td><td>Перетворити використання продукту або транзакційну активність на дохід</td></tr>
+          <tr><td>Потреба в цінності</td><td>Користувач або інша сторона повинна отримувати достатню цінність, щоб модель працювала</td></tr>
+          <tr><td>Конверсія та утримання</td><td>Потрібно перетворити частину аудиторії/активності в дохід і втримати цю базу</td></tr>
+          <tr><td>Економіка</td><td>Отриманий дохід слід співвідносити з витратами на залучення та обслуговування</td></tr>
+          <tr><td>Оптимізація</td><td>Модель можна змінювати на основі поведінки користувачів і фінансових результатів</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+
+    <div class="detail-panel" id="panel-mon-models-diff"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>У чому різниця між моделями монетизації</h3>
+      <p>Порівняння показує, хто саме платить, за що та як формується дохід у кожній моделі.</p>
+      <table class="dc-table">
+        <thead>
+          <tr><th>Модель</th><th>Хто платить</th><th>За що платять</th><th>Як формується дохід</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Freemium</td><td>Частина користувачів</td><td>Преміум-функції / платний рівень</td><td>Безкоштовна аудиторія → частина переходить у платну</td></tr>
+          <tr><td>Subscription</td><td>Користувач / компанія</td><td>Регулярний доступ</td><td>Повторювані платежі за період</td></tr>
+          <tr><td>Ad-Supported</td><td>Рекламодавець</td><td>Доступ до аудиторії</td><td>Покази, кліки або інші рекламні дії</td></tr>
+          <tr><td>In-App Purchases</td><td>Користувач</td><td>Окремі товари, функції або контент</td><td>Окремі транзакції всередині продукту</td></tr>
+          <tr><td>Licensing</td><td>Користувач / компанія</td><td>Право використання ПЗ</td><td>Продаж або продовження ліцензій</td></tr>
+          <tr><td>Commission</td><td>Учасник транзакції</td><td>Посередницька / платформна послуга</td><td>Комісія з кожної транзакції</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+
+    <!-- таблиця "Як обрати модель монетизації?" (розділ 05) -->
+    <div class="detail-panel" id="panel-mon-models-how-to-choose"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Як обрати модель монетизації?</h3>
+      <p>Враховуй п'ять ключових факторів:</p>
+      <table class="dc-table">
+        <thead>
+          <tr><th>Фактор</th><th>Як впливає на вибір моделі</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Тип продукту і призначення</td><td>SaaS — частіше підписка; ігри — In-App Purchases</td></tr>
+          <tr><td>Звички користувачів</td><td>Платоспроможна аудиторія — преміальні підписки; масова — модель із рекламою</td></tr>
+          <tr><td>Конкурентний ландшафт</td><td>Якщо конкуренти дають безплатну базу, складно монетизувати продукт лише платними підписками</td></tr>
+          <tr><td>Тривалість взаємодії</td><td>Часті повернення — підписка; епізодична взаємодія — In-App Purchases</td></tr>
+          <tr><td>Потреба у стабільному доході</td><td>Підписка або ліцензійна модель — кращий вибір проти разової покупки</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+
+    <div class="detail-panel" id="panel-mon-models-metrics"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Аналітика й ризики по кожній моделі</h3>
+      <p>Що вимірювати насамперед і який ризик є характерним для кожної моделі монетизації.</p>
+      <table class="dc-table">
+        <thead>
+          <tr><th>Модель</th><th>Що насамперед вимірювати</th><th>Характерний ризик</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Freemium</td><td>Conversion free → paid, <a class="term-inline" data-detail="term-arpu">ARPU</a>, <a class="term-inline" data-detail="term-retention-rate">Retention</a>, <a class="term-inline" data-detail="term-churn-rate">Churn</a></td><td>Велика безкоштовна база, але низька конверсія в оплату</td></tr>
+          <tr><td>Subscription</td><td><a class="term-inline" data-detail="mon-mrr">MRR</a>, <a class="term-inline" data-detail="term-ltv">LTV</a>, <a class="term-inline" data-detail="term-cac">CAC</a>, <a class="term-inline" data-detail="term-churn-rate">Churn</a>, <a class="term-inline" data-detail="mon-renewal-rate">Renewal Rate</a></td><td>Високий відтік платних користувачів</td></tr>
+          <tr><td>Ad-Supported</td><td>Ad Impressions, <a class="term-inline" data-detail="term-ctr">CTR</a>, <a class="term-inline" data-detail="mon-ecpm">eCPM</a>, <a class="term-inline" data-detail="term-engagement-rate">Engagement Rate</a></td><td>Низька рекламна монетизація або недостатній трафік</td></tr>
+          <tr><td>In-App Purchases</td><td><a class="term-inline" data-detail="mon-arppu">ARPPU</a>, Purchase Conversion, Average Purchase Value, Purchase Frequency</td><td>Мала частка платників або низька частота покупок</td></tr>
+          <tr><td>Licensing</td><td><a class="term-inline" data-detail="mon-arr">ARR</a>, <a class="term-inline" data-detail="mon-renewal-rate">Renewal Rate</a>, <a class="term-inline" data-detail="term-retention-rate">Retention</a>, <a class="term-inline" data-detail="term-cac">CAC</a></td><td>Низьке продовження ліцензій або висока вартість залучення клієнта</td></tr>
+          <tr><td>Commission</td><td><a class="term-inline" data-detail="mon-gmv">GMV</a>, <a class="term-inline" data-detail="mon-take-rate">Take Rate</a>, Conversion Rate, Average Transaction Value</td><td>Залежність від обсягу й якості пропозицій на платформі</td></tr>
+        </tbody>
+      </table>
     </div></div>
 
     <h3 class="section-subhead">Метрики монетизації</h3>
@@ -1969,31 +2054,6 @@
       <p>Середня вартість однієї транзакції на платформі. Ключова метрика комісійної моделі.</p>
       <p><strong>Формула:</strong> <code>Average transaction value = Total Transaction Volume (Загальний обсяг транзакцій) / Number of Transactions (Кількість транзакцій)</code></p>
     </div></div>
-
-    <h3 class="section-subhead">Як обрати модель монетизації?</h3>
-    <p class="section-subdesc">Враховуй п'ять ключових факторів:</p>
-    <ul class="metric-list">
-      <li><strong>Тип продукту і призначення.</strong> SaaS — частіше підписка; ігри — In-App Purchases.</li>
-      <li><strong>Звички користувачів.</strong> Платоспроможна аудиторія — преміальні підписки; масова — модель із рекламою.</li>
-      <li><strong>Конкурентний ландшафт.</strong> Якщо конкуренти дають безплатну базу, складно монетизувати продукт лише платними підписками.</li>
-      <li><strong>Тривалість взаємодії.</strong> Часті повернення — підписка; епізодична взаємодія — In-App Purchases.</li>
-      <li><strong>Потреба у стабільному доході.</strong> Підписка або ліцензійна модель — кращий вибір проти разової покупки.</li>
-    </ul>
-
-    <h3 class="section-subhead">Приклади метрик для кожної моделі</h3>
-    <table class="dc-table">
-      <thead>
-        <tr><th>Модель</th><th>Ключові метрики</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Freemium</td><td>Conversion rate (free → paid), <a class="term-inline" data-detail="term-arpu">ARPU</a>, Retention rate, Churn rate</td></tr>
-        <tr><td>Підписка</td><td><a class="term-inline" data-detail="mon-mrr">MRR</a>, <a class="term-inline" data-detail="term-ltv">LTV</a>, <a class="term-inline" data-detail="term-cac">CAC</a>, Churn rate</td></tr>
-        <tr><td>Реклама</td><td>Ad Impressions, <a class="term-inline" data-detail="term-ctr">CTR</a>, <a class="term-inline" data-detail="mon-ecpm">eCPM</a>, Engagement rate</td></tr>
-        <tr><td>In-App Purchases</td><td><a class="term-inline" data-detail="mon-arppu">ARPPU</a>, Conversion rate (purchase), Average purchase value, Purchase frequency</td></tr>
-        <tr><td>Ліцензійна</td><td><a class="term-inline" data-detail="mon-arr">ARR</a>, Renewal rate, Retention rate, <a class="term-inline" data-detail="term-cac">CAC</a></td></tr>
-        <tr><td>Комісійна</td><td>Take rate, <a class="term-inline" data-detail="mon-gmv">GMV</a>, Conversion rate, Average transaction value</td></tr>
-      </tbody>
-    </table>
 
     <h3 class="section-subhead">Правові та етичні аспекти монетизації</h3>
     <p class="section-subdesc">Дотримання конфіденційності та прозорості — це не лише вимога закону, а й підвалина довіри до бренду.</p>
