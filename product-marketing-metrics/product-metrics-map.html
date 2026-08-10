@@ -28,6 +28,8 @@
     --accent-red-bg:#F8E5E2;
     --accent-slate:#46586E;
     --accent-slate-bg:#E7EDF3;
+    --accent-sky:#4A97C8;
+    --accent-sky-bg:#E3F1F8;
     --accent-indigo:#4A4E94;
     --accent-indigo-bg:#ECEDF7;
     --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
@@ -294,15 +296,26 @@
     font-weight:600;
   }
   .term-node-overview{
-    border-color:var(--accent-teal);
-    background:var(--accent-teal-bg);
-    color:var(--accent-teal);
+    border-color:var(--line);
+    background:#fff;
+    color:var(--ink-soft);
   }
+  .term-node-overview:hover{border-color:var(--accent-teal); background:var(--accent-teal-bg); color:var(--accent-teal);}
   .term-node-overview.active{
     background:var(--accent-teal);
     color:#fff;
+    border-color:var(--accent-teal);
     box-shadow:0 0 0 2px var(--accent-teal-bg), inset 0 0 0 1px var(--accent-teal);
   }
+  .model-freemium{border-color:var(--accent-teal); background:color-mix(in srgb, var(--accent-teal) 55%, #fff); box-shadow:inset 0 0 0 1px var(--accent-teal);}
+  .model-subscription{border-color:var(--accent-blue); background:color-mix(in srgb, var(--accent-blue) 55%, #fff); box-shadow:inset 0 0 0 1px var(--accent-blue);}
+  .model-ads{border-color:var(--accent-amber); background:color-mix(in srgb, var(--accent-amber) 55%, #fff); box-shadow:inset 0 0 0 1px var(--accent-amber);}
+  .model-inapp{border-color:var(--accent-purple); background:color-mix(in srgb, var(--accent-purple) 55%, #fff); box-shadow:inset 0 0 0 1px var(--accent-purple);}
+  .model-license{border-color:var(--accent-sky); background:color-mix(in srgb, var(--accent-sky) 55%, #fff); box-shadow:inset 0 0 0 1px var(--accent-sky);}
+  .model-commission{border-color:var(--accent-red); background:color-mix(in srgb, var(--accent-red) 55%, #fff); box-shadow:inset 0 0 0 1px var(--accent-red);}
+  .model-freemium-subscription{background:linear-gradient(90deg, color-mix(in srgb, var(--accent-teal) 55%, #fff) 50%, color-mix(in srgb, var(--accent-blue) 55%, #fff) 50%); box-shadow:inset 0 0 0 1px var(--accent-slate);}
+  .model-freemium-license{background:linear-gradient(90deg, color-mix(in srgb, var(--accent-teal) 55%, #fff) 50%, color-mix(in srgb, var(--accent-sky) 55%, #fff) 50%); box-shadow:inset 0 0 0 1px var(--accent-sky);}
+  .model-subscription-license{background:linear-gradient(90deg, color-mix(in srgb, var(--accent-blue) 55%, #fff) 50%, color-mix(in srgb, var(--accent-sky) 55%, #fff) 50%); box-shadow:inset 0 0 0 1px var(--accent-sky);}
 
   .term-inline{
     font-family:var(--mono);
@@ -734,6 +747,7 @@
     <div class="detail-panel" id="panel-term-ctr"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
       <h3>CTR — Click-Through Rate</h3>
       <p><strong>Категорії:</strong> SEO · Email · Paid · Content</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-ads">Реклама (Ad-Supported)</a></p>
       <p><strong>Визначення:</strong> Відсоток кліків від кількості показів. Показує, наскільки оголошення, посилання чи публікація привертає увагу. Формула залежить від каналу.</p>
       <p><strong>Paid / SEO:</strong> <code>CTR (%) = Clicks (Кількість кліків) / Impressions (Кількість показів) × 100%</code></p>
       <p><strong>Email:</strong> <code>CTR (%) = Clicks (Кількість кліків) / Delivered Emails (Кількість доставлених листів) × 100%</code></p>
@@ -757,6 +771,7 @@
     <div class="detail-panel" id="panel-term-engagement-rate"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
       <h3>Engagement rate — Показник взаємодії</h3>
       <p><strong>Категорії:</strong> Paid · Email · Content</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-ads">Реклама (Ad-Supported)</a></p>
       <p><strong>Визначення:</strong> Показник взаємодії з контентом. Визначення та формула залежать від каналу: для реклами — частка взаємодій щодо показів; для імейлу — оцінка залученості підписників.</p>
       <p><strong>Advertising / Content:</strong> <code>Engagement rate (%) = Engagements (Кількість взаємодій) / Impressions (Кількість показів) × 100%</code> — лайки, коментарі, поширення щодо показів або охоплення.</p>
       <p><strong>Email:</strong> Рівень зацікавленості (engagement rate) — загальна оцінка залученості підписників до листів; обчислюється комбінацією Open rate, CTR і CTOR.</p>
@@ -795,6 +810,7 @@
     <div class="detail-panel" id="panel-term-impressions"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
       <h3>Impressions — Покази</h3>
       <p><strong>Категорії:</strong> Paid · SEO · Content</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-ads">Реклама (Ad-Supported)</a></p>
       <p><strong>Визначення:</strong> Кількість разів, коли оголошення чи сторінку сайту показали користувачам. Початкова метрика охоплення, з якої рахуються CTR і CPC.</p>
     </div></div>
     <div class="detail-panel" id="panel-term-clicks"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
@@ -1402,12 +1418,14 @@
     <div class="detail-panel" id="panel-term-retention-rate"><div class="detail-inner" style="--detail-color:#A23A6B">
       <h3>Retention rate — Коефіцієнт утримання</h3>
       <p><strong>Категорії:</strong> Product</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-freemium">Freemium</a>, <a class="term-inline" data-detail="mon-license">Ліцензійна</a></p>
       <p><strong>Визначення:</strong> Показує, скільки користувачів продовжують використовувати продукт через певний час після першого знайомства з ним.</p>
       <p><strong>Формула:</strong> <code>Retention rate (%) = Users Still Active (Кількість користувачів, які залишилися) / Users at Start (Кількість користувачів на початку) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-term-churn-rate"><div class="detail-inner" style="--detail-color:var(--accent-red)">
       <h3>Churn rate — Відтік</h3>
       <p><strong>Категорії:</strong> Product</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-freemium">Freemium</a>, <a class="term-inline" data-detail="mon-subscription">Підписка (Subscription)</a></p>
       <p><strong>Визначення:</strong> Частка користувачів, що припинили використовувати продукт або послугу за певний період часу. Churn Rate є індикатором задоволеності клієнтів.</p>
       <p><strong>Формула:</strong> <code>Churn Rate (%) = Users Who Left (Кількість користувачів, що покинули продукт) / Users at Period Start (Загальна кількість користувачів на початку періоду) × 100%</code></p>
       <p><strong>Приклад:</strong> якщо на початку місяця у компанії було 1000 клієнтів, а до кінця місяця залишилося 950, то churn rate становитиме (1000 − 950) / 1000 × 100% = 5%.</p>
@@ -1468,6 +1486,7 @@
       <p><strong>Категорії:</strong> Monetization</p>
       <p><strong>Визначення:</strong> Дохід кампанії, отриманий від конверсій.</p>
       <p><strong>Формула:</strong> <code>Revenue = Conversions (Кількість конверсій) × AOV (Середній чек)</code></p>
+      <p><strong>Похідна формула:</strong> <code>AOV (Середній чек) = Revenue (Дохід) / Conversions (Кількість конверсій)</code></p>
       <p><strong>Приклад (з розрахунку платної кампанії):</strong> 500 × 120 = 60 000 USD.</p>
     </div></div>
     <div class="detail-panel" id="panel-term-roi"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
@@ -1799,12 +1818,14 @@
       <button class="term-node term-node-overview" data-detail="mon-models-diff">У чому різниця?</button>
       <button class="term-node term-node-overview" data-detail="mon-models-how-to-choose">Як обрати?</button>
       <button class="term-node term-node-overview" data-detail="mon-models-metrics">Аналітика й ризики</button>
-      <button class="term-node" data-detail="mon-freemium">Freemium</button>
-      <button class="term-node" data-detail="mon-subscription">Підписка (Subscription)</button>
-      <button class="term-node" data-detail="mon-ads">Реклама (Ad-Supported)</button>
-      <button class="term-node" data-detail="mon-inapp">In-App Purchases</button>
-      <button class="term-node" data-detail="mon-license">Ліцензійна</button>
-      <button class="term-node" data-detail="mon-commission">Комісійна (Commission)</button>
+    </div>
+    <div class="term-grid">
+      <button class="term-node model-freemium" data-detail="mon-freemium">Freemium</button>
+      <button class="term-node model-subscription" data-detail="mon-subscription">Підписка (Subscription)</button>
+      <button class="term-node model-ads" data-detail="mon-ads">Реклама (Ad-Supported)</button>
+      <button class="term-node model-inapp" data-detail="mon-inapp">In-App Purchases</button>
+      <button class="term-node model-license" data-detail="mon-license">Ліцензійна</button>
+      <button class="term-node model-commission" data-detail="mon-commission">Комісійна (Commission)</button>
     </div>
 
     <div class="detail-panel" id="panel-mon-freemium"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
@@ -1813,6 +1834,7 @@
       <p><strong>Переваги:</strong> залучає широку аудиторію; мотивує перехід на преміум, коли виникає потреба у додаткових функціях.</p>
       <p><strong>Недоліки:</strong> високі витрати на підтримку користувачів без підписки; залежність від великої бази для стабільного прибутку.</p>
       <p><strong>Коли обирати?</strong> Коли базові функції потрібні безплатно, а платні суттєво покращують досвід (музика, SaaS, навчальні платформи).</p>
+      <p><strong>Ключові метрики:</strong> <a class="term-inline" data-detail="mon-conv-free-paid">Conversion rate (free → paid)</a>, <a class="term-inline" data-detail="mon-arpu">ARPU</a>, <a class="term-inline" data-detail="mon-retention-rate">Retention rate</a>, <a class="term-inline" data-detail="mon-churn-rate">Churn rate</a></p>
     </div></div>
     <div class="detail-panel" id="panel-mon-subscription"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Підписка (Subscription)</h3>
@@ -1820,6 +1842,7 @@
       <p><strong>Переваги:</strong> стабільний потік доходу; сприяє лояльності користувачів.</p>
       <p><strong>Недоліки:</strong> може відштовхнути тих, хто не готовий платити постійно; вимагає регулярного оновлення контенту для втримання інтересу.</p>
       <p><strong>Коли обирати?</strong> Сервіси із високою частотою використання — медіа, освітні платформи, додатки для здоров'я.</p>
+      <p><strong>Ключові метрики:</strong> <a class="term-inline" data-detail="mon-mrr">MRR</a>, <a class="term-inline" data-detail="mon-ltv">LTV</a>, <a class="term-inline" data-detail="mon-cac">CAC</a>, <a class="term-inline" data-detail="mon-churn-rate">Churn rate</a></p>
     </div></div>
     <div class="detail-panel" id="panel-mon-ads"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Модель з рекламою (Ad-Supported)</h3>
@@ -1827,6 +1850,7 @@
       <p><strong>Переваги:</strong> залучає багато користувачів; можна заробляти навіть на тих, хто не платить за сервіс.</p>
       <p><strong>Недоліки:</strong> реклама може дратувати та знижувати якість досвіду; дохід нестабільний і залежить від кількості переглядів.</p>
       <p><strong>Коли обирати?</strong> Платформи з великим обсягом контенту, де користувачі проводять багато часу.</p>
+      <p><strong>Ключові метрики:</strong> <a class="term-inline" data-detail="mon-impressions">Ad Impressions</a>, <a class="term-inline" data-detail="mon-ctr">CTR</a>, <a class="term-inline" data-detail="mon-ecpm">eCPM</a>, <a class="term-inline" data-detail="mon-engagement-rate">Engagement rate</a></p>
     </div></div>
     <div class="detail-panel" id="panel-mon-inapp"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Покупка додатків/послуг (In-App Purchases / On-Demand)</h3>
@@ -1834,6 +1858,7 @@
       <p><strong>Переваги:</strong> підходить для ігор і коротких взаємодій; високий дохід від «віртуальних товарів».</p>
       <p><strong>Недоліки:</strong> складно прогнозувати стабільний дохід; підходить не для всіх типів продуктів.</p>
       <p><strong>Коли обирати?</strong> Ігри та додатки з регулярною активною взаємодією.</p>
+      <p><strong>Ключові метрики:</strong> <a class="term-inline" data-detail="mon-arppu">ARPPU</a>, <a class="term-inline" data-detail="mon-conv-purchase">Conversion rate (purchase)</a>, <a class="term-inline" data-detail="mon-avg-purchase-value">Average purchase value</a>, <a class="term-inline" data-detail="mon-purchase-frequency">Purchase frequency</a></p>
     </div></div>
     <div class="detail-panel" id="panel-mon-license"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Ліцензійна модель</h3>
@@ -1841,6 +1866,7 @@
       <p><strong>Переваги:</strong> стабільний дохід у B2B; дозволяє контролювати, як використовується продукт.</p>
       <p><strong>Недоліки:</strong> обмежує використання для широкого ринку; потребує регулярного оновлення та підтримки.</p>
       <p><strong>Коли обирати?</strong> B2B-продукти або складне ПЗ, яке потребує постійної підтримки.</p>
+      <p><strong>Ключові метрики:</strong> <a class="term-inline" data-detail="mon-arr">ARR</a>, <a class="term-inline" data-detail="mon-renewal-rate">Renewal rate</a>, <a class="term-inline" data-detail="mon-retention-rate">Retention rate</a>, <a class="term-inline" data-detail="mon-cac">CAC</a></p>
     </div></div>
     <div class="detail-panel" id="panel-mon-commission"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Комісійна модель (Commission-Based)</h3>
@@ -1848,6 +1874,7 @@
       <p><strong>Переваги:</strong> гнучкість у наданні сервісів; контент генерують користувачі, тож нема потреби постійно його оновлювати.</p>
       <p><strong>Недоліки:</strong> сильна залежність від кількості та якості пропозицій на платформі; потрібен постійний моніторинг для уникнення шахрайства.</p>
       <p><strong>Коли обирати?</strong> Маркетплейси, агрегатори, сервіси бронювання.</p>
+      <p><strong>Ключові метрики:</strong> <a class="term-inline" data-detail="mon-take-rate">Take rate</a>, <a class="term-inline" data-detail="mon-gmv">GMV</a>, <a class="term-inline" data-detail="mon-conv-transaction">Conversion rate (transaction)</a>, <a class="term-inline" data-detail="mon-avg-transaction-value">Average transaction value</a></p>
     </div></div>
 
     <div class="detail-panel" id="panel-mon-models-common"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
@@ -1916,7 +1943,7 @@
           <tr><td>Ad-Supported</td><td>Ad Impressions, <a class="term-inline" data-detail="term-ctr">CTR</a>, <a class="term-inline" data-detail="mon-ecpm">eCPM</a>, <a class="term-inline" data-detail="term-engagement-rate">Engagement Rate</a></td><td>Низька рекламна монетизація або недостатній трафік</td></tr>
           <tr><td>In-App Purchases</td><td><a class="term-inline" data-detail="mon-arppu">ARPPU</a>, Purchase Conversion, Average Purchase Value, Purchase Frequency</td><td>Мала частка платників або низька частота покупок</td></tr>
           <tr><td>Licensing</td><td><a class="term-inline" data-detail="mon-arr">ARR</a>, <a class="term-inline" data-detail="mon-renewal-rate">Renewal Rate</a>, <a class="term-inline" data-detail="term-retention-rate">Retention</a>, <a class="term-inline" data-detail="term-cac">CAC</a></td><td>Низьке продовження ліцензій або висока вартість залучення клієнта</td></tr>
-          <tr><td>Commission</td><td><a class="term-inline" data-detail="mon-gmv">GMV</a>, <a class="term-inline" data-detail="mon-take-rate">Take Rate</a>, Conversion Rate, Average Transaction Value</td><td>Залежність від обсягу й якості пропозицій на платформі</td></tr>
+          <tr><td>Commission</td><td><a class="term-inline" data-detail="mon-gmv">GMV</a>, <a class="term-inline" data-detail="mon-take-rate">Take Rate</a>, <a class="term-inline" data-detail="mon-conv-transaction">Conversion Rate</a>, <a class="term-inline" data-detail="mon-avg-transaction-value">Average Transaction Value</a></td><td>Залежність від обсягу й якості пропозицій на платформі</td></tr>
         </tbody>
       </table>
     </div></div>
@@ -1924,24 +1951,30 @@
     <h3 class="section-subhead">Метрики монетизації</h3>
     <p class="section-subdesc">Ключові показники оцінюють фінансову ефективність продукту, зрозумілість вигоди від груп користувачів і успішність моделі монетизації.</p>
     <div class="term-grid">
-      <button class="term-node" data-detail="mon-revenue">Revenue (M)</button>
-      <button class="term-node" data-detail="mon-arppu">ARPPU</button>
-      <button class="term-node" data-detail="mon-arpu">ARPU (M)</button>
-      <button class="term-node" data-detail="mon-ltv">LTV (M)</button>
-      <button class="term-node" data-detail="mon-cac">CAC (PPr)</button>
+<button class="term-node" data-detail="mon-revenue">Revenue (M)</button>
+      <button class="term-node model-inapp" data-detail="mon-arppu">ARPPU</button>
+      <button class="term-node model-freemium" data-detail="mon-arpu">ARPU (M)</button>
+      <button class="term-node model-subscription" data-detail="mon-ltv">LTV (M)</button>
+      <button class="term-node model-subscription-license" data-detail="mon-cac">CAC (PPr)</button>
       <button class="term-node" data-detail="mon-romi">ROMI (M)</button>
       <button class="term-node" data-detail="mon-roi">ROI (M)</button>
-      <button class="term-node" data-detail="mon-mrr">MRR</button>
-      <button class="term-node" data-detail="mon-arr">ARR</button>
-      <button class="term-node" data-detail="mon-ecpm">eCPM</button>
-      <button class="term-node" data-detail="mon-gmv">GMV</button>
-      <button class="term-node" data-detail="mon-take-rate">Take rate</button>
-      <button class="term-node" data-detail="mon-conv-purchase">Conversion rate (purchase)</button>
-      <button class="term-node" data-detail="mon-conv-free-paid">Conversion rate (free → paid)</button>
-      <button class="term-node" data-detail="mon-avg-purchase-value">Average purchase value</button>
-      <button class="term-node" data-detail="mon-purchase-frequency">Purchase frequency</button>
-      <button class="term-node" data-detail="mon-renewal-rate">Renewal rate</button>
-      <button class="term-node" data-detail="mon-avg-transaction-value">Average transaction value</button>
+      <button class="term-node model-subscription" data-detail="mon-mrr">MRR</button>
+      <button class="term-node model-license" data-detail="mon-arr">ARR</button>
+      <button class="term-node model-ads" data-detail="mon-ecpm">eCPM</button>
+      <button class="term-node model-commission" data-detail="mon-gmv">GMV</button>
+      <button class="term-node model-commission" data-detail="mon-take-rate">Take rate</button>
+      <button class="term-node model-inapp" data-detail="mon-conv-purchase">Conversion rate (purchase)</button>
+      <button class="term-node model-freemium" data-detail="mon-conv-free-paid">Conversion rate (free → paid)</button>
+      <button class="term-node model-commission" data-detail="mon-conv-transaction">Conversion rate (transaction)</button>
+      <button class="term-node model-inapp" data-detail="mon-avg-purchase-value">Average purchase value</button>
+      <button class="term-node model-inapp" data-detail="mon-purchase-frequency">Purchase frequency</button>
+      <button class="term-node model-license" data-detail="mon-renewal-rate">Renewal rate</button>
+      <button class="term-node model-commission" data-detail="mon-avg-transaction-value">Average transaction value</button>
+      <button class="term-node model-freemium-license" data-detail="mon-retention-rate">Retention rate</button>
+      <button class="term-node model-freemium-subscription" data-detail="mon-churn-rate">Churn rate</button>
+      <button class="term-node model-ads" data-detail="mon-impressions">Ad Impressions</button>
+      <button class="term-node model-ads" data-detail="mon-ctr">CTR</button>
+      <button class="term-node model-ads" data-detail="mon-engagement-rate">Engagement rate</button>
     </div>
 
     <!-- дубль panel-term-revenue, синхронізувати за потреби -->
@@ -1950,12 +1983,14 @@
       <p><strong>Категорії:</strong> Monetization</p>
       <p><strong>Визначення:</strong> Дохід кампанії, отриманий від конверсій.</p>
       <p><strong>Формула:</strong> <code>Revenue = Conversions (Кількість конверсій) × AOV (Середній чек)</code></p>
+      <p><strong>Похідна формула:</strong> <code>AOV (Середній чек) = Revenue (Дохід) / Conversions (Кількість конверсій)</code></p>
       <p><strong>Приклад (з розрахунку платної кампанії):</strong> 500 × 120 = 60 000 USD.</p>
     </div></div>
     <!-- дубль panel-term-arpu, синхронізувати за потреби -->
     <div class="detail-panel" id="panel-mon-arpu"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
       <h3>ARPU — Average Revenue per User</h3>
       <p><strong>Категорії:</strong> Monetization</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-freemium">Freemium</a></p>
       <p><strong>Визначення:</strong> Дохід на користувача — метрика прибутковості, що дозволяє оцінити економічну ефективність продукту.</p>
       <p><strong>Формула:</strong> <code>ARPU = Revenue (Дохід) / Users (Кількість користувачів)</code></p>
     </div></div>
@@ -1963,6 +1998,7 @@
     <div class="detail-panel" id="panel-mon-ltv"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
       <h3>LTV — Lifetime Value</h3>
       <p><strong>Категорії:</strong> Monetization</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-subscription">Підписка (Subscription)</a></p>
       <p><strong>Визначення:</strong> Довічна цінність клієнта — очікувана загальна вартість клієнта за весь час його взаємодії з продуктом.</p>
       <p><strong>Формула:</strong> <code>LTV = ARPU (Середній дохід на користувача) × Середній період утримання користувача (в місяцях/роках)</code></p>
       <p><strong>Приклад:</strong> <code>ARPU $2 × 12 міс. = LTV $24</code> — якщо середній ARPU дорівнює $2 на місяць, а користувач у середньому взаємодіє з продуктом 12 місяців.</p>
@@ -1972,6 +2008,7 @@
     <div class="detail-panel" id="panel-mon-cac"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
       <h3>CAC — Customer Acquisition Cost</h3>
       <p><strong>Категорії:</strong> Paid · Product</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-subscription">Підписка (Subscription)</a>, <a class="term-inline" data-detail="mon-license">Ліцензійна</a></p>
       <p><strong>Визначення:</strong> Загальна вартість залучення одного нового клієнта з урахуванням усіх витрат на маркетинг і рекламу. Ключова метрика, з якою порівнюють LTV.</p>
       <p><strong>Формула:</strong> <code>CAC = Marketing Cost (Витрати на маркетинг) / New Customers (Кількість нових клієнтів)</code></p>
     </div></div>
@@ -1994,6 +2031,7 @@
     <div class="detail-panel" id="panel-mon-arppu"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>ARPPU — середній дохід на платного користувача</h3>
       <p>Вимірює ефективність монетизації серед користувачів, які здійснюють покупки або оформляють підписку.</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-inapp">In-App Purchases</a></p>
       <p><strong>Формула:</strong> <code>ARPPU = Total Revenue (Загальний дохід) / Paying Users (Кількість платних користувачів)</code></p>
       <p><strong>Приклад:</strong> 20 000 / 1 000 = 20 USD.</p>
       <p><strong>Де використовувати?</strong> freemium-продукції, де платить лише частина користувачів.</p>
@@ -2001,58 +2039,119 @@
     <div class="detail-panel" id="panel-mon-mrr"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>MRR — monthly recurring revenue</h3>
       <p>Щомісячний регулярний дохід від підписок. Є натуральною метрикою моделі Subscription.</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-subscription">Підписка (Subscription)</a></p>
       <p><strong>Формула:</strong> <code>MRR = сума щомісячних платежів підписників</code> (зручніше: <code>MRR Growth (%) = (MRR кінця − MRR початку) / MRR початку × 100%</code>)</p>
     </div></div>
     <div class="detail-panel" id="panel-mon-arr"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>ARR — annual recurring revenue</h3>
       <p>Річний дохід від підписок або ліцензійних платежів. Ключова метрика для ліцензійної моделі.</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-license">Ліцензійна</a></p>
       <p><strong>Формула:</strong> <code>ARR = MRR × 12</code> (для щомісячних підписок) або <code>ARR per user = ARR / Number of customers</code></p>
     </div></div>
     <div class="detail-panel" id="panel-mon-ecpm"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>eCPM — effective cost per mille</h3>
       <p>Дохід від 1000 показів реклами. Ключова для Ad-Supported моделі.</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-ads">Реклама (Ad-Supported)</a></p>
       <p><strong>Формула:</strong> <code>eCPM = Ad Revenue (Дохід від реклами) / Impressions (Покази) × 1000</code></p>
     </div></div>
     <div class="detail-panel" id="panel-mon-gmv"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>GMV — gross merchandise volume</h3>
       <p>Загальна вартість товарів або послуг, проданих через платформу (сума всіх транзакцій). Ключова метрика комісійних моделей.</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-commission">Комісійна (Commission)</a></p>
       <p><strong>Формула:</strong> <code>GMV = середній чек × кількість транзакцій</code> (загальний обсяг).</p>
     </div></div>
     <div class="detail-panel" id="panel-mon-take-rate"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Take rate — частка комісії платформи</h3>
       <p>Середня комісія, яку компанія отримує від кожної транзакції на маркетплейсі.</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-commission">Комісійна (Commission)</a></p>
       <p><strong>Формула:</strong> <code>Take rate (%) = Commission Revenue (Дохід від комісій) / GMV (Загальний обсяг транзакцій) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-mon-conv-purchase"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Conversion rate (purchase) — конверсія у покупку</h3>
       <p>Відсоток користувачів, які зробили покупку всередині програми. Ключова метрика моделі In-App Purchases.</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-inapp">In-App Purchases</a></p>
       <p><strong>Формула:</strong> <code>Conversion rate (%) = Users Who Made a Purchase (Кількість користувачів, які зробили покупку) / Total Users (Загальна кількість користувачів) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-mon-conv-free-paid"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Conversion rate (free → paid) — конверсія у платну версію</h3>
       <p>Відсоток безплатних користувачів, які перейшли на платну версію. Ключова метрика для Freemium-моделі та маркетплейсів із платними розширеннями.</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-freemium">Freemium</a></p>
       <p><strong>Формула:</strong> <code>Conversion rate (free → paid) (%) = Users Who Upgraded (Користувачі, які перейшли на платну версію) / Free Users (Загальна кількість безкоштовних користувачів) × 100%</code></p>
       <p><strong>Приклад:</strong> 1000 безплатних користувачів, 50 перейшли на платну версію → 50 / 1000 × 100% = 5%.</p>
     </div></div>
     <div class="detail-panel" id="panel-mon-avg-purchase-value"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Average purchase value — середня вартість покупки</h3>
       <p>Середня вартість покупки всередині програми — скільки в середньому витрачає користувач за одну покупку.</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-inapp">In-App Purchases</a></p>
       <p><strong>Формула:</strong> <code>Average purchase value = Total Purchase Revenue (Загальний дохід від покупок) / Number of Purchases (Кількість покупок)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-mon-purchase-frequency"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Purchase frequency — частота покупок</h3>
       <p>Частота покупок серед користувачів, які вже зробили покупку. Ключова метрика моделі In-App Purchases.</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-inapp">In-App Purchases</a></p>
       <p><strong>Формула:</strong> <code>Purchase frequency = Number of Purchases (Кількість покупок) / Users Who Made Purchases (Кількість користувачів, які зробили покупки)</code></p>
     </div></div>
     <div class="detail-panel" id="panel-mon-renewal-rate"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Renewal rate — частка оновлень ліцензії</h3>
       <p>Частка користувачів, які оновили ліцензію після завершення терміну. Ключова метрика ліцензійної моделі.</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-license">Ліцензійна</a></p>
       <p><strong>Формула:</strong> <code>Renewal rate (%) = Users Who Renewed (Кількість користувачів, які оновили ліцензію) / Users Whose License Expired (Кількість користувачів, чия ліцензія закінчилась) × 100%</code></p>
     </div></div>
     <div class="detail-panel" id="panel-mon-avg-transaction-value"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
       <h3>Average transaction value — середня вартість транзакції</h3>
       <p>Середня вартість однієї транзакції на платформі. Ключова метрика комісійної моделі.</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-commission">Комісійна (Commission)</a></p>
       <p><strong>Формула:</strong> <code>Average transaction value = Total Transaction Volume (Загальний обсяг транзакцій) / Number of Transactions (Кількість транзакцій)</code></p>
+    </div></div>
+    <div class="detail-panel" id="panel-mon-conv-transaction"><div class="detail-inner" style="--detail-color:var(--accent-amber)">
+      <h3>Conversion rate — конверсія завершення транзакції</h3>
+      <p><strong>Категорії:</strong> Monetization</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-commission">Комісійна (Commission)</a></p>
+      <p><strong>Визначення:</strong> Частка користувачів маркетплейсу, які завершили покупку (транзакцію). Ключова метрика комісійної моделі.</p>
+      <p><strong>Формула:</strong> <code>Conversion rate (%) = Users Who Completed a Transaction (Кількість користувачів, які завершили транзакцію) / Total Users (Загальна кількість користувачів) × 100%</code></p>
+    </div></div>
+    <!-- дубль panel-term-retention-rate, синхронізувати за потреби -->
+    <div class="detail-panel" id="panel-mon-retention-rate"><div class="detail-inner" style="--detail-color:#A23A6B">
+      <h3>Retention rate — Коефіцієнт утримання</h3>
+      <p><strong>Категорії:</strong> Product</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-freemium">Freemium</a>, <a class="term-inline" data-detail="mon-license">Ліцензійна</a></p>
+      <p><strong>Визначення:</strong> Показує, скільки користувачів продовжують використовувати продукт через певний час після першого знайомства з ним.</p>
+      <p><strong>Формула:</strong> <code>Retention rate (%) = Users Still Active (Кількість користувачів, які залишилися) / Users at Start (Кількість користувачів на початку) × 100%</code></p>
+    </div></div>
+    <!-- дубль panel-term-churn-rate, синхронізувати за потреби -->
+    <div class="detail-panel" id="panel-mon-churn-rate"><div class="detail-inner" style="--detail-color:var(--accent-red)">
+      <h3>Churn rate — Відтік</h3>
+      <p><strong>Категорії:</strong> Product</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-freemium">Freemium</a>, <a class="term-inline" data-detail="mon-subscription">Підписка (Subscription)</a></p>
+      <p><strong>Визначення:</strong> Частка користувачів, що припинили використовувати продукт або послугу за певний період часу. Churn Rate є індикатором задоволеності клієнтів.</p>
+      <p><strong>Формула:</strong> <code>Churn Rate (%) = Users Who Left (Кількість користувачів, що покинули продукт) / Users at Period Start (Загальна кількість користувачів на початку періоду) × 100%</code></p>
+      <p><strong>Приклад:</strong> якщо на початку місяця у компанії було 1000 клієнтів, а до кінця місяця залишилося 950, то churn rate становитиме (1000 − 950) / 1000 × 100% = 5%.</p>
+    </div></div>
+    <!-- дубль panel-term-impressions, синхронізувати за потреби -->
+    <div class="detail-panel" id="panel-mon-impressions"><div class="detail-inner" style="--detail-color:var(--accent-blue)">
+      <h3>Impressions — Покази</h3>
+      <p><strong>Категорії:</strong> Paid · SEO · Content</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-ads">Реклама (Ad-Supported)</a></p>
+      <p><strong>Визначення:</strong> Кількість разів, коли оголошення чи сторінку сайту показали користувачам. Початкова метрика охоплення, з якої рахуються CTR і CPC.</p>
+    </div></div>
+    <!-- дубль panel-term-ctr, синхронізувати за потреби -->
+    <div class="detail-panel" id="panel-mon-ctr"><div class="detail-inner" style="--detail-color:var(--accent-coral)">
+      <h3>CTR — Click-Through Rate</h3>
+      <p><strong>Категорії:</strong> SEO · Email · Paid · Content</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-ads">Реклама (Ad-Supported)</a></p>
+      <p><strong>Визначення:</strong> Відсоток кліків від кількості показів. Показує, наскільки оголошення, посилання чи публікація привертає увагу. Формула залежить від каналу.</p>
+      <p><strong>Paid / SEO:</strong> <code>CTR (%) = Clicks (Кількість кліків) / Impressions (Кількість показів) × 100%</code></p>
+      <p><strong>Email:</strong> <code>CTR (%) = Clicks (Кількість кліків) / Delivered Emails (Кількість доставлених листів) × 100%</code></p>
+      <p><strong>Приклад (з розрахунку платної кампанії):</strong> 25 000 / 1 200 000 × 100% = 2.08% — нижче цільового CTR (3%), що може вказувати на низьку привабливість оголошення.</p>
+    </div></div>
+    <!-- дубль panel-term-engagement-rate, синхронізувати за потреби -->
+    <div class="detail-panel" id="panel-mon-engagement-rate"><div class="detail-inner" style="--detail-color:var(--accent-purple)">
+      <h3>Engagement rate — Показник взаємодії</h3>
+      <p><strong>Категорії:</strong> Paid · Email · Content</p>
+      <p><strong>Моделі:</strong> <a class="term-inline" data-detail="mon-ads">Реклама (Ad-Supported)</a></p>
+      <p><strong>Визначення:</strong> Показник взаємодії з контентом. Визначення та формула залежать від каналу: для реклами — частка взаємодій щодо показів; для імейлу — оцінка залученості підписників.</p>
+      <p><strong>Advertising / Content:</strong> <code>Engagement rate (%) = Engagements (Кількість взаємодій) / Impressions (Кількість показів) × 100%</code> — лайки, коментарі, поширення щодо показів або охоплення.</p>
+      <p><strong>Email:</strong> Рівень зацікавленості (engagement rate) — загальна оцінка залученості підписників до листів; обчислюється комбінацією Open rate, CTR і CTOR.</p>
     </div></div>
 
     <h3 class="section-subhead">Правові та етичні аспекти монетизації</h3>
